@@ -1,144 +1,138 @@
-import { log, error, warn, logger, LogLevel } from '../../logger.js';
+import { log, error, warn, logger, LogLevel as _LogLevel } from '../../logger.js';
 
 describe('logger', () => {
-  let consoleLogSpy: jest.SpyInstance;
-  let consoleErrorSpy: jest.SpyInstance;
-  let consoleWarnSpy: jest.SpyInstance;
+	let consoleLogSpy: jest.SpyInstance;
+	let consoleErrorSpy: jest.SpyInstance;
+	let consoleWarnSpy: jest.SpyInstance;
 
-  beforeEach(() => {
-    consoleLogSpy = jest.spyOn(console, 'log').mockImplementation();
-    consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
-    consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation();
-    logger.setLevel('info'); // Reset to default
-  });
+	beforeEach(() => {
+		consoleLogSpy = jest.spyOn(console, 'log').mockImplementation();
+		consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
+		consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation();
+		logger.setLevel('info'); // Reset to default
+	});
 
-  afterEach(() => {
-    consoleLogSpy.mockRestore();
-    consoleErrorSpy.mockRestore();
-    consoleWarnSpy.mockRestore();
-  });
+	afterEach(() => {
+		consoleLogSpy.mockRestore();
+		consoleErrorSpy.mockRestore();
+		consoleWarnSpy.mockRestore();
+	});
 
-  describe('legacy functions', () => {
-    describe('log', () => {
-      it('should output INFO message to console.log', () => {
-        log('test message');
-        
-        expect(consoleLogSpy).toHaveBeenCalledWith('[INFO] test message');
-      });
-    });
+	describe('legacy functions', () => {
+		describe('log', () => {
+			it('should output INFO message to console.log', () => {
+				log('test message');
 
-    describe('error', () => {
-      it('should output ERROR message to console.error', () => {
-        error('error message');
-        
-        expect(consoleErrorSpy).toHaveBeenCalledWith('[ERROR] error message');
-      });
-    });
+				expect(consoleLogSpy).toHaveBeenCalledWith('[INFO] test message');
+			});
+		});
 
-    describe('warn', () => {
-      it('should output WARN message to console.warn', () => {
-        warn('warning message');
-        
-        expect(consoleWarnSpy).toHaveBeenCalledWith('[WARN] warning message');
-      });
-    });
-  });
+		describe('error', () => {
+			it('should output ERROR message to console.error', () => {
+				error('error message');
 
-  describe('Logger class', () => {
-    describe('setLevel and getLevel', () => {
-      it('should set and get log level', () => {
-        logger.setLevel('debug');
-        expect(logger.getLevel()).toBe('debug');
+				expect(consoleErrorSpy).toHaveBeenCalledWith('[ERROR] error message');
+			});
+		});
 
-        logger.setLevel('error');
-        expect(logger.getLevel()).toBe('error');
-      });
-    });
+		describe('warn', () => {
+			it('should output WARN message to console.warn', () => {
+				warn('warning message');
 
-    describe('info', () => {
-      it('should log info messages with timestamp and stage', () => {
-        logger.info('TEST', 'test message');
+				expect(consoleWarnSpy).toHaveBeenCalledWith('[WARN] warning message');
+			});
+		});
+	});
 
-        expect(consoleLogSpy).toHaveBeenCalledWith(
-          expect.stringMatching(/\d{4}-\d{2}-\d{2}T.*\[INFO\] \[TEST\] test message/)
-        );
-      });
+	describe('Logger class', () => {
+		describe('setLevel and getLevel', () => {
+			it('should set and get log level', () => {
+				logger.setLevel('debug');
+				expect(logger.getLevel()).toBe('debug');
 
-      it('should include data when provided', () => {
-        logger.info('TEST', 'with data', { key: 'value' });
+				logger.setLevel('error');
+				expect(logger.getLevel()).toBe('error');
+			});
+		});
 
-        expect(consoleLogSpy).toHaveBeenCalledWith(
-          expect.stringContaining('[TEST]'),
-          expect.stringContaining('"key":"value"')
-        );
-      });
-    });
+		describe('info', () => {
+			it('should log info messages with timestamp and stage', () => {
+				logger.info('TEST', 'test message');
 
-    describe('debug', () => {
-      it('should not log when level is info', () => {
-        logger.setLevel('info');
-        logger.debug('TEST', 'debug message');
+				expect(consoleLogSpy).toHaveBeenCalledWith(
+					expect.stringMatching(/\d{4}-\d{2}-\d{2}T.*\[INFO\] \[TEST\] test message/),
+				);
+			});
 
-        expect(consoleLogSpy).not.toHaveBeenCalled();
-      });
+			it('should include data when provided', () => {
+				logger.info('TEST', 'with data', { key: 'value' });
 
-      it('should log when level is debug', () => {
-        logger.setLevel('debug');
-        logger.debug('TEST', 'debug message');
+				expect(consoleLogSpy).toHaveBeenCalledWith(
+					expect.stringContaining('[TEST]'),
+					expect.stringContaining('"key":"value"'),
+				);
+			});
+		});
 
-        expect(consoleLogSpy).toHaveBeenCalledWith(
-          expect.stringContaining('[DEBUG]')
-        );
-      });
-    });
+		describe('debug', () => {
+			it('should not log when level is info', () => {
+				logger.setLevel('info');
+				logger.debug('TEST', 'debug message');
 
-    describe('warn', () => {
-      it('should log to console.warn', () => {
-        logger.warn('TEST', 'warning');
+				expect(consoleLogSpy).not.toHaveBeenCalled();
+			});
 
-        expect(consoleWarnSpy).toHaveBeenCalledWith(
-          expect.stringContaining('[WARN]')
-        );
-      });
+			it('should log when level is debug', () => {
+				logger.setLevel('debug');
+				logger.debug('TEST', 'debug message');
 
-      it('should not log when level is error', () => {
-        logger.setLevel('error');
-        logger.warn('TEST', 'warning');
+				expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('[DEBUG]'));
+			});
+		});
 
-        expect(consoleWarnSpy).not.toHaveBeenCalled();
-      });
-    });
+		describe('warn', () => {
+			it('should log to console.warn', () => {
+				logger.warn('TEST', 'warning');
 
-    describe('error', () => {
-      it('should log to console.error', () => {
-        logger.error('TEST', 'error message');
+				expect(consoleWarnSpy).toHaveBeenCalledWith(expect.stringContaining('[WARN]'));
+			});
 
-        expect(consoleErrorSpy).toHaveBeenCalledWith(
-          expect.stringContaining('[ERROR]')
-        );
-      });
+			it('should not log when level is error', () => {
+				logger.setLevel('error');
+				logger.warn('TEST', 'warning');
 
-      it('should always log regardless of level', () => {
-        logger.setLevel('error');
-        logger.error('TEST', 'error message');
+				expect(consoleWarnSpy).not.toHaveBeenCalled();
+			});
+		});
 
-        expect(consoleErrorSpy).toHaveBeenCalled();
-      });
-    });
+		describe('error', () => {
+			it('should log to console.error', () => {
+				logger.error('TEST', 'error message');
 
-    describe('log levels hierarchy', () => {
-      it('should respect log level hierarchy', () => {
-        logger.setLevel('warn');
+				expect(consoleErrorSpy).toHaveBeenCalledWith(expect.stringContaining('[ERROR]'));
+			});
 
-        logger.debug('TEST', 'debug');
-        logger.info('TEST', 'info');
-        logger.warn('TEST', 'warn');
-        logger.error('TEST', 'error');
+			it('should always log regardless of level', () => {
+				logger.setLevel('error');
+				logger.error('TEST', 'error message');
 
-        expect(consoleLogSpy).not.toHaveBeenCalled(); // debug and info filtered
-        expect(consoleWarnSpy).toHaveBeenCalledTimes(1);
-        expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
-      });
-    });
-  });
+				expect(consoleErrorSpy).toHaveBeenCalled();
+			});
+		});
+
+		describe('log levels hierarchy', () => {
+			it('should respect log level hierarchy', () => {
+				logger.setLevel('warn');
+
+				logger.debug('TEST', 'debug');
+				logger.info('TEST', 'info');
+				logger.warn('TEST', 'warn');
+				logger.error('TEST', 'error');
+
+				expect(consoleLogSpy).not.toHaveBeenCalled(); // debug and info filtered
+				expect(consoleWarnSpy).toHaveBeenCalledTimes(1);
+				expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
+			});
+		});
+	});
 });
