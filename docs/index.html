@@ -49,12 +49,17 @@
       justify-content: center;
       gap: 30px;
       margin-top: 20px;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
     }
     
     .legend-item {
       display: flex;
       align-items: center;
       gap: 8px;
+      font-size: 0.85rem;
     }
     
     .legend-color {
@@ -112,29 +117,29 @@
 <body>
   <div class="container">
     <h1>📊 Migration Progress</h1>
-    <p class="subtitle">Code migration from legacy to new architecture</p>
+    <p class="subtitle">Code migration from static (excluding images, bundles, fonts, etc.) → frontends</p>
     
     <div id="chart-container"></div>
     
     <div class="legend">
       <div class="legend-item">
         <div class="legend-color new"></div>
-        <span>New (migrated)</span>
+        <span>frontends (all files)</span>
       </div>
       <div class="legend-item">
         <div class="legend-color old"></div>
-        <span>Old (legacy)</span>
+        <span>static (excluding: images, api-types, bundles, cursors, error_pages, external, fonts, localization, sounds, videos)</span>
       </div>
     </div>
     
     <div class="stats">
       <div class="stat">
         <div class="stat-value old" id="stat-old">-</div>
-        <div class="stat-label">Legacy Size</div>
+        <div class="stat-label">Legacy Size (filtered)</div>
       </div>
       <div class="stat">
         <div class="stat-value new" id="stat-new">-</div>
-        <div class="stat-label">New Size</div>
+        <div class="stat-label">New Size (all)</div>
       </div>
     </div>
     

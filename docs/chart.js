@@ -71,6 +71,11 @@ function createChart(data) {
     },
     rightPriceScale: {
       borderColor: '#2B2B43',
+      autoScale: true,
+      scaleMargins: {
+        top: 0.1,
+        bottom: 0,  // График начинается с 0
+      },
     },
     crosshair: {
       mode: LightweightCharts.CrosshairMode.Normal,
