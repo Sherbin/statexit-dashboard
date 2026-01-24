@@ -1,31 +1,215 @@
 {
   "meta": {
-    "sourceRepo": "git@github.com:example/source-repo.git",
-    "oldPath": "src/legacy",
-    "newPath": "src/new",
-    "generatedAt": "2026-01-24T18:55:00.000Z",
-    "version": 2
+    "sourceRepo": "git@git.xtools.tv:frontend/tradingview.git",
+    "oldPath": "static",
+    "newPath": "frontends",
+    "generatedAt": "2026-01-24T20:24:39.667Z",
+    "version": 2,
+    "ignoredSubfolders": {
+      "old": [
+        "images",
+        "api-types",
+        "bundles",
+        "cursors",
+        "error_pages",
+        "external",
+        "fonts",
+        "localization",
+        "sounds",
+        "videos"
+      ],
+      "new": []
+    }
   },
   "data": [
-    { "time": 1704067200, "old": 15000, "new": 500, "oldFiles": 120, "newFiles": 5 },
-    { "time": 1704153600, "old": 14800, "new": 700, "oldFiles": 118, "newFiles": 7 },
-    { "time": 1704240000, "old": 14500, "new": 1000, "oldFiles": 115, "newFiles": 10 },
-    { "time": 1704326400, "old": 14200, "new": 1300, "oldFiles": 112, "newFiles": 13 },
-    { "time": 1704412800, "old": 13800, "new": 1700, "oldFiles": 108, "newFiles": 17 },
-    { "time": 1704499200, "old": 13200, "new": 2300, "oldFiles": 102, "newFiles": 23 },
-    { "time": 1704585600, "old": 12500, "new": 3000, "oldFiles": 95, "newFiles": 30 },
-    { "time": 1704672000, "old": 11800, "new": 3700, "oldFiles": 88, "newFiles": 37 },
-    { "time": 1704758400, "old": 11000, "new": 4500, "oldFiles": 80, "newFiles": 45 },
-    { "time": 1704844800, "old": 10000, "new": 5500, "oldFiles": 70, "newFiles": 55 },
-    { "time": 1704931200, "old": 9000, "new": 6500, "oldFiles": 60, "newFiles": 65 },
-    { "time": 1705017600, "old": 8000, "new": 7500, "oldFiles": 50, "newFiles": 75 },
-    { "time": 1705104000, "old": 7000, "new": 8500, "oldFiles": 40, "newFiles": 85 },
-    { "time": 1705190400, "old": 6000, "new": 9500, "oldFiles": 30, "newFiles": 95 },
-    { "time": 1705276800, "old": 5000, "new": 10500, "oldFiles": 25, "newFiles": 100 },
-    { "time": 1705363200, "old": 4000, "new": 11500, "oldFiles": 20, "newFiles": 105 },
-    { "time": 1705449600, "old": 3000, "new": 12500, "oldFiles": 15, "newFiles": 110 },
-    { "time": 1705536000, "old": 2000, "new": 13500, "oldFiles": 10, "newFiles": 115 },
-    { "time": 1705622400, "old": 1000, "new": 14500, "oldFiles": 5, "newFiles": 120 },
-    { "time": 1705708800, "old": 500, "new": 15000, "oldFiles": 2, "newFiles": 123 }
+    {
+      "time": 1704067200,
+      "old": 15000,
+      "new": 500,
+      "oldFiles": 120,
+      "newFiles": 5
+    },
+    {
+      "time": 1704153600,
+      "old": 14800,
+      "new": 700,
+      "oldFiles": 118,
+      "newFiles": 7
+    },
+    {
+      "time": 1704240000,
+      "old": 14500,
+      "new": 1000,
+      "oldFiles": 115,
+      "newFiles": 10
+    },
+    {
+      "time": 1704326400,
+      "old": 14200,
+      "new": 1300,
+      "oldFiles": 112,
+      "newFiles": 13
+    },
+    {
+      "time": 1704412800,
+      "old": 13800,
+      "new": 1700,
+      "oldFiles": 108,
+      "newFiles": 17
+    },
+    {
+      "time": 1704499200,
+      "old": 13200,
+      "new": 2300,
+      "oldFiles": 102,
+      "newFiles": 23
+    },
+    {
+      "time": 1704585600,
+      "old": 12500,
+      "new": 3000,
+      "oldFiles": 95,
+      "newFiles": 30
+    },
+    {
+      "time": 1704672000,
+      "old": 11800,
+      "new": 3700,
+      "oldFiles": 88,
+      "newFiles": 37
+    },
+    {
+      "time": 1704758400,
+      "old": 11000,
+      "new": 4500,
+      "oldFiles": 80,
+      "newFiles": 45
+    },
+    {
+      "time": 1704844800,
+      "old": 10000,
+      "new": 5500,
+      "oldFiles": 70,
+      "newFiles": 55
+    },
+    {
+      "time": 1704931200,
+      "old": 9000,
+      "new": 6500,
+      "oldFiles": 60,
+      "newFiles": 65
+    },
+    {
+      "time": 1705017600,
+      "old": 8000,
+      "new": 7500,
+      "oldFiles": 50,
+      "newFiles": 75
+    },
+    {
+      "time": 1705104000,
+      "old": 7000,
+      "new": 8500,
+      "oldFiles": 40,
+      "newFiles": 85
+    },
+    {
+      "time": 1705190400,
+      "old": 6000,
+      "new": 9500,
+      "oldFiles": 30,
+      "newFiles": 95
+    },
+    {
+      "time": 1705276800,
+      "old": 5000,
+      "new": 10500,
+      "oldFiles": 25,
+      "newFiles": 100
+    },
+    {
+      "time": 1705363200,
+      "old": 4000,
+      "new": 11500,
+      "oldFiles": 20,
+      "newFiles": 105
+    },
+    {
+      "time": 1705449600,
+      "old": 3000,
+      "new": 12500,
+      "oldFiles": 15,
+      "newFiles": 110
+    },
+    {
+      "time": 1705536000,
+      "old": 2000,
+      "new": 13500,
+      "oldFiles": 10,
+      "newFiles": 115
+    },
+    {
+      "time": 1705622400,
+      "old": 1000,
+      "new": 14500,
+      "oldFiles": 5,
+      "newFiles": 120
+    },
+    {
+      "time": 1705708800,
+      "old": 500,
+      "new": 15000,
+      "oldFiles": 2,
+      "newFiles": 123
+    },
+    {
+      "time": 1753660800,
+      "old": 1671208,
+      "new": 70592,
+      "oldFiles": 23637,
+      "newFiles": 1904
+    },
+    {
+      "time": 1753747200,
+      "old": 1670220,
+      "new": 70592,
+      "oldFiles": 23626,
+      "newFiles": 1904
+    },
+    {
+      "time": 1753833600,
+      "old": 1670671,
+      "new": 70592,
+      "oldFiles": 23645,
+      "newFiles": 1904
+    },
+    {
+      "time": 1753920000,
+      "old": 1671959,
+      "new": 70592,
+      "oldFiles": 23670,
+      "newFiles": 1904
+    },
+    {
+      "time": 1754006400,
+      "old": 1672641,
+      "new": 70593,
+      "oldFiles": 23676,
+      "newFiles": 1904
+    },
+    {
+      "time": 1754092800,
+      "old": 1672607,
+      "new": 70593,
+      "oldFiles": 23683,
+      "newFiles": 1904
+    },
+    {
+      "time": 1754265600,
+      "old": 1668754,
+      "new": 70593,
+      "oldFiles": 23667,
+      "newFiles": 1904
+    }
   ]
 }
