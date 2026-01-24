@@ -3,7 +3,7 @@
     "sourceRepo": "git@git.xtools.tv:frontend/tradingview.git",
     "oldPath": "static",
     "newPath": "frontends",
-    "generatedAt": "2026-01-24T20:30:52.542Z",
+    "generatedAt": "2026-01-24T22:37:00.364Z",
     "version": 2,
     "ignoredSubfolders": {
       "old": [
@@ -24,52 +24,94 @@
   "data": [
     {
       "time": 1753660800,
-      "old": 1666290,
-      "new": 70592,
+      "oldSizeKB": 57082,
+      "newSizeKB": 12,
       "oldFiles": 23584,
-      "newFiles": 1904
+      "newFiles": 14
     },
     {
       "time": 1753747200,
-      "old": 1665302,
-      "new": 70592,
-      "oldFiles": 23573,
-      "newFiles": 1904
+      "oldSizeKB": 56853,
+      "newSizeKB": 0,
+      "oldFiles": 23528,
+      "newFiles": 0
     },
     {
       "time": 1753833600,
-      "old": 1665753,
-      "new": 70592,
+      "oldSizeKB": 57079,
+      "newSizeKB": 12,
       "oldFiles": 23592,
-      "newFiles": 1904
+      "newFiles": 14
     },
     {
       "time": 1753920000,
-      "old": 1667041,
-      "new": 70592,
+      "oldSizeKB": 57123,
+      "newSizeKB": 12,
       "oldFiles": 23617,
-      "newFiles": 1904
+      "newFiles": 14
     },
     {
       "time": 1754006400,
-      "old": 1667723,
-      "new": 70593,
-      "oldFiles": 23623,
-      "newFiles": 1904
+      "oldSizeKB": 57087,
+      "newSizeKB": 12,
+      "oldFiles": 23581,
+      "newFiles": 14
     },
     {
       "time": 1754092800,
-      "old": 1667689,
-      "new": 70593,
+      "oldSizeKB": 57143,
+      "newSizeKB": 12,
       "oldFiles": 23630,
-      "newFiles": 1904
+      "newFiles": 14
+    },
+    {
+      "time": 1754179200,
+      "oldSizeKB": 139294,
+      "newSizeKB": 0,
+      "oldFiles": 23576,
+      "newFiles": 0
     },
     {
       "time": 1754265600,
-      "old": 1663836,
-      "new": 70593,
+      "oldSizeKB": 57002,
+      "newSizeKB": 12,
       "oldFiles": 23614,
-      "newFiles": 1904
+      "newFiles": 14
+    },
+    {
+      "time": 1754352000,
+      "oldSizeKB": 57085,
+      "newSizeKB": 12,
+      "oldFiles": 23641,
+      "newFiles": 14
+    },
+    {
+      "time": 1754438400,
+      "oldSizeKB": 57199,
+      "newSizeKB": 12,
+      "oldFiles": 23693,
+      "newFiles": 14
+    },
+    {
+      "time": 1754524800,
+      "oldSizeKB": 57098,
+      "newSizeKB": 12,
+      "oldFiles": 23644,
+      "newFiles": 14
+    },
+    {
+      "time": 1754611200,
+      "oldSizeKB": 57262,
+      "newSizeKB": 12,
+      "oldFiles": 23714,
+      "newFiles": 14
+    },
+    {
+      "time": 1754697600,
+      "oldSizeKB": 57281,
+      "newSizeKB": 12,
+      "oldFiles": 23719,
+      "newFiles": 14
     }
   ]
 }
