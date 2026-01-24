@@ -1,6 +1,5 @@
 import * as fs from 'fs/promises';
 import * as path from 'path';
-import { isTextFile } from './text-detector.js';
 import { FolderStats } from '../data/schema.js';
 
 /**
@@ -14,22 +13,12 @@ export const IGNORED_DIRS: Set<string> = new Set([
 ]);
 
 /**
- * Рекурсивно подсчитывает непустые строки во всех текстовых файлах папки
- * 
- * @param folderPath - абсолютный путь к папке
- * @returns количество непустых строк (0 если папка не существует)
- */
-export async function countLines(folderPath: string): Promise<number> {
-  const stats = await analyzeFolder(folderPath);
-  return stats.lines;
-}
-
-/**
- * Рекурсивно анализирует папку: считает строки и файлы
+ * Рекурсивно анализирует папку: считает размер и количество файлов
+ * БЕЗ чтения содержимого файлов - только fs.stat()
  * 
  * @param folderPath - абсолютный путь к папке
  * @param ignoredSubfolders - список подпапок для игнорирования
- * @returns статистика: количество строк и файлов
+ * @returns статистика: размер в KB и количество файлов
  */
 export async function analyzeFolder(
   folderPath: string,
@@ -40,13 +29,13 @@ export async function analyzeFolder(
   try {
     const stat = await fs.stat(folderPath);
     if (!stat.isDirectory()) {
-      return { lines: 0, files: 0 };
+      return { sizeKB: 0, files: 0 };
     }
   } catch {
-    return { lines: 0, files: 0 };
+    return { sizeKB: 0, files: 0 };
   }
 
-  let totalLines = 0;
+  let totalSizeBytes = 0;
   let totalFiles = 0;
 
   async function processDirectory(dirPath: string, relativePath: string): Promise<void> {
@@ -75,24 +64,22 @@ export async function analyzeFolder(
         }
         await processDirectory(fullPath, relPath);
       } else if (entry.isFile()) {
-        const isText = await isTextFile(fullPath);
-        if (!isText) {
-          continue;
-        }
-
         try {
-          const content = await fs.readFile(fullPath, 'utf-8');
-          const lines = content.split('\n');
-          const nonEmptyLines = lines.filter(line => line.trim().length > 0);
-          totalLines += nonEmptyLines.length;
+          // Только stat - НЕ открываем файл
+          const fileStat = await fs.stat(fullPath);
+          totalSizeBytes += fileStat.size;
           totalFiles += 1;
         } catch (err) {
-          console.error(`Error reading file ${fullPath}:`, err);
+          console.error(`Error stat file ${fullPath}:`, err);
         }
       }
     }
   }
 
   await processDirectory(folderPath, '');
-  return { lines: totalLines, files: totalFiles };
+  
+  // Конвертируем байты в килобайты
+  const sizeKB = Math.round(totalSizeBytes / 1024);
+  
+  return { sizeKB, files: totalFiles };
 }

@@ -53,12 +53,20 @@ export function validateProgressData(data: ProgressData): void {
       throw new Error(`Validation error: data[${i}].time must be a positive integer`);
     }
 
-    if (typeof point.old !== 'number' || point.old < 0) {
-      throw new Error(`Validation error: data[${i}].old must be >= 0`);
+    if (typeof point.oldSizeKB !== 'number' || point.oldSizeKB < 0) {
+      throw new Error(`Validation error: data[${i}].oldSizeKB must be >= 0`);
     }
 
-    if (typeof point.new !== 'number' || point.new < 0) {
-      throw new Error(`Validation error: data[${i}].new must be >= 0`);
+    if (typeof point.newSizeKB !== 'number' || point.newSizeKB < 0) {
+      throw new Error(`Validation error: data[${i}].newSizeKB must be >= 0`);
+    }
+
+    if (typeof point.oldFiles !== 'number' || point.oldFiles < 0) {
+      throw new Error(`Validation error: data[${i}].oldFiles must be >= 0`);
+    }
+
+    if (typeof point.newFiles !== 'number' || point.newFiles < 0) {
+      throw new Error(`Validation error: data[${i}].newFiles must be >= 0`);
     }
   }
 

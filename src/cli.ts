@@ -2,7 +2,8 @@
 
 import { Command } from 'commander';
 import * as path from 'path';
-import * as fs from 'fs';
+import * as fs from 'fs/promises';
+import * as fsSync from 'fs';
 import { execSync } from 'child_process';
 
 // Импорты из созданных модулей
@@ -65,7 +66,7 @@ interface CliOptions {
 }
 
 function loadConfigFile(configPath: string): ConfigFile {
-  const content = fs.readFileSync(configPath, 'utf-8');
+  const content = fsSync.readFileSync(configPath, 'utf-8');
   return JSON.parse(content) as ConfigFile;
 }
 
@@ -211,16 +212,60 @@ async function main(): Promise<void> {
         // Timestamp = начало дня UTC
         const dayTimestamp = new Date(dc.date + 'T00:00:00Z').getTime() / 1000;
         
-        newPoints.push({
+        const newPoint: DataPoint = {
           time: dayTimestamp,
-          old: oldStats.lines,
-          new: newStats.lines,
+          oldSizeKB: oldStats.sizeKB,
+          newSizeKB: newStats.sizeKB,
           oldFiles: oldStats.files,
           newFiles: newStats.files,
-        });
+        };
         
-        logger.info('COUNT', `old: ${oldStats.lines} lines, ${oldStats.files} files`);
-        logger.info('COUNT', `new: ${newStats.lines} lines, ${newStats.files} files`);
+        newPoints.push(newPoint);
+        
+        logger.info('COUNT', `old: ${oldStats.sizeKB} KB, ${oldStats.files} files`);
+        logger.info('COUNT', `new: ${newStats.sizeKB} KB, ${newStats.files} files`);
+        
+        // 🔄 ПРОГРЕССИВНОЕ СОХРАНЕНИЕ: сохраняем после каждого дня
+        try {
+          // Получаем remote URL для meta
+          let sourceRepoUrl: string;
+          try {
+            sourceRepoUrl = execSync('git remote get-url origin', { 
+              cwd: repoPath, 
+              encoding: 'utf-8' 
+            }).trim();
+          } catch {
+            sourceRepoUrl = repoPath;
+          }
+
+          const progressMeta: MetaInfo = {
+            sourceRepo: sourceRepoUrl,
+            oldPath: oldPath,
+            newPath: newFolderPath,
+            generatedAt: new Date().toISOString(),
+            version: 2,
+            ignoredSubfolders: (ignoreOld || ignoreNew) ? {
+              old: ignoreOld,
+              new: ignoreNew,
+            } : undefined,
+          };
+
+          // Объединяем существующие данные с новыми точками
+          const progressData = mergeData(existingData, newPoints, progressMeta, false);
+          
+          // Сохраняем промежуточный результат
+          await fs.writeFile(outputPath, JSON.stringify(progressData, null, 2), 'utf-8');
+          logger.info('SAVE', `Saved progress: ${newPoints.length} days processed`);
+          
+          // 🧹 ОЧИСТКА ПАМЯТИ: принудительная сборка мусора после сохранения
+          if (global.gc) {
+            global.gc();
+            logger.debug('GC', 'Manual garbage collection triggered');
+          }
+        } catch (saveErr) {
+          logger.warn('SAVE', `Failed to save progress: ${saveErr instanceof Error ? saveErr.message : String(saveErr)}`);
+          // Продолжаем даже если сохранение не удалось
+        }
       }
     } finally {
       // 8. Всегда возвращаемся на исходную ветку

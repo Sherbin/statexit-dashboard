@@ -1,9 +1,9 @@
 export interface DataPoint {
   time: number;       // unix timestamp (секунды), начало дня UTC
-  old: number;        // строк в старой папке
-  new: number;        // строк в новой папке
-  oldFiles?: number;  // количество файлов (опционально)
-  newFiles?: number;  // количество файлов (опционально)
+  oldSizeKB: number;  // размер старой папки в KB
+  newSizeKB: number;  // размер новой папки в KB
+  oldFiles: number;   // количество файлов в старой папке
+  newFiles: number;   // количество файлов в новой папке
 }
 
 export interface MetaInfo {
@@ -19,8 +19,8 @@ export interface MetaInfo {
 }
 
 export interface FolderStats {
-  lines: number;
-  files: number;
+  sizeKB: number;  // размер папки в килобайтах
+  files: number;   // количество файлов
 }
 
 export interface ProgressData {

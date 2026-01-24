@@ -14,6 +14,13 @@ function formatNumber(num) {
   return num.toLocaleString();
 }
 
+function formatSize(sizeKB) {
+  if (sizeKB >= 1024) {
+    return (sizeKB / 1024).toFixed(1) + ' MB';
+  }
+  return sizeKB.toLocaleString() + ' KB';
+}
+
 function formatDate(timestamp) {
   const date = new Date(timestamp * 1000);
   return date.toLocaleDateString('en-US', { 
@@ -30,13 +37,14 @@ function createTooltip(container) {
     position: absolute;
     display: none;
     padding: 12px;
-    background: rgba(22, 33, 62, 0.95);
-    border: 1px solid #4ecca3;
+    background: rgba(30, 34, 45, 0.98);  /* TradingView panel with opacity */
+    border: 1px solid #2B2B43;            /* TradingView grid color */
     border-radius: 6px;
     font-size: 13px;
     pointer-events: none;
     z-index: 100;
     min-width: 180px;
+    color: #D1D4DC;                       /* TradingView text */
   `;
   container.style.position = 'relative';
   container.appendChild(tooltip);
@@ -48,11 +56,11 @@ function createChart(data) {
   
   const chart = LightweightCharts.createChart(container, {
     layout: {
-      background: { color: '#16213e' },
-      textColor: '#d1d4dc',
+      background: { color: '#1E222D' },  /* TradingView panel */
+      textColor: '#D1D4DC',               /* TradingView text */
     },
     grid: {
-      vertLines: { color: '#2B2B43' },
+      vertLines: { color: '#2B2B43' },   /* TradingView grid */
       horzLines: { color: '#2B2B43' },
     },
     width: container.clientWidth,
@@ -71,39 +79,39 @@ function createChart(data) {
 
   // Stacked Area: нижний слой — new, верхний — old + new (total)
   
-  // Серия total (будет показывать old часть сверху)
+  // Серия total (будет показывать old часть сверху) - используем Ripe Red
   const totalSeries = chart.addAreaSeries({
-    topColor: 'rgba(233, 69, 96, 0.4)',      // old color
-    bottomColor: 'rgba(233, 69, 96, 0.0)',
-    lineColor: '#e94560',
+    topColor: 'rgba(242, 54, 69, 0.4)',      // color-ripe-red-500 #F23645
+    bottomColor: 'rgba(242, 54, 69, 0.0)',
+    lineColor: '#F23645',
     lineWidth: 2,
     priceFormat: {
       type: 'custom',
-      formatter: (price) => formatNumber(Math.round(price)) + ' lines',
+      formatter: (price) => formatSize(Math.round(price)),
     },
   });
 
-  // Серия new (перекрывает нижнюю часть)
+  // Серия new (перекрывает нижнюю часть) - используем Minty Green
   const newSeries = chart.addAreaSeries({
-    topColor: 'rgba(78, 204, 163, 0.6)',     // new color
-    bottomColor: 'rgba(78, 204, 163, 0.1)',
-    lineColor: '#4ecca3',
+    topColor: 'rgba(8, 153, 129, 0.6)',      // color-minty-green-500 #089981
+    bottomColor: 'rgba(8, 153, 129, 0.1)',
+    lineColor: '#089981',
     lineWidth: 2,
     priceFormat: {
       type: 'custom',
-      formatter: (price) => formatNumber(Math.round(price)) + ' lines',
+      formatter: (price) => formatSize(Math.round(price)),
     },
   });
 
   // Преобразуем данные
   const totalData = data.data.map(point => ({
     time: point.time,
-    value: point.old + point.new,
+    value: point.oldSizeKB + point.newSizeKB,
   }));
 
   const newData = data.data.map(point => ({
     time: point.time,
-    value: point.new,
+    value: point.newSizeKB,
   }));
 
   totalSeries.setData(totalData);
@@ -127,44 +135,38 @@ function createChart(data) {
       return;
     }
 
-    const total = point.old + point.new;
-    const hasFiles = point.oldFiles !== undefined && point.newFiles !== undefined;
-    const totalFiles = hasFiles ? point.oldFiles + point.newFiles : null;
+    const total = point.oldSizeKB + point.newSizeKB;
+    const totalFiles = point.oldFiles + point.newFiles;
     
     let html = `
-      <div style="color: #888; margin-bottom: 8px; font-weight: bold;">${formatDate(point.time)}</div>
+      <div style="color: #787B86; margin-bottom: 8px; font-weight: bold;">${formatDate(point.time)}</div>
       <div style="margin-bottom: 4px;">
-        <span style="color: #e94560;">● ${oldPath}:</span> 
-        <span style="float: right; color: #fff;">${formatNumber(point.old)} lines</span>
+        <span style="color: #F23645;">● ${oldPath}:</span> 
+        <span style="float: right; color: #D1D4DC;">${formatSize(point.oldSizeKB)}</span>
       </div>
       <div style="margin-bottom: 4px;">
-        <span style="color: #4ecca3;">● ${newPath}:</span> 
-        <span style="float: right; color: #fff;">${formatNumber(point.new)} lines</span>
+        <span style="color: #089981;">● ${newPath}:</span> 
+        <span style="float: right; color: #D1D4DC;">${formatSize(point.newSizeKB)}</span>
       </div>
-      <div style="border-top: 1px solid #444; padding-top: 4px; margin-top: 4px;">
-        <span>Total:</span> 
-        <span style="float: right; color: #ffd93d; font-weight: bold;">${formatNumber(total)} lines</span>
+      <div style="border-top: 1px solid #2B2B43; padding-top: 4px; margin-top: 4px;">
+        <span style="color: #787B86;">Total:</span> 
+        <span style="float: right; color: #D1D4DC; font-weight: bold;">${formatSize(total)}</span>
+      </div>
+      <div style="border-top: 1px solid #2B2B43; padding-top: 8px; margin-top: 8px; font-size: 12px;">
+        <div style="margin-bottom: 2px;">
+          <span style="color: #F23645;">Files (${oldPath}):</span> 
+          <span style="float: right; color: #D1D4DC;">${formatNumber(point.oldFiles)}</span>
+        </div>
+        <div style="margin-bottom: 2px;">
+          <span style="color: #089981;">Files (${newPath}):</span> 
+          <span style="float: right; color: #D1D4DC;">${formatNumber(point.newFiles)}</span>
+        </div>
+        <div>
+          <span style="color: #787B86;">Total files:</span> 
+          <span style="float: right; color: #D1D4DC; font-weight: bold;">${formatNumber(totalFiles)}</span>
+        </div>
       </div>
     `;
-    
-    if (hasFiles) {
-      html += `
-        <div style="border-top: 1px solid #444; padding-top: 8px; margin-top: 8px; font-size: 12px;">
-          <div style="margin-bottom: 2px;">
-            <span style="color: #e94560;">Files (${oldPath}):</span> 
-            <span style="float: right;">${formatNumber(point.oldFiles)}</span>
-          </div>
-          <div style="margin-bottom: 2px;">
-            <span style="color: #4ecca3;">Files (${newPath}):</span> 
-            <span style="float: right;">${formatNumber(point.newFiles)}</span>
-          </div>
-          <div>
-            <span>Total files:</span> 
-            <span style="float: right; font-weight: bold;">${formatNumber(totalFiles)}</span>
-          </div>
-        </div>
-      `;
-    }
 
     tooltip.innerHTML = html;
     tooltip.style.display = 'block';
@@ -203,11 +205,11 @@ function updateStats(data) {
   const latest = data.data[data.data.length - 1];
   if (!latest) return;
 
-  const total = latest.old + latest.new;
-  const progress = total > 0 ? (latest.new / total * 100).toFixed(1) : 0;
+  const total = latest.oldSizeKB + latest.newSizeKB;
+  const progress = total > 0 ? (latest.newSizeKB / total * 100).toFixed(1) : 0;
 
-  document.getElementById('stat-old').textContent = formatNumber(latest.old);
-  document.getElementById('stat-new').textContent = formatNumber(latest.new);
+  document.getElementById('stat-old').textContent = formatSize(latest.oldSizeKB);
+  document.getElementById('stat-new').textContent = formatSize(latest.newSizeKB);
   document.getElementById('stat-progress').textContent = progress + '%';
 }
 
