@@ -69,7 +69,8 @@
       "oldSizeKB": 139294,
       "newSizeKB": 0,
       "oldFiles": 23576,
-      "newFiles": 0
+      "newFiles": 0,
+      "comment": "Test data spike: tzdata.test (4.1M lines) added, moved to isolated package next day"
     },
     {
       "time": 1754265600,
@@ -944,7 +945,8 @@
       "oldSizeKB": 112806,
       "newSizeKB": 1271,
       "oldFiles": 25252,
-      "newFiles": 329
+      "newFiles": 329,
+      "comment": "Christmas game preview: 131 files added, removed next day for staging"
     },
     {
       "time": 1765152000,
@@ -1000,7 +1002,8 @@
       "oldSizeKB": 71020,
       "newSizeKB": 1274,
       "oldFiles": 25436,
-      "newFiles": 329
+      "newFiles": 329,
+      "comment": "Screener presets added: 137K lines of filter JSON data (permanent)"
     },
     {
       "time": 1765843200,
@@ -1056,14 +1059,16 @@
       "oldSizeKB": 61021,
       "newSizeKB": 1277,
       "oldFiles": 25122,
-      "newFiles": 329
+      "newFiles": 329,
+      "comment": "Christmas content temporarily removed for hotfix"
     },
     {
       "time": 1766534400,
       "oldSizeKB": 71193,
       "newSizeKB": 1965,
       "oldFiles": 25457,
-      "newFiles": 611
+      "newFiles": 611,
+      "comment": "Christmas content restored after testing"
     },
     {
       "time": 1766620800,

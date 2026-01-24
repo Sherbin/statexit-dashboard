@@ -173,6 +173,20 @@ function createChart(data) {
       </div>
     `;
 
+    // Add comment section if present
+    if (point.comment) {
+      html += `
+        <div style="border-top: 1px solid #ff9800; margin-top: 10px; padding-top: 8px;">
+          <div style="color: #ff9800; font-weight: bold; margin-bottom: 4px; font-size: 11px;">
+            ⚠️ Anomaly Note:
+          </div>
+          <div style="color: #D1D4DC; font-size: 11px; line-height: 1.5; max-width: 280px; word-wrap: break-word;">
+            ${point.comment}
+          </div>
+        </div>
+      `;
+    }
+
     tooltip.innerHTML = html;
     tooltip.style.display = 'block';
     

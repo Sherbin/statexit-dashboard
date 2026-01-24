@@ -4,6 +4,7 @@ export interface DataPoint {
   newSizeKB: number;  // размер новой папки в KB
   oldFiles: number;   // количество файлов в старой папке
   newFiles: number;   // количество файлов в новой папке
+  comment?: string;   // опциональное объяснение аномалий (на английском)
 }
 
 export interface MetaInfo {

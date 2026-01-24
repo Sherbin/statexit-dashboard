@@ -68,6 +68,11 @@ export function validateProgressData(data: ProgressData): void {
     if (typeof point.newFiles !== 'number' || point.newFiles < 0) {
       throw new Error(`Validation error: data[${i}].newFiles must be >= 0`);
     }
+
+    // Опциональное поле comment
+    if (point.comment !== undefined && typeof point.comment !== 'string') {
+      throw new Error(`Validation error: data[${i}].comment must be a string`);
+    }
   }
 
   // 4. Проверка сортировки (строго возрастает)

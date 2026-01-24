@@ -56,8 +56,31 @@ node dist/cli.js \
     "generatedAt": "2024-01-01T00:00:00.000Z"
   },
   "data": [
-    { "time": 1704067200, "old": 12345, "new": 6789 }
+    { 
+      "time": 1704067200, 
+      "oldSizeKB": 12345, 
+      "newSizeKB": 6789,
+      "oldFiles": 234,
+      "newFiles": 123,
+      "comment": "Optional explanation for anomalies"
+    }
   ]
+}
+```
+
+### Comments Field (v2)
+
+The optional `comment` field can be added to any data point to explain anomalies or significant changes. Comments will appear in the dashboard tooltip with a distinctive orange warning icon.
+
+**Example:**
+```json
+{
+  "time": 1754179200,
+  "oldSizeKB": 139294,
+  "newSizeKB": 12,
+  "oldFiles": 23576,
+  "newFiles": 14,
+  "comment": "Test data spike: tzdata.test (4.1M lines) added, moved to isolated package next day"
 }
 ```
 
@@ -66,6 +89,18 @@ node dist/cli.js \
 После генерации `progress.json` дашборд доступен через GitHub Pages:
 1. Включите GitHub Pages для папки `/docs`
 2. Откройте `https://<username>.github.io/<repo>/`
+
+## Local Development
+
+To view the dashboard locally:
+
+```bash
+npm run serve
+```
+
+Then open http://localhost:8080 in your browser.
+
+**Note:** The dashboard requires a web server due to CORS restrictions. Simply opening `docs/index.html` directly will not work.
 
 ## Автоматизация (cron)
 
