@@ -29,13 +29,32 @@ export async function getCurrentBranch(repoPath: string): Promise<string> {
 }
 
 /**
- * Делает checkout на указанный коммит
+ * Делает checkout на указанный коммит (полный сброс)
+ * 1. Сбрасывает все staged изменения
+ * 2. Удаляет untracked файлы
+ * 3. Переключается на коммит
  */
 export async function checkoutCommit(repoPath: string, hash: string): Promise<void> {
   try {
-    execSync(`git checkout --quiet ${hash}`, {
+    // Reset any staged changes
+    execSync('git reset --hard HEAD', {
       cwd: repoPath,
       encoding: 'utf-8',
+      stdio: 'pipe',
+    });
+    
+    // Remove untracked files and directories
+    execSync('git clean -fd', {
+      cwd: repoPath,
+      encoding: 'utf-8',
+      stdio: 'pipe',
+    });
+    
+    // Checkout to target commit
+    execSync(`git checkout --force --quiet ${hash}`, {
+      cwd: repoPath,
+      encoding: 'utf-8',
+      stdio: 'pipe',
     });
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
@@ -45,13 +64,29 @@ export async function checkoutCommit(repoPath: string, hash: string): Promise<vo
 }
 
 /**
- * Возвращается на исходную ветку
+ * Возвращается на исходную ветку (полный сброс)
  */
 export async function restoreBranch(repoPath: string, branch: string): Promise<void> {
   try {
-    execSync(`git checkout --quiet ${branch}`, {
+    // Reset any staged changes
+    execSync('git reset --hard HEAD', {
       cwd: repoPath,
       encoding: 'utf-8',
+      stdio: 'pipe',
+    });
+    
+    // Remove untracked files and directories
+    execSync('git clean -fd', {
+      cwd: repoPath,
+      encoding: 'utf-8',
+      stdio: 'pipe',
+    });
+    
+    // Checkout to target branch
+    execSync(`git checkout --force --quiet ${branch}`, {
+      cwd: repoPath,
+      encoding: 'utf-8',
+      stdio: 'pipe',
     });
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);

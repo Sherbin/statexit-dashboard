@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "migrationStartHash": "c3bb1972b9ee8170e87b1b69d9efb951d33161d4",
+  "migrationStartTimestamp": 1753709547,
+  "oldPath": "static",
+  "newPath": "frontends",
+  "createdAt": "2026-01-24T20:03:12.698Z"
+}

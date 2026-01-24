@@ -1,0 +1,20 @@
+{
+  "repo": "/Users/sscherbin/code/tradingview",
+  "old": "static",
+  "new": "frontends",
+  "output": "./docs/progress.json",
+  "ignoreOld": [
+    "images",
+    "api-types",
+    "bundles",
+    "cursors",
+    "error_pages",
+    "external",
+    "fonts",
+    "localization",
+    "sounds",
+    "videos"
+  ],
+  "ignoreNew": [],
+  "logLevel": "info"
+}
