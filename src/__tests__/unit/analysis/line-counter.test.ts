@@ -1,4 +1,4 @@
-import { countLines, IGNORED_DIRS } from '../../../analysis/line-counter.js';
+import { countLines, analyzeFolder, IGNORED_DIRS } from '../../../analysis/line-counter.js';
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import * as os from 'os';
@@ -128,6 +128,73 @@ describe('line-counter', () => {
 
       const result = await countLines(tempDir);
       expect(result).toBe(2);
+    });
+  });
+
+  describe('analyzeFolder', () => {
+    it('should return lines and files count', async () => {
+      await fs.writeFile(path.join(tempDir, 'file1.ts'), 'a\nb\nc\n');
+      await fs.writeFile(path.join(tempDir, 'file2.ts'), 'd\ne\n');
+
+      const result = await analyzeFolder(tempDir);
+      
+      expect(result.lines).toBe(5);
+      expect(result.files).toBe(2);
+    });
+
+    it('should return 0 for non-existent directory', async () => {
+      const result = await analyzeFolder(path.join(tempDir, 'nonexistent'));
+      
+      expect(result.lines).toBe(0);
+      expect(result.files).toBe(0);
+    });
+
+    it('should ignore specified subfolders', async () => {
+      const imagesDir = path.join(tempDir, 'images');
+      const fontsDir = path.join(tempDir, 'fonts');
+      await fs.mkdir(imagesDir);
+      await fs.mkdir(fontsDir);
+      
+      await fs.writeFile(path.join(tempDir, 'code.ts'), 'a\nb\nc\n');
+      await fs.writeFile(path.join(imagesDir, 'meta.json'), '{"a":1}\n');
+      await fs.writeFile(path.join(fontsDir, 'list.txt'), 'x\ny\n');
+
+      const result = await analyzeFolder(tempDir, ['images', 'fonts']);
+      
+      expect(result.lines).toBe(3);
+      expect(result.files).toBe(1);
+    });
+
+    it('should count files recursively', async () => {
+      const subDir = path.join(tempDir, 'sub');
+      await fs.mkdir(subDir);
+      await fs.writeFile(path.join(tempDir, 'root.ts'), 'a\n');
+      await fs.writeFile(path.join(subDir, 'nested.ts'), 'b\n');
+
+      const result = await analyzeFolder(tempDir);
+      
+      expect(result.files).toBe(2);
+    });
+
+    it('should ignore nested subfolders by relative path', async () => {
+      const apiTypesDir = path.join(tempDir, 'api-types');
+      await fs.mkdir(apiTypesDir);
+      await fs.writeFile(path.join(tempDir, 'code.ts'), 'a\n');
+      await fs.writeFile(path.join(apiTypesDir, 'types.ts'), 'b\nc\n');
+
+      const result = await analyzeFolder(tempDir, ['api-types']);
+      
+      expect(result.lines).toBe(1);
+      expect(result.files).toBe(1);
+    });
+
+    it('should skip binary files in file count', async () => {
+      await fs.writeFile(path.join(tempDir, 'code.ts'), 'a\n');
+      await fs.writeFile(path.join(tempDir, 'image.dat'), Buffer.from([0x00, 0x01]));
+
+      const result = await analyzeFolder(tempDir);
+      
+      expect(result.files).toBe(1);
     });
   });
 });

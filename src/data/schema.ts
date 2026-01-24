@@ -1,7 +1,9 @@
 export interface DataPoint {
-  time: number;    // unix timestamp (секунды), начало дня UTC
-  old: number;     // строк в старой папке
-  new: number;     // строк в новой папке
+  time: number;       // unix timestamp (секунды), начало дня UTC
+  old: number;        // строк в старой папке
+  new: number;        // строк в новой папке
+  oldFiles?: number;  // количество файлов (опционально)
+  newFiles?: number;  // количество файлов (опционально)
 }
 
 export interface MetaInfo {
@@ -9,6 +11,16 @@ export interface MetaInfo {
   oldPath: string;      // путь старой папки
   newPath: string;      // путь новой папки
   generatedAt: string;  // ISO-8601
+  version?: number;     // версия схемы
+  ignoredSubfolders?: {
+    old?: string[];
+    new?: string[];
+  };
+}
+
+export interface FolderStats {
+  lines: number;
+  files: number;
 }
 
 export interface ProgressData {

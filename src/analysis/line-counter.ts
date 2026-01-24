@@ -1,6 +1,7 @@
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import { isTextFile } from './text-detector.js';
+import { FolderStats } from '../data/schema.js';
 
 /**
  * Список папок для игнорирования
@@ -19,18 +20,36 @@ export const IGNORED_DIRS: Set<string> = new Set([
  * @returns количество непустых строк (0 если папка не существует)
  */
 export async function countLines(folderPath: string): Promise<number> {
+  const stats = await analyzeFolder(folderPath);
+  return stats.lines;
+}
+
+/**
+ * Рекурсивно анализирует папку: считает строки и файлы
+ * 
+ * @param folderPath - абсолютный путь к папке
+ * @param ignoredSubfolders - список подпапок для игнорирования
+ * @returns статистика: количество строк и файлов
+ */
+export async function analyzeFolder(
+  folderPath: string,
+  ignoredSubfolders?: string[]
+): Promise<FolderStats> {
+  const ignoredSet = new Set(ignoredSubfolders || []);
+  
   try {
     const stat = await fs.stat(folderPath);
     if (!stat.isDirectory()) {
-      return 0;
+      return { lines: 0, files: 0 };
     }
   } catch {
-    return 0;
+    return { lines: 0, files: 0 };
   }
 
   let totalLines = 0;
+  let totalFiles = 0;
 
-  async function processDirectory(dirPath: string): Promise<void> {
+  async function processDirectory(dirPath: string, relativePath: string): Promise<void> {
     let entries: import('fs').Dirent[];
     
     try {
@@ -43,13 +62,18 @@ export async function countLines(folderPath: string): Promise<number> {
     for (const entry of entries) {
       const entryName = String(entry.name);
       const fullPath = path.join(dirPath, entryName);
+      const relPath = relativePath ? `${relativePath}/${entryName}` : entryName;
 
       if (IGNORED_DIRS.has(entryName)) {
         continue;
       }
 
       if (entry.isDirectory()) {
-        await processDirectory(fullPath);
+        // Check if this subfolder should be ignored
+        if (ignoredSet.has(entryName) || ignoredSet.has(relPath)) {
+          continue;
+        }
+        await processDirectory(fullPath, relPath);
       } else if (entry.isFile()) {
         const isText = await isTextFile(fullPath);
         if (!isText) {
@@ -61,6 +85,7 @@ export async function countLines(folderPath: string): Promise<number> {
           const lines = content.split('\n');
           const nonEmptyLines = lines.filter(line => line.trim().length > 0);
           totalLines += nonEmptyLines.length;
+          totalFiles += 1;
         } catch (err) {
           console.error(`Error reading file ${fullPath}:`, err);
         }
@@ -68,6 +93,6 @@ export async function countLines(folderPath: string): Promise<number> {
     }
   }
 
-  await processDirectory(folderPath);
-  return totalLines;
+  await processDirectory(folderPath, '');
+  return { lines: totalLines, files: totalFiles };
 }
