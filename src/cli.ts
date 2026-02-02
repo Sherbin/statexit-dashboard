@@ -33,6 +33,7 @@ interface ConfigFile {
 	logLevel?: LogLevel;
 	ignoreOld?: string[];
 	ignoreNew?: string[];
+	untilYesterday?: boolean;
 }
 
 interface CliOptions {
@@ -46,6 +47,7 @@ interface CliOptions {
 	ignoreOld?: string;
 	ignoreNew?: string;
 	config?: string;
+	untilYesterday: boolean;
 }
 
 function loadConfigFile(configPath: string): ConfigFile {
@@ -69,6 +71,7 @@ async function main(): Promise<void> {
 		.option('--log-level <level>', 'Log level: debug|info|warn|error', 'info')
 		.option('--ignore-old <folders>', 'Comma-separated subfolders to ignore in old path')
 		.option('--ignore-new <folders>', 'Comma-separated subfolders to ignore in new path')
+		.option('--until-yesterday', 'Exclude today, only process up to yesterday', false)
 		.parse();
 
 	const cliOpts = program.opts<CliOptions>();
@@ -174,9 +177,22 @@ async function main(): Promise<void> {
 
 	logger.info('AGGREGATE', `Aggregated to ${dailyCommits.length} daily data points`);
 
+	// 5.1. Фильтрация --until-yesterday
+	const untilYesterday = cliOpts.untilYesterday || config?.untilYesterday || false;
+
+	let filteredDailyCommits = dailyCommits;
+	if (untilYesterday) {
+		const today = new Date().toISOString().split('T')[0];
+		filteredDailyCommits = dailyCommits.filter((dc) => dc.date < today);
+		logger.info(
+			'FILTER',
+			`Excluding today (${today}), ${dailyCommits.length - filteredDailyCommits.length} day(s) filtered`,
+		);
+	}
+
 	// 6. Фильтруем уже обработанные
 	const lastTimestamp = getLastTimestamp(existingData);
-	const newDailyCommits = dailyCommits.filter((dc) => {
+	const newDailyCommits = filteredDailyCommits.filter((dc) => {
 		// Конвертируем дату в timestamp начала дня UTC
 		const dayStart = new Date(dc.date + 'T00:00:00Z').getTime() / 1000;
 
