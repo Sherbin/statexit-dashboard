@@ -5,6 +5,7 @@
 	"scripts": {
 		"build": "tsc",
 		"start": "node dist/cli.js",
+		"update": "npm run build && node dist/cli.js --config config.json --until-yesterday",
 		"analyze-spike": "node dist/analyze-spike.js",
 		"deep-spike": "node dist/deep-spike-analysis.js",
 		"serve": "cd docs && python3 -m http.server 8080",
