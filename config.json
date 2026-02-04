@@ -16,5 +16,12 @@
 		"videos"
 	],
 	"ignoreNew": [],
-	"logLevel": "info"
+	"logLevel": "info",
+	"ui": {
+		"title": "Migration Progress",
+		"oldLabel": "static",
+		"newLabel": "frontends",
+		"oldDescription": "excluding: images, api-types, bundles, cursors, error_pages, external, fonts, localization, sounds, videos",
+		"newDescription": "all files"
+	}
 }

@@ -67,8 +67,8 @@ function getComputedColors() {
 		gridColor: styles.getPropertyValue('--grid-color').trim(),
 		colorPositive: styles.getPropertyValue('--color-positive').trim(),
 		colorNegative: styles.getPropertyValue('--color-negative').trim(),
-		colorStatic: styles.getPropertyValue('--color-static').trim(),
-		colorFrontends: styles.getPropertyValue('--color-frontends').trim(),
+		colorOld: styles.getPropertyValue('--color-old').trim(),
+		colorNew: styles.getPropertyValue('--color-new').trim(),
 	};
 }
 
@@ -137,13 +137,18 @@ function createChart(data, changeMap) {
 		},
 	});
 
-	// Stacked Area: нижний слой — frontends (new), верхний — static + frontends (total)
+	// Get labels from meta
+	const meta = data.meta;
+	const oldLabel = meta.ui?.oldLabel || meta.oldPath;
+	const newLabel = meta.ui?.newLabel || meta.newPath;
 
-	// Серия total (будет показывать static часть сверху) - Orange
+	// Stacked Area: нижний слой — new, верхний — old + new (total)
+
+	// Серия total (будет показывать old часть сверху) - Orange
 	const totalSeries = chart.addAreaSeries({
 		topColor: 'rgba(255, 152, 0, 0.4)',
 		bottomColor: 'rgba(255, 152, 0, 0.0)',
-		lineColor: colors.colorStatic,
+		lineColor: colors.colorOld,
 		lineWidth: 2,
 		priceFormat: {
 			type: 'custom',
@@ -151,11 +156,11 @@ function createChart(data, changeMap) {
 		},
 	});
 
-	// Серия frontends (перекрывает нижнюю часть) - Blue
+	// Серия new (перекрывает нижнюю часть) - Blue
 	const newSeries = chart.addAreaSeries({
 		topColor: 'rgba(41, 98, 255, 0.6)',
 		bottomColor: 'rgba(41, 98, 255, 0.1)',
-		lineColor: colors.colorFrontends,
+		lineColor: colors.colorNew,
 		lineWidth: 2,
 		priceFormat: {
 			type: 'custom',
@@ -223,21 +228,24 @@ function createChart(data, changeMap) {
 		}
 
 		const change = changeMap.get(point.time);
-		const changeColor = change ? (change.totalSize >= 0 ? colors.colorPositive : colors.colorNegative) : colors.textSecondary;
-		const changeArrow = change ? (change.totalSize >= 0 ? '↑' : '↓') : '';
+		const isPositiveChange = change && change.totalSize >= 0;
+		const changeColor = change
+			? (isPositiveChange ? colors.colorPositive : colors.colorNegative)
+			: colors.textSecondary;
+		const changeArrow = change ? (isPositiveChange ? '↑' : '↓') : '';
 
 		const html = `
       <div style="color: ${colors.textSecondary}; margin-bottom: 10px; font-weight: bold; font-size: 14px;">${formatDate(point.time)}</div>
       <div style="border-top: 1px solid ${colors.borderColor}; padding-top: 8px; margin-bottom: 8px;">
         <div style="display: flex; align-items: center; margin-bottom: 6px;">
-          <span style="color: ${colors.colorStatic}; margin-right: 8px;">●</span>
-          <span style="color: ${colors.textSecondary}; min-width: 70px;">static:</span>
+          <span style="color: ${colors.colorOld}; margin-right: 8px;">●</span>
+          <span style="color: ${colors.textSecondary}; min-width: 70px;">${oldLabel}:</span>
           <span style="color: ${colors.textPrimary}; margin-right: 12px;">${formatSize(point.oldSizeKB)}</span>
           <span style="color: ${colors.textSecondary}; font-size: 12px;">│ ${formatNumber(point.oldFiles)} files</span>
         </div>
         <div style="display: flex; align-items: center;">
-          <span style="color: ${colors.colorFrontends}; margin-right: 8px;">●</span>
-          <span style="color: ${colors.textSecondary}; min-width: 70px;">frontends:</span>
+          <span style="color: ${colors.colorNew}; margin-right: 8px;">●</span>
+          <span style="color: ${colors.textSecondary}; min-width: 70px;">${newLabel}:</span>
           <span style="color: ${colors.textPrimary}; margin-right: 12px;">${formatSize(point.newSizeKB)}</span>
           <span style="color: ${colors.textSecondary}; font-size: 12px;">│ ${formatNumber(point.newFiles)} files</span>
         </div>
@@ -249,8 +257,8 @@ function createChart(data, changeMap) {
       </div>
       ` : ''}
       ${point.comment ? `
-      <div style="border-top: 1px solid ${colors.colorStatic}; margin-top: 10px; padding-top: 8px;">
-        <div style="color: ${colors.colorStatic}; font-weight: bold; margin-bottom: 4px; font-size: 11px;">
+      <div style="border-top: 1px solid ${colors.colorOld}; margin-top: 10px; padding-top: 8px;">
+        <div style="color: ${colors.colorOld}; font-weight: bold; margin-bottom: 4px; font-size: 11px;">
           ⚠️ Note:
         </div>
         <div style="color: ${colors.textPrimary}; font-size: 11px; line-height: 1.5; max-width: 280px; word-wrap: break-word;">
@@ -312,26 +320,40 @@ function updateMeta(data) {
 	document.getElementById('meta').innerHTML = `Last updated: ${date}<br>` + `${meta.oldPath} → ${meta.newPath}`;
 }
 
-function updateLegend(data) {
+function initUI(data) {
 	const meta = data.meta;
-	// eslint-disable-next-line @typescript-eslint/naming-convention
-	const _oldLabel = document.querySelector('.legend-item .old + span, .legend-item:has(.old) span:last-child');
-	// eslint-disable-next-line @typescript-eslint/naming-convention
-	const _newLabel = document.querySelector('.legend-item .new + span, .legend-item:has(.new) span:last-child');
+	const ui = meta.ui || {};
+	const oldLabel = ui.oldLabel || meta.oldPath;
+	const newLabel = ui.newLabel || meta.newPath;
+	const oldDescription = ui.oldDescription || '';
+	const newDescription = ui.newDescription || '';
 
-	// Update legend labels with actual path names
-	document.querySelectorAll('.legend-item').forEach((item) => {
-		const colorDiv = item.querySelector('.legend-color');
-		const span = item.querySelector('span:not(.legend-color)');
+	// Update title
+	const titleEl = document.getElementById('dashboard-title');
 
-		if (colorDiv && span) {
-			if (colorDiv.classList.contains('old')) {
-				span.textContent = `Old (${meta.oldPath})`;
-			} else if (colorDiv.classList.contains('new')) {
-				span.textContent = `New (${meta.newPath})`;
-			}
-		}
-	});
+	if (titleEl && ui.title) {
+		titleEl.textContent = `📊 ${ui.title}`;
+	}
+
+	// Update subtitle
+	const subtitleEl = document.getElementById('dashboard-subtitle');
+
+	if (subtitleEl) {
+		subtitleEl.textContent = `Code migration from ${oldLabel} (${oldDescription}) → ${newLabel}`;
+	}
+
+	// Update legend labels
+	const legendOldEl = document.getElementById('legend-old');
+
+	if (legendOldEl) {
+		legendOldEl.textContent = `${oldLabel} (${oldDescription})`;
+	}
+
+	const legendNewEl = document.getElementById('legend-new');
+
+	if (legendNewEl) {
+		legendNewEl.textContent = `${newLabel} (${newDescription})`;
+	}
 }
 
 function calculateDailyChanges(data) {
@@ -419,12 +441,15 @@ function getChangeClass(value, invert = false) {
 function renderChangesTable(data, period, changeMap) {
 	const changes = calculateAllChanges(data, period, changeMap);
 	const container = document.getElementById('changes-table');
+	const meta = data.meta;
+	const oldLabel = meta.ui?.oldLabel || meta.oldPath;
+	const newLabel = meta.ui?.newLabel || meta.newPath;
 
 	const headerRow = `
 		<div class="changes-row header">
 			<div class="changes-cell date">Date</div>
-			<div class="changes-cell static">static</div>
-			<div class="changes-cell frontends">frontends</div>
+			<div class="changes-cell old">${oldLabel}</div>
+			<div class="changes-cell new">${newLabel}</div>
 		</div>
 	`;
 
@@ -433,11 +458,11 @@ function renderChangesTable(data, period, changeMap) {
 			(c) => `
 		<div class="changes-row">
 			<div class="changes-cell date">${c.date}</div>
-			<div class="changes-cell static">
+			<div class="changes-cell old">
 				<span class="${getChangeClass(c.staticSize, true)}">${formatSizeChange(c.staticSize)}</span>
 				<span class="${getChangeClass(c.staticFiles, true)}">${formatChange(c.staticFiles)}</span>
 			</div>
-			<div class="changes-cell frontends">
+			<div class="changes-cell new">
 				<span class="${getChangeClass(c.frontendsSize)}">${formatSizeChange(c.frontendsSize)}</span>
 				<span class="${getChangeClass(c.frontendsFiles)}">${formatChange(c.frontendsFiles)}</span>
 			</div>
@@ -468,10 +493,10 @@ async function init() {
 	const data = await loadData();
 	const changeMap = calculateDailyChanges(data);
 
+	initUI(data);
 	createChart(data, changeMap);
 	updateStats(data);
 	updateMeta(data);
-	updateLegend(data);
 	setupPeriodToggle(data, changeMap);
 }
 

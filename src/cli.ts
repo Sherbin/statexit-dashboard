@@ -11,7 +11,7 @@ import { Command } from 'commander';
 import { analyzeFolder } from './analysis/index.js';
 import { getCachePath, loadCache, saveCache, validateCache, createCache, cacheToCommitInfo } from './cache/index.js';
 import { validateProgressData, loadExistingData, mergeData, getLastTimestamp, saveData } from './data/index.js';
-import { ProgressData, DataPoint, MetaInfo, DailyCommit as _DailyCommit } from './data/schema.js';
+import { ProgressData, DataPoint, MetaInfo, DailyCommit as _DailyCommit, UiConfig } from './data/schema.js';
 import {
 	getCommitHistory,
 	aggregateByDay,
@@ -34,6 +34,7 @@ interface ConfigFile {
 	ignoreOld?: string[];
 	ignoreNew?: string[];
 	untilYesterday?: boolean;
+	ui?: UiConfig;
 }
 
 interface CliOptions {
@@ -181,8 +182,10 @@ async function main(): Promise<void> {
 	const untilYesterday = cliOpts.untilYesterday || config?.untilYesterday || false;
 
 	let filteredDailyCommits = dailyCommits;
+
 	if (untilYesterday) {
 		const today = new Date().toISOString().split('T')[0];
+
 		filteredDailyCommits = dailyCommits.filter((dc) => dc.date < today);
 		logger.info(
 			'FILTER',
@@ -266,6 +269,7 @@ async function main(): Promise<void> {
 									new: ignoreNew,
 								  }
 								: undefined,
+						ui: config?.ui,
 					};
 
 					// Объединяем существующие данные с новыми точками
@@ -320,6 +324,7 @@ async function main(): Promise<void> {
 					new: ignoreNew,
 				  }
 				: undefined,
+		ui: config?.ui,
 	};
 
 	// Объединяем данные

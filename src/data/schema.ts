@@ -7,6 +7,14 @@ export interface DataPoint {
 	comment?: string; // опциональное объяснение аномалий (на английском)
 }
 
+export interface UiConfig {
+	title: string;
+	oldLabel: string;
+	newLabel: string;
+	oldDescription: string;
+	newDescription: string;
+}
+
 export interface MetaInfo {
 	sourceRepo: string; // git remote URL
 	oldPath: string; // путь старой папки
@@ -17,6 +25,7 @@ export interface MetaInfo {
 		old?: string[];
 		new?: string[];
 	};
+	ui?: UiConfig;
 }
 
 export interface FolderStats {

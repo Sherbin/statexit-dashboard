@@ -3,7 +3,7 @@ set -e
 
 LOG_PREFIX="[$(date '+%Y-%m-%d %H:%M:%S')]"
 SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-TV_REPO="/Users/sscherbin/code/tradingview2"
+TV_REPO=$(node -e "console.log(require('$SCRIPT_DIR/config.json').repo)")
 
 echo "$LOG_PREFIX Starting daily update..."
 

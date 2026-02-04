@@ -17,8 +17,8 @@
       /* Semantic colors (constant) */
       --color-positive: #089981;
       --color-negative: #F23645;
-      --color-static: #FF9800;
-      --color-frontends: #2962FF;
+      --color-old: #FF9800;
+      --color-new: #2962FF;
       --color-accent: #2962FF;
     }
 
@@ -96,11 +96,11 @@
     }
     
     .legend-color.old {
-      background: var(--color-static);
+      background: var(--color-old);
     }
 
     .legend-color.new {
-      background: var(--color-frontends);
+      background: var(--color-new);
     }
 
     .legend-color.change {
@@ -128,8 +128,8 @@
       font-size: 0.9rem;
     }
 
-    .stat-value.old { color: var(--color-static); }
-    .stat-value.new { color: var(--color-frontends); }
+    .stat-value.old { color: var(--color-old); }
+    .stat-value.new { color: var(--color-new); }
     
     .meta {
       text-align: center;
@@ -252,20 +252,20 @@
       font-family: 'SF Mono', 'Monaco', 'Menlo', monospace;
     }
 
-    .changes-cell.static {
+    .changes-cell.old {
       background: rgba(255, 152, 0, 0.05);
     }
 
-    .changes-cell.frontends {
+    .changes-cell.new {
       background: rgba(41, 98, 255, 0.05);
     }
 
-    .changes-row.header .changes-cell.static {
-      color: var(--color-static);
+    .changes-row.header .changes-cell.old {
+      color: var(--color-old);
     }
 
-    .changes-row.header .changes-cell.frontends {
-      color: var(--color-frontends);
+    .changes-row.header .changes-cell.new {
+      color: var(--color-new);
     }
 
     .change-positive { color: var(--color-positive); }
@@ -274,19 +274,19 @@
 </head>
 <body>
   <div class="container">
-    <h1>📊 Migration Progress</h1>
-    <p class="subtitle">Code migration from static (excluding images, bundles, fonts, etc.) → frontends</p>
-    
+    <h1 id="dashboard-title">📊 Migration Progress</h1>
+    <p class="subtitle" id="dashboard-subtitle">Loading...</p>
+
     <div id="chart-container"></div>
-    
+
     <div class="legend">
       <div class="legend-item">
         <div class="legend-color new"></div>
-        <span>frontends (all files)</span>
+        <span id="legend-new">Loading...</span>
       </div>
       <div class="legend-item">
         <div class="legend-color old"></div>
-        <span>static (excluding: images, api-types, bundles, cursors, error_pages, external, fonts, localization, sounds, videos)</span>
+        <span id="legend-old">Loading...</span>
       </div>
       <div class="legend-item">
         <div class="legend-color change"></div>
