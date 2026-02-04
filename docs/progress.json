@@ -3,7 +3,7 @@
     "sourceRepo": "git@git.xtools.tv:frontend/tradingview.git",
     "oldPath": "static",
     "newPath": "frontends",
-    "generatedAt": "2026-02-04T08:41:19.407Z",
+    "generatedAt": "2026-02-04T10:15:40.610Z",
     "version": 2,
     "ignoredSubfolders": {
       "old": [
@@ -19,6 +19,13 @@
         "videos"
       ],
       "new": []
+    },
+    "ui": {
+      "title": "Migration Progress",
+      "oldLabel": "static",
+      "newLabel": "frontends",
+      "oldDescription": "excluding: images, api-types, bundles, cursors, error_pages, external, fonts, localization, sounds, videos",
+      "newDescription": "all files"
     }
   },
   "data": [
