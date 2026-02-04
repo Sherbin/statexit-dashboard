@@ -35,26 +35,60 @@ function formatDate(timestamp) {
 	return date.toLocaleDateString('en-US', {
 		year: 'numeric',
 		month: 'short',
-		day: 'numeric',
+		day: '2-digit',
 	});
+}
+
+function formatChange(value) {
+	const sign = value > 0 ? '+' : '';
+
+	return sign + value.toLocaleString();
+}
+
+function formatSizeChange(sizeKB) {
+	const sign = sizeKB > 0 ? '+' : '';
+
+	if (Math.abs(sizeKB) >= 1024) {
+		return sign + (sizeKB / 1024).toFixed(1) + ' MB';
+	}
+
+	return sign + sizeKB.toLocaleString() + ' KB';
+}
+
+function getComputedColors() {
+	const styles = getComputedStyle(document.documentElement);
+
+	return {
+		bgPrimary: styles.getPropertyValue('--bg-primary').trim(),
+		bgSecondary: styles.getPropertyValue('--bg-secondary').trim(),
+		textPrimary: styles.getPropertyValue('--text-primary').trim(),
+		textSecondary: styles.getPropertyValue('--text-secondary').trim(),
+		borderColor: styles.getPropertyValue('--border-color').trim(),
+		gridColor: styles.getPropertyValue('--grid-color').trim(),
+		colorPositive: styles.getPropertyValue('--color-positive').trim(),
+		colorNegative: styles.getPropertyValue('--color-negative').trim(),
+		colorStatic: styles.getPropertyValue('--color-static').trim(),
+		colorFrontends: styles.getPropertyValue('--color-frontends').trim(),
+	};
 }
 
 function createTooltip(container) {
 	const tooltip = document.createElement('div');
+	const colors = getComputedColors();
 
 	tooltip.id = 'chart-tooltip';
 	tooltip.style.cssText = `
     position: absolute;
     display: none;
     padding: 12px;
-    background: rgba(30, 34, 45, 0.98);  /* TradingView panel with opacity */
-    border: 1px solid #2B2B43;            /* TradingView grid color */
+    background: ${colors.bgSecondary};
+    border: 1px solid ${colors.borderColor};
     border-radius: 6px;
     font-size: 13px;
     pointer-events: none;
     z-index: 100;
-    min-width: 180px;
-    color: #D1D4DC;                       /* TradingView text */
+    min-width: 220px;
+    color: ${colors.textPrimary};
   `;
 	container.style.position = 'relative';
 	container.appendChild(tooltip);
@@ -62,30 +96,40 @@ function createTooltip(container) {
 	return tooltip;
 }
 
-function createChart(data) {
+function createChart(data, changeMap) {
 	const container = document.getElementById('chart-container');
+	const colors = getComputedColors();
 
 	const chart = LightweightCharts.createChart(container, {
 		layout: {
-			background: { color: '#1E222D' } /* TradingView panel */,
-			textColor: '#D1D4DC' /* TradingView text */,
+			background: { color: colors.bgSecondary },
+			textColor: colors.textPrimary,
 		},
 		grid: {
-			vertLines: { color: '#2B2B43' } /* TradingView grid */,
-			horzLines: { color: '#2B2B43' },
+			vertLines: { color: colors.gridColor },
+			horzLines: { color: colors.gridColor },
 		},
 		width: container.clientWidth,
 		height: container.clientHeight,
 		timeScale: {
 			timeVisible: false,
-			borderColor: '#2B2B43',
+			borderColor: colors.borderColor,
 		},
 		rightPriceScale: {
-			borderColor: '#2B2B43',
+			borderColor: colors.borderColor,
 			autoScale: true,
 			scaleMargins: {
 				top: 0.1,
-				bottom: 0, // График начинается с 0
+				bottom: 0,
+			},
+		},
+		leftPriceScale: {
+			visible: true,
+			borderColor: colors.borderColor,
+			autoScale: true,
+			scaleMargins: {
+				top: 0.1,
+				bottom: 0.1,
 			},
 		},
 		crosshair: {
@@ -93,13 +137,13 @@ function createChart(data) {
 		},
 	});
 
-	// Stacked Area: нижний слой — new, верхний — old + new (total)
+	// Stacked Area: нижний слой — frontends (new), верхний — static + frontends (total)
 
-	// Серия total (будет показывать old часть сверху) - используем Ripe Red
+	// Серия total (будет показывать static часть сверху) - Orange
 	const totalSeries = chart.addAreaSeries({
-		topColor: 'rgba(242, 54, 69, 0.4)', // color-ripe-red-500 #F23645
-		bottomColor: 'rgba(242, 54, 69, 0.0)',
-		lineColor: '#F23645',
+		topColor: 'rgba(255, 152, 0, 0.4)',
+		bottomColor: 'rgba(255, 152, 0, 0.0)',
+		lineColor: colors.colorStatic,
 		lineWidth: 2,
 		priceFormat: {
 			type: 'custom',
@@ -107,15 +151,32 @@ function createChart(data) {
 		},
 	});
 
-	// Серия new (перекрывает нижнюю часть) - используем Minty Green
+	// Серия frontends (перекрывает нижнюю часть) - Blue
 	const newSeries = chart.addAreaSeries({
-		topColor: 'rgba(8, 153, 129, 0.6)', // color-minty-green-500 #089981
-		bottomColor: 'rgba(8, 153, 129, 0.1)',
-		lineColor: '#089981',
+		topColor: 'rgba(41, 98, 255, 0.6)',
+		bottomColor: 'rgba(41, 98, 255, 0.1)',
+		lineColor: colors.colorFrontends,
 		lineWidth: 2,
 		priceFormat: {
 			type: 'custom',
 			formatter: (price) => formatSize(Math.round(price)),
+		},
+	});
+
+	// Серия change - BaselineSeries с красным/зелёным цветом
+	const changeSeries = chart.addBaselineSeries({
+		baseValue: { type: 'price', price: 0 },
+		topLineColor: colors.colorPositive,
+		bottomLineColor: colors.colorNegative,
+		topFillColor1: 'rgba(8, 153, 129, 0.2)',
+		topFillColor2: 'rgba(8, 153, 129, 0.0)',
+		bottomFillColor1: 'rgba(242, 54, 69, 0.0)',
+		bottomFillColor2: 'rgba(242, 54, 69, 0.2)',
+		lineWidth: 2,
+		priceScaleId: 'left',
+		priceFormat: {
+			type: 'custom',
+			formatter: (price) => formatSizeChange(Math.round(price)),
 		},
 	});
 
@@ -130,13 +191,20 @@ function createChart(data) {
 		value: point.newSizeKB,
 	}));
 
+	// Change data из предварительно рассчитанного changeMap
+	const changeData = data.data
+		.filter((point) => changeMap.has(point.time))
+		.map((point) => ({
+			time: point.time,
+			value: changeMap.get(point.time).totalSize,
+		}));
+
 	totalSeries.setData(totalData);
 	newSeries.setData(newData);
+	changeSeries.setData(changeData);
 
 	// Create tooltip
 	const tooltip = createTooltip(container);
-	const oldPath = data.meta.oldPath || 'Old';
-	const newPath = data.meta.newPath || 'New';
 
 	// Tooltip via subscribeCrosshairMove
 	chart.subscribeCrosshairMove((param) => {
@@ -154,59 +222,48 @@ function createChart(data) {
 			return;
 		}
 
-		const total = point.oldSizeKB + point.newSizeKB;
-		const totalFiles = point.oldFiles + point.newFiles;
+		const change = changeMap.get(point.time);
+		const changeColor = change ? (change.totalSize >= 0 ? colors.colorPositive : colors.colorNegative) : colors.textSecondary;
+		const changeArrow = change ? (change.totalSize >= 0 ? '↑' : '↓') : '';
 
-		let html = `
-      <div style="color: #787B86; margin-bottom: 8px; font-weight: bold;">${formatDate(point.time)}</div>
-      <div style="margin-bottom: 4px;">
-        <span style="color: #F23645;">● ${oldPath}:</span> 
-        <span style="float: right; color: #D1D4DC;">${formatSize(point.oldSizeKB)}</span>
-      </div>
-      <div style="margin-bottom: 4px;">
-        <span style="color: #089981;">● ${newPath}:</span> 
-        <span style="float: right; color: #D1D4DC;">${formatSize(point.newSizeKB)}</span>
-      </div>
-      <div style="border-top: 1px solid #2B2B43; padding-top: 4px; margin-top: 4px;">
-        <span style="color: #787B86;">Total:</span> 
-        <span style="float: right; color: #D1D4DC; font-weight: bold;">${formatSize(total)}</span>
-      </div>
-      <div style="border-top: 1px solid #2B2B43; padding-top: 8px; margin-top: 8px; font-size: 12px;">
-        <div style="margin-bottom: 2px;">
-          <span style="color: #F23645;">Files (${oldPath}):</span> 
-          <span style="float: right; color: #D1D4DC;">${formatNumber(point.oldFiles)}</span>
+		const html = `
+      <div style="color: ${colors.textSecondary}; margin-bottom: 10px; font-weight: bold; font-size: 14px;">${formatDate(point.time)}</div>
+      <div style="border-top: 1px solid ${colors.borderColor}; padding-top: 8px; margin-bottom: 8px;">
+        <div style="display: flex; align-items: center; margin-bottom: 6px;">
+          <span style="color: ${colors.colorStatic}; margin-right: 8px;">●</span>
+          <span style="color: ${colors.textSecondary}; min-width: 70px;">static:</span>
+          <span style="color: ${colors.textPrimary}; margin-right: 12px;">${formatSize(point.oldSizeKB)}</span>
+          <span style="color: ${colors.textSecondary}; font-size: 12px;">│ ${formatNumber(point.oldFiles)} files</span>
         </div>
-        <div style="margin-bottom: 2px;">
-          <span style="color: #089981;">Files (${newPath}):</span> 
-          <span style="float: right; color: #D1D4DC;">${formatNumber(point.newFiles)}</span>
-        </div>
-        <div>
-          <span style="color: #787B86;">Total files:</span> 
-          <span style="float: right; color: #D1D4DC; font-weight: bold;">${formatNumber(totalFiles)}</span>
+        <div style="display: flex; align-items: center;">
+          <span style="color: ${colors.colorFrontends}; margin-right: 8px;">●</span>
+          <span style="color: ${colors.textSecondary}; min-width: 70px;">frontends:</span>
+          <span style="color: ${colors.textPrimary}; margin-right: 12px;">${formatSize(point.newSizeKB)}</span>
+          <span style="color: ${colors.textSecondary}; font-size: 12px;">│ ${formatNumber(point.newFiles)} files</span>
         </div>
       </div>
+      ${change ? `
+      <div style="border-top: 1px solid ${colors.borderColor}; padding-top: 8px;">
+        <span style="color: ${colors.textSecondary};">Change:</span>
+        <span style="color: ${changeColor}; font-weight: bold; margin-left: 8px;">${formatSizeChange(change.totalSize)} ${changeArrow}</span>
+      </div>
+      ` : ''}
+      ${point.comment ? `
+      <div style="border-top: 1px solid ${colors.colorStatic}; margin-top: 10px; padding-top: 8px;">
+        <div style="color: ${colors.colorStatic}; font-weight: bold; margin-bottom: 4px; font-size: 11px;">
+          ⚠️ Note:
+        </div>
+        <div style="color: ${colors.textPrimary}; font-size: 11px; line-height: 1.5; max-width: 280px; word-wrap: break-word;">
+          ${point.comment}
+        </div>
+      </div>
+      ` : ''}
     `;
-
-		// Add comment section if present
-		if (point.comment) {
-			html += `
-        <div style="border-top: 1px solid #ff9800; margin-top: 10px; padding-top: 8px;">
-          <div style="color: #ff9800; font-weight: bold; margin-bottom: 4px; font-size: 11px;">
-            ⚠️ Anomaly Note:
-          </div>
-          <div style="color: #D1D4DC; font-size: 11px; line-height: 1.5; max-width: 280px; word-wrap: break-word;">
-            ${point.comment}
-          </div>
-        </div>
-      `;
-		}
 
 		tooltip.innerHTML = html;
 		tooltip.style.display = 'block';
 
 		// Position tooltip
-		// eslint-disable-next-line @typescript-eslint/naming-convention
-		const _rect = container.getBoundingClientRect();
 		const x = param.point.x;
 		const tooltipWidth = tooltip.offsetWidth;
 
@@ -244,12 +301,8 @@ function updateStats(data) {
 		return;
 	}
 
-	const total = latest.oldSizeKB + latest.newSizeKB;
-	const progress = total > 0 ? ((latest.newSizeKB / total) * 100).toFixed(1) : 0;
-
 	document.getElementById('stat-old').textContent = formatSize(latest.oldSizeKB);
 	document.getElementById('stat-new').textContent = formatSize(latest.newSizeKB);
-	document.getElementById('stat-progress').textContent = progress + '%';
 }
 
 function updateMeta(data) {
@@ -281,13 +334,145 @@ function updateLegend(data) {
 	});
 }
 
+function calculateDailyChanges(data) {
+	const points = data.data;
+	const changeMap = new Map();
+
+	for (let i = 1; i < points.length; i++) {
+		const current = points[i];
+		const prev = points[i - 1];
+
+		changeMap.set(current.time, {
+			staticSize: current.oldSizeKB - prev.oldSizeKB,
+			staticFiles: current.oldFiles - prev.oldFiles,
+			frontendsSize: current.newSizeKB - prev.newSizeKB,
+			frontendsFiles: current.newFiles - prev.newFiles,
+			totalSize: (current.oldSizeKB + current.newSizeKB) - (prev.oldSizeKB + prev.newSizeKB),
+		});
+	}
+
+	return changeMap;
+}
+
+function calculateAllChanges(data, period, changeMap) {
+	const points = data.data;
+	const changes = [];
+
+	if (period === 'day') {
+		// Используем предварительно рассчитанные изменения
+		for (let i = points.length - 1; i > 0; i--) {
+			const current = points[i];
+			const change = changeMap.get(current.time);
+
+			if (change) {
+				changes.push({
+					date: formatDate(current.time),
+					staticSize: change.staticSize,
+					staticFiles: change.staticFiles,
+					frontendsSize: change.frontendsSize,
+					frontendsFiles: change.frontendsFiles,
+				});
+			}
+		}
+	} else {
+		// Группируем по неделям
+		for (let i = points.length - 1; i > 0; ) {
+			const current = points[i];
+			const weekAgo = current.time - 7 * 24 * 60 * 60;
+			let j = i - 1;
+
+			while (j >= 0 && points[j].time > weekAgo) {
+				j--;
+			}
+
+			const prev = points[Math.max(0, j)];
+
+			changes.push({
+				date: `${formatDate(prev.time)} → ${formatDate(current.time)}`,
+				staticSize: current.oldSizeKB - prev.oldSizeKB,
+				staticFiles: current.oldFiles - prev.oldFiles,
+				frontendsSize: current.newSizeKB - prev.newSizeKB,
+				frontendsFiles: current.newFiles - prev.newFiles,
+			});
+
+			i = j;
+
+			if (i <= 0) {
+				break;
+			}
+		}
+	}
+
+	return changes;
+}
+
+function getChangeClass(value, invert = false) {
+	if (value === 0) {
+		return '';
+	}
+
+	const isPositive = invert ? value < 0 : value > 0;
+
+	return isPositive ? 'change-positive' : 'change-negative';
+}
+
+function renderChangesTable(data, period, changeMap) {
+	const changes = calculateAllChanges(data, period, changeMap);
+	const container = document.getElementById('changes-table');
+
+	const headerRow = `
+		<div class="changes-row header">
+			<div class="changes-cell date">Date</div>
+			<div class="changes-cell static">static</div>
+			<div class="changes-cell frontends">frontends</div>
+		</div>
+	`;
+
+	const rows = changes
+		.map(
+			(c) => `
+		<div class="changes-row">
+			<div class="changes-cell date">${c.date}</div>
+			<div class="changes-cell static">
+				<span class="${getChangeClass(c.staticSize, true)}">${formatSizeChange(c.staticSize)}</span>
+				<span class="${getChangeClass(c.staticFiles, true)}">${formatChange(c.staticFiles)}</span>
+			</div>
+			<div class="changes-cell frontends">
+				<span class="${getChangeClass(c.frontendsSize)}">${formatSizeChange(c.frontendsSize)}</span>
+				<span class="${getChangeClass(c.frontendsFiles)}">${formatChange(c.frontendsFiles)}</span>
+			</div>
+		</div>
+	`,
+		)
+		.join('');
+
+	container.innerHTML = headerRow + rows;
+}
+
+function setupPeriodToggle(data, changeMap) {
+	const buttons = document.querySelectorAll('.period-btn');
+
+	buttons.forEach((btn) => {
+		btn.addEventListener('click', () => {
+			buttons.forEach((b) => b.classList.remove('active'));
+			btn.classList.add('active');
+			renderChangesTable(data, btn.dataset.period, changeMap);
+		});
+	});
+
+	// Initial render
+	renderChangesTable(data, 'day', changeMap);
+}
+
 async function init() {
 	const data = await loadData();
+	const changeMap = calculateDailyChanges(data);
 
-	createChart(data);
+	createChart(data, changeMap);
 	updateStats(data);
 	updateMeta(data);
 	updateLegend(data);
+	setupPeriodToggle(data, changeMap);
 }
 
 init();
