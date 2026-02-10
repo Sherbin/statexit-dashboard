@@ -3,7 +3,7 @@
     "sourceRepo": "git@git.xtools.tv:frontend/tradingview.git",
     "oldPath": "static",
     "newPath": "frontends",
-    "generatedAt": "2026-02-10T09:25:26.775Z",
+    "generatedAt": "2026-02-10T09:27:10.597Z",
     "version": 2,
     "ignoredSubfolders": {
       "old": [
