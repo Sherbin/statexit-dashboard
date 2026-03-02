@@ -3,7 +3,7 @@
     "sourceRepo": "git@git.xtools.tv:frontend/tradingview.git",
     "oldPath": "static",
     "newPath": "frontends",
-    "generatedAt": "2026-03-02T10:59:57.900Z",
+    "generatedAt": "2026-03-02T11:12:28.174Z",
     "version": 2,
     "ignoredSubfolders": {
       "old": [
@@ -76,8 +76,7 @@
       "oldSizeKB": 139294,
       "newSizeKB": 0,
       "oldFiles": 23576,
-      "newFiles": 0,
-      "comment": "Test data spike: tzdata.test (4.1M lines) added, moved to isolated package next day"
+      "newFiles": 0
     },
     {
       "time": 1754265600,
@@ -368,9 +367,9 @@
     },
     {
       "time": 1757808000,
-      "oldSizeKB": 60063,
+      "oldSizeKB": 59465,
       "newSizeKB": 12,
-      "oldFiles": 24833,
+      "oldFiles": 24615,
       "newFiles": 14
     },
     {
@@ -550,9 +549,9 @@
     },
     {
       "time": 1760054400,
-      "oldSizeKB": 61660,
+      "oldSizeKB": 61520,
       "newSizeKB": 12,
-      "oldFiles": 25004,
+      "oldFiles": 24952,
       "newFiles": 14
     },
     {
@@ -578,10 +577,10 @@
     },
     {
       "time": 1760486400,
-      "oldSizeKB": 61600,
-      "newSizeKB": 14,
-      "oldFiles": 25045,
-      "newFiles": 11
+      "oldSizeKB": 61520,
+      "newSizeKB": 12,
+      "oldFiles": 24952,
+      "newFiles": 14
     },
     {
       "time": 1760572800,
@@ -837,9 +836,9 @@
     },
     {
       "time": 1763683200,
-      "oldSizeKB": 61639,
+      "oldSizeKB": 61681,
       "newSizeKB": 1003,
-      "oldFiles": 25447,
+      "oldFiles": 25459,
       "newFiles": 257
     },
     {
@@ -872,9 +871,9 @@
     },
     {
       "time": 1764115200,
-      "oldSizeKB": 61392,
+      "oldSizeKB": 61396,
       "newSizeKB": 1045,
-      "oldFiles": 25055,
+      "oldFiles": 25056,
       "newFiles": 263
     },
     {
@@ -952,8 +951,7 @@
       "oldSizeKB": 112806,
       "newSizeKB": 1271,
       "oldFiles": 25252,
-      "newFiles": 329,
-      "comment": "Christmas game preview: 131 files added, removed next day for staging"
+      "newFiles": 329
     },
     {
       "time": 1765152000,
@@ -1009,8 +1007,7 @@
       "oldSizeKB": 71020,
       "newSizeKB": 1274,
       "oldFiles": 25436,
-      "newFiles": 329,
-      "comment": "Screener presets added: 137K lines of filter JSON data (permanent)"
+      "newFiles": 329
     },
     {
       "time": 1765843200,
@@ -1021,9 +1018,9 @@
     },
     {
       "time": 1765929600,
-      "oldSizeKB": 71038,
+      "oldSizeKB": 71040,
       "newSizeKB": 1274,
-      "oldFiles": 25442,
+      "oldFiles": 25440,
       "newFiles": 329
     },
     {
@@ -1066,16 +1063,14 @@
       "oldSizeKB": 61021,
       "newSizeKB": 1277,
       "oldFiles": 25122,
-      "newFiles": 329,
-      "comment": "Christmas content temporarily removed for hotfix"
+      "newFiles": 329
     },
     {
       "time": 1766534400,
       "oldSizeKB": 71193,
       "newSizeKB": 1965,
       "oldFiles": 25457,
-      "newFiles": 611,
-      "comment": "Christmas content restored after testing"
+      "newFiles": 611
     },
     {
       "time": 1766620800,
@@ -1121,9 +1116,9 @@
     },
     {
       "time": 1767225600,
-      "oldSizeKB": 70363,
-      "newSizeKB": 3163,
-      "oldFiles": 24929,
+      "oldSizeKB": 70366,
+      "newSizeKB": 3162,
+      "oldFiles": 24927,
       "newFiles": 1212
     },
     {
@@ -1191,10 +1186,10 @@
     },
     {
       "time": 1768176000,
-      "oldSizeKB": 70331,
-      "newSizeKB": 3314,
-      "oldFiles": 24891,
-      "newFiles": 1240
+      "oldSizeKB": 70310,
+      "newSizeKB": 3185,
+      "oldFiles": 24871,
+      "newFiles": 1224
     },
     {
       "time": 1768262400,
@@ -1205,7 +1200,7 @@
     },
     {
       "time": 1768348800,
-      "oldSizeKB": 70361,
+      "oldSizeKB": 70362,
       "newSizeKB": 3187,
       "oldFiles": 24898,
       "newFiles": 1223
@@ -1247,10 +1242,10 @@
     },
     {
       "time": 1768867200,
-      "oldSizeKB": 70183,
-      "newSizeKB": 3617,
-      "oldFiles": 24870,
-      "newFiles": 1311
+      "oldSizeKB": 70438,
+      "newSizeKB": 3315,
+      "oldFiles": 24925,
+      "newFiles": 1238
     },
     {
       "time": 1768953600,
@@ -1268,13 +1263,20 @@
     },
     {
       "time": 1769126400,
-      "oldSizeKB": 69175,
-      "newSizeKB": 4592,
-      "oldFiles": 24443,
+      "oldSizeKB": 69189,
+      "newSizeKB": 4593,
+      "oldFiles": 24445,
       "newFiles": 1750
     },
     {
       "time": 1769212800,
+      "oldSizeKB": 69177,
+      "newSizeKB": 4594,
+      "oldFiles": 24444,
+      "newFiles": 1750
+    },
+    {
+      "time": 1769299200,
       "oldSizeKB": 69177,
       "newSizeKB": 4594,
       "oldFiles": 24444,
@@ -1289,16 +1291,16 @@
     },
     {
       "time": 1769472000,
-      "oldSizeKB": 69227,
-      "newSizeKB": 4656,
-      "oldFiles": 24483,
-      "newFiles": 1769
+      "oldSizeKB": 69176,
+      "newSizeKB": 4593,
+      "oldFiles": 24443,
+      "newFiles": 1750
     },
     {
       "time": 1769558400,
       "oldSizeKB": 69258,
-      "newSizeKB": 4671,
-      "oldFiles": 24499,
+      "newSizeKB": 4672,
+      "oldFiles": 24500,
       "newFiles": 1772
     },
     {
@@ -1310,14 +1312,14 @@
     },
     {
       "time": 1769731200,
-      "oldSizeKB": 69213,
-      "newSizeKB": 4711,
-      "oldFiles": 24488,
-      "newFiles": 1795
+      "oldSizeKB": 68931,
+      "newSizeKB": 5019,
+      "oldFiles": 24317,
+      "newFiles": 1976
     },
     {
       "time": 1769817600,
-      "oldSizeKB": 68931,
+      "oldSizeKB": 68927,
       "newSizeKB": 5019,
       "oldFiles": 24317,
       "newFiles": 1976
@@ -1345,24 +1347,24 @@
     },
     {
       "time": 1770163200,
-      "oldSizeKB": 68608,
-      "newSizeKB": 5466,
-      "oldFiles": 24174,
-      "newFiles": 2262
-    },
-    {
-      "time": 1770249600,
-      "oldSizeKB": 68683,
-      "newSizeKB": 5490,
-      "oldFiles": 24207,
+      "oldSizeKB": 68634,
+      "newSizeKB": 5486,
+      "oldFiles": 24190,
       "newFiles": 2266
     },
     {
+      "time": 1770249600,
+      "oldSizeKB": 62385,
+      "newSizeKB": 11594,
+      "oldFiles": 22199,
+      "newFiles": 4235
+    },
+    {
       "time": 1770336000,
-      "oldSizeKB": 68685,
-      "newSizeKB": 5505,
-      "oldFiles": 24203,
-      "newFiles": 2271
+      "oldSizeKB": 68653,
+      "newSizeKB": 5536,
+      "oldFiles": 24182,
+      "newFiles": 2289
     },
     {
       "time": 1770422400,
@@ -1373,24 +1375,24 @@
     },
     {
       "time": 1770508800,
-      "oldSizeKB": 68689,
+      "oldSizeKB": 68685,
       "newSizeKB": 5505,
       "oldFiles": 24203,
       "newFiles": 2271
     },
     {
       "time": 1770595200,
-      "oldSizeKB": 68697,
-      "newSizeKB": 5506,
-      "oldFiles": 24212,
+      "oldSizeKB": 68664,
+      "newSizeKB": 5510,
+      "oldFiles": 24231,
       "newFiles": 2271
     },
     {
       "time": 1770681600,
-      "oldSizeKB": 68596,
-      "newSizeKB": 5582,
-      "oldFiles": 24211,
-      "newFiles": 2296
+      "oldSizeKB": 68811,
+      "newSizeKB": 5588,
+      "oldFiles": 24246,
+      "newFiles": 2295
     },
     {
       "time": 1770768000,
@@ -1401,17 +1403,17 @@
     },
     {
       "time": 1770854400,
-      "oldSizeKB": 62240,
-      "newSizeKB": 11940,
-      "oldFiles": 22136,
-      "newFiles": 4377
+      "oldSizeKB": 68819,
+      "newSizeKB": 5587,
+      "oldFiles": 24248,
+      "newFiles": 2296
     },
     {
       "time": 1770940800,
-      "oldSizeKB": 62191,
-      "newSizeKB": 11978,
-      "oldFiles": 22114,
-      "newFiles": 4396
+      "oldSizeKB": 61855,
+      "newSizeKB": 12348,
+      "oldFiles": 22051,
+      "newFiles": 4470
     },
     {
       "time": 1771027200,
@@ -1436,10 +1438,10 @@
     },
     {
       "time": 1771286400,
-      "oldSizeKB": 61081,
-      "newSizeKB": 13152,
-      "oldFiles": 21730,
-      "newFiles": 4830
+      "oldSizeKB": 61140,
+      "newSizeKB": 13058,
+      "oldFiles": 21773,
+      "newFiles": 4773
     },
     {
       "time": 1771372800,
@@ -1471,9 +1473,9 @@
     },
     {
       "time": 1771718400,
-      "oldSizeKB": 60449,
+      "oldSizeKB": 60455,
       "newSizeKB": 13946,
-      "oldFiles": 21371,
+      "oldFiles": 21374,
       "newFiles": 5255
     },
     {
@@ -1500,24 +1502,23 @@
     {
       "time": 1772064000,
       "oldSizeKB": 59092,
-      "newSizeKB": 39182,
+      "newSizeKB": 15551,
       "oldFiles": 20661,
-      "newFiles": 6087,
-      "comment": "Portfolio (FLC-1079) and forecast (FLC-913) migrated to frontends. +23.6MB is mostly 30 MP4 videos from portfolio promo: ignored in static (videos/) but counted in frontends (no ignoreNew)"
+      "newFiles": 6057
     },
     {
       "time": 1772150400,
       "oldSizeKB": 59116,
-      "newSizeKB": 39207,
+      "newSizeKB": 15576,
       "oldFiles": 20680,
-      "newFiles": 6090
+      "newFiles": 6060
     },
     {
       "time": 1772323200,
       "oldSizeKB": 59116,
-      "newSizeKB": 39207,
+      "newSizeKB": 15576,
       "oldFiles": 20680,
-      "newFiles": 6090
+      "newFiles": 6060
     }
   ]
 }
