@@ -2,7 +2,7 @@ import * as fs from 'fs/promises';
 import * as os from 'os';
 import * as path from 'path';
 
-import { analyzeFolder, IGNORED_DIRS } from '../../../analysis/line-counter.js';
+import { analyzeFolder, IGNORED_DIRS, IGNORED_EXTENSIONS } from '../../../analysis/line-counter.js';
 
 describe('line-counter', () => {
 	let tempDir: string;
@@ -26,6 +26,16 @@ describe('line-counter', () => {
 
 		it('should include __pycache__', () => {
 			expect(IGNORED_DIRS.has('__pycache__')).toBe(true);
+		});
+	});
+
+	describe('IGNORED_EXTENSIONS', () => {
+		it('should include .mp4', () => {
+			expect(IGNORED_EXTENSIONS.has('.mp4')).toBe(true);
+		});
+
+		it('should include .webm', () => {
+			expect(IGNORED_EXTENSIONS.has('.webm')).toBe(true);
 		});
 	});
 
@@ -88,6 +98,26 @@ describe('line-counter', () => {
 		it('should count all files including binary', async () => {
 			await fs.writeFile(path.join(tempDir, 'code.ts'), 'a\n');
 			await fs.writeFile(path.join(tempDir, 'image.dat'), Buffer.from([0x00, 0x01]));
+
+			const result = await analyzeFolder(tempDir);
+
+			expect(result.files).toBe(2);
+		});
+
+		it('should ignore files with video extensions', async () => {
+			await fs.writeFile(path.join(tempDir, 'code.ts'), 'a\nb\nc\n');
+			await fs.writeFile(path.join(tempDir, 'video.mp4'), Buffer.alloc(1024));
+			await fs.writeFile(path.join(tempDir, 'clip.webm'), Buffer.alloc(512));
+
+			const result = await analyzeFolder(tempDir);
+
+			expect(result.files).toBe(1);
+		});
+
+		it('should count non-video files alongside video files', async () => {
+			await fs.writeFile(path.join(tempDir, 'code.ts'), 'a\n');
+			await fs.writeFile(path.join(tempDir, 'style.css'), 'body{}\n');
+			await fs.writeFile(path.join(tempDir, 'video.mp4'), Buffer.alloc(1024));
 
 			const result = await analyzeFolder(tempDir);
 

@@ -9,6 +9,13 @@ import { FolderStats } from '../data/schema.js';
 export const IGNORED_DIRS: Set<string> = new Set(['.git', 'node_modules', '__pycache__', '.DS_Store']);
 
 /**
+ * Расширения файлов для игнорирования (видео)
+ */
+export const IGNORED_EXTENSIONS: Set<string> = new Set([
+	'.mp4', '.webm', '.avi', '.mov', '.mkv', '.flv', '.wmv', '.m4v', '.ogv',
+]);
+
+/**
  * Рекурсивно анализирует папку: считает размер и количество файлов
  * БЕЗ чтения содержимого файлов - только fs.stat()
  *
@@ -59,6 +66,11 @@ export async function analyzeFolder(folderPath: string, ignoredSubfolders?: stri
 				}
 				await processDirectory(fullPath, relPath);
 			} else if (entry.isFile()) {
+				const ext = path.extname(entryName).toLowerCase();
+				if (IGNORED_EXTENSIONS.has(ext)) {
+					continue;
+				}
+
 				try {
 					// Только stat - НЕ открываем файл
 					const fileStat = await fs.stat(fullPath);
