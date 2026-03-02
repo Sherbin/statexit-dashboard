@@ -3,7 +3,7 @@
     "sourceRepo": "git@git.xtools.tv:frontend/tradingview.git",
     "oldPath": "static",
     "newPath": "frontends",
-    "generatedAt": "2026-03-02T09:46:07.530Z",
+    "generatedAt": "2026-03-02T10:59:57.900Z",
     "version": 2,
     "ignoredSubfolders": {
       "old": [
@@ -1502,7 +1502,8 @@
       "oldSizeKB": 59092,
       "newSizeKB": 39182,
       "oldFiles": 20661,
-      "newFiles": 6087
+      "newFiles": 6087,
+      "comment": "Portfolio (FLC-1079) and forecast (FLC-913) migrated to frontends. +23.6MB is mostly 30 MP4 videos from portfolio promo: ignored in static (videos/) but counted in frontends (no ignoreNew)"
     },
     {
       "time": 1772150400,
