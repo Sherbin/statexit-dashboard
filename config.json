@@ -1,0 +1,17 @@
+{
+	"repo": "/path/to/source-repo",
+	"sourceRepo": "source-repo",
+	"old": "src/legacy",
+	"new": "src/new",
+	"output": "./docs/progress.json",
+	"ignoreOld": [],
+	"ignoreNew": [],
+	"logLevel": "info",
+	"ui": {
+		"title": "Migration Progress",
+		"oldLabel": "legacy",
+		"newLabel": "new",
+		"oldDescription": "Legacy code",
+		"newDescription": "New code"
+	}
+}

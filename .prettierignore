@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Coverage
+coverage/
+
+# Cache
+.cache/
+
+# Generated files
+*.generated.*
+*.min.js
+*.min.css
+
+# Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Type declarations
+*.d.ts
+
+# Vendor/third-party
+vendor/
+third-party/
+
+# Static assets
+public/
+static/
+
+# Markdown (optional, remove if you want to format markdown)
+# *.md

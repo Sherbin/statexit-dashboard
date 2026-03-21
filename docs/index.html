@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Migration Progress Dashboard</title>
+  <style>
+    :root {
+      /* Light theme (default) */
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #F8F9FA;
+      --text-primary: #131722;
+      --text-secondary: #787B86;
+      --border-color: #E0E3EB;
+      --grid-color: #E0E3EB;
+
+      /* Semantic colors (constant) */
+      --color-positive: #089981;
+      --color-negative: #F23645;
+      --color-old: #FF9800;
+      --color-new: #2962FF;
+      --color-accent: #2962FF;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-primary: #131722;
+        --bg-secondary: #1E222D;
+        --text-primary: #D1D4DC;
+        --text-secondary: #787B86;
+        --border-color: #2B2B43;
+        --grid-color: #2B2B43;
+      }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 1.8rem;
+    }
+    
+    .subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+      font-size: 0.9rem;
+    }
+
+    #chart-container {
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      height: 500px;
+    }
+    
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+    }
+    
+    .legend-color {
+      width: 16px;
+      height: 16px;
+      border-radius: 3px;
+    }
+    
+    .legend-color.old {
+      background: var(--color-old);
+    }
+
+    .legend-color.new {
+      background: var(--color-new);
+    }
+
+    .legend-color.change {
+      background: linear-gradient(to right, var(--color-negative), var(--color-positive));
+    }
+    
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 30px;
+    }
+    
+    .stat {
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    
+    .stat-label {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .stat-value.old { color: var(--color-old); }
+    .stat-value.new { color: var(--color-new); }
+    
+    .meta {
+      text-align: center;
+      margin-top: 30px;
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+    }
+    
+    .error {
+      text-align: center;
+      color: #e94560;
+      padding: 40px;
+    }
+
+    .changes-section {
+      max-width: 700px;
+      margin: 30px auto 0;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .changes-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .changes-header h2 {
+      font-size: 1rem;
+      color: var(--text-primary);
+      margin: 0;
+    }
+
+    .period-toggle {
+      display: flex;
+      gap: 4px;
+      background: var(--bg-primary);
+      border-radius: 4px;
+      padding: 2px;
+    }
+
+    .period-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      padding: 6px 12px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+
+    .period-btn.active {
+      background: var(--color-accent);
+      color: #fff;
+    }
+
+    .changes-table {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .changes-row {
+      display: flex;
+      gap: 0;
+      padding: 0;
+    }
+
+    .changes-row .changes-cell {
+      padding: 6px 10px;
+    }
+
+    .changes-row.header {
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .changes-row.header .changes-cell {
+      background: var(--bg-secondary);
+      padding: 8px 10px;
+    }
+
+    .changes-cell {
+      flex: 1;
+      text-align: right;
+      font-size: 0.85rem;
+    }
+
+    .changes-cell.date {
+      flex: 1.5;
+      text-align: left;
+      color: var(--text-secondary);
+      font-family: 'SF Mono', 'Monaco', 'Menlo', monospace;
+    }
+
+    .changes-cell.old {
+      background: rgba(255, 152, 0, 0.05);
+    }
+
+    .changes-cell.new {
+      background: rgba(41, 98, 255, 0.05);
+    }
+
+    .changes-row.header .changes-cell.old {
+      color: var(--color-old);
+    }
+
+    .changes-row.header .changes-cell.new {
+      color: var(--color-new);
+    }
+
+    .change-positive { color: var(--color-positive); }
+    .change-negative { color: var(--color-negative); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="dashboard-title">📊 Migration Progress</h1>
+    <p class="subtitle" id="dashboard-subtitle">Loading...</p>
+
+    <div id="chart-container"></div>
+
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color new"></div>
+        <span id="legend-new">Loading...</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color old"></div>
+        <span id="legend-old">Loading...</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color change"></div>
+        <span>Daily size change (left scale)</span>
+      </div>
+    </div>
+    
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value old" id="stat-old">-</div>
+        <div class="stat-label">Legacy Size (filtered)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value new" id="stat-new">-</div>
+        <div class="stat-label">New Size (all)</div>
+      </div>
+    </div>
+
+    <div class="changes-section">
+      <div class="changes-header">
+        <h2>Changes</h2>
+        <div class="period-toggle">
+          <button class="period-btn active" data-period="day">Day</button>
+          <button class="period-btn" data-period="week">Week</button>
+        </div>
+      </div>
+      <div class="changes-table" id="changes-table">
+        <!-- Динамически генерируется -->
+      </div>
+    </div>
+
+    <div class="meta" id="meta"></div>
+  </div>
+  
+  <script src="https://unpkg.com/lightweight-charts@4.1.0/dist/lightweight-charts.standalone.production.js"></script>
+  <script src="chart.js"></script>
+</body>
+</html>
