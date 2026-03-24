@@ -3,7 +3,7 @@
     "sourceRepo": "source-repo",
     "oldPath": "static",
     "newPath": "frontends",
-    "generatedAt": "2026-03-23T14:48:29.873Z",
+    "generatedAt": "2026-03-24T10:31:16.781Z",
     "version": 2,
     "ignoredSubfolders": {
       "old": [
@@ -1666,6 +1666,13 @@
       "newSizeKB": 25164,
       "oldFiles": 17365,
       "newFiles": 9863
+    },
+    {
+      "time": 1774224000,
+      "oldSizeKB": 50085,
+      "newSizeKB": 26249,
+      "oldFiles": 16915,
+      "newFiles": 10301
     }
   ]
 }
