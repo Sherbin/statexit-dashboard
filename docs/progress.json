@@ -3,7 +3,7 @@
     "sourceRepo": "source-repo",
     "oldPath": "static",
     "newPath": "frontends",
-    "generatedAt": "2026-03-25T09:46:29.280Z",
+    "generatedAt": "2026-03-25T09:47:31.719Z",
     "version": 3,
     "ignoredSubfolders": {
       "old": [
@@ -4361,6 +4361,276 @@
             "label": "Product code",
             "sizeKB": 46158,
             "files": 17407
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1767744000,
+      "oldSizeKB": 70283,
+      "newSizeKB": 3183,
+      "oldFiles": 24874,
+      "newFiles": 1221,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4491,
+            "files": 2769
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 19635,
+            "files": 4697
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 46157,
+            "files": 17408
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1767830400,
+      "oldSizeKB": 70296,
+      "newSizeKB": 3183,
+      "oldFiles": 24875,
+      "newFiles": 1221,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4492,
+            "files": 2769
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 19635,
+            "files": 4697
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 46169,
+            "files": 17409
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1767916800,
+      "oldSizeKB": 70299,
+      "newSizeKB": 3183,
+      "oldFiles": 24877,
+      "newFiles": 1221,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4496,
+            "files": 2769
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 19635,
+            "files": 4697
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 46168,
+            "files": 17411
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1768003200,
+      "oldSizeKB": 70310,
+      "newSizeKB": 3185,
+      "oldFiles": 24871,
+      "newFiles": 1224,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4493,
+            "files": 2770
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 19636,
+            "files": 4697
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 46181,
+            "files": 17404
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1768089600,
+      "oldSizeKB": 70321,
+      "newSizeKB": 3185,
+      "oldFiles": 24880,
+      "newFiles": 1224,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4493,
+            "files": 2770
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 19636,
+            "files": 4697
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 46192,
+            "files": 17413
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1768176000,
+      "oldSizeKB": 70310,
+      "newSizeKB": 3185,
+      "oldFiles": 24871,
+      "newFiles": 1224,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4493,
+            "files": 2770
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 19636,
+            "files": 4697
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 46181,
+            "files": 17404
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1768262400,
+      "oldSizeKB": 70311,
+      "newSizeKB": 3187,
+      "oldFiles": 24920,
+      "newFiles": 1224,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4499,
+            "files": 2777
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 19650,
+            "files": 4699
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 46162,
+            "files": 17444
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1768348800,
+      "oldSizeKB": 70362,
+      "newSizeKB": 3187,
+      "oldFiles": 24898,
+      "newFiles": 1223,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4500,
+            "files": 2777
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 19653,
+            "files": 4699
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 46209,
+            "files": 17422
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1768435200,
+      "oldSizeKB": 70429,
+      "newSizeKB": 3186,
+      "oldFiles": 24924,
+      "newFiles": 1222,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4500,
+            "files": 2777
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 19672,
+            "files": 4709
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 46257,
+            "files": 17438
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1768521600,
+      "oldSizeKB": 70438,
+      "newSizeKB": 3315,
+      "oldFiles": 24925,
+      "newFiles": 1238,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4503,
+            "files": 2777
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 19673,
+            "files": 4709
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 46262,
+            "files": 17439
           }
         ],
         "new": []
