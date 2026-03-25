@@ -7,5 +7,4 @@ coverage/
 logs/
 README.local.md
 config.local.json
-settings.local.json
 .claude/

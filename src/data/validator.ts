@@ -72,9 +72,58 @@ export function validateProgressData(data: ProgressData): void {
 			throw new Error(`Validation error: data[${i}].newFiles must be >= 0`);
 		}
 
-		// Опциональное поле comment
+		// Optional comment field
 		if (point.comment !== undefined && typeof point.comment !== 'string') {
 			throw new Error(`Validation error: data[${i}].comment must be a string`);
+		}
+
+		// Groups validation
+		if (!point.groups) {
+			throw new Error(`Validation error: data[${i}].groups is required`);
+		}
+
+		if (!Array.isArray(point.groups.old)) {
+			throw new Error(`Validation error: data[${i}].groups.old must be an array`);
+		}
+
+		if (!Array.isArray(point.groups.new)) {
+			throw new Error(`Validation error: data[${i}].groups.new must be an array`);
+		}
+
+		// Validate old groups sum
+		if (point.groups.old.length > 0) {
+			const oldGroupSumKB = point.groups.old.reduce((s, g) => s + g.sizeKB, 0);
+			const oldGroupSumFiles = point.groups.old.reduce((s, g) => s + g.files, 0);
+
+			if (oldGroupSumKB !== point.oldSizeKB) {
+				throw new Error(
+					`Validation error: data[${i}].groups.old sizeKB sum (${oldGroupSumKB}) != oldSizeKB (${point.oldSizeKB})`,
+				);
+			}
+
+			if (oldGroupSumFiles !== point.oldFiles) {
+				throw new Error(
+					`Validation error: data[${i}].groups.old files sum (${oldGroupSumFiles}) != oldFiles (${point.oldFiles})`,
+				);
+			}
+		}
+
+		// Validate new groups sum
+		if (point.groups.new.length > 0) {
+			const newGroupSumKB = point.groups.new.reduce((s, g) => s + g.sizeKB, 0);
+			const newGroupSumFiles = point.groups.new.reduce((s, g) => s + g.files, 0);
+
+			if (newGroupSumKB !== point.newSizeKB) {
+				throw new Error(
+					`Validation error: data[${i}].groups.new sizeKB sum (${newGroupSumKB}) != newSizeKB (${point.newSizeKB})`,
+				);
+			}
+
+			if (newGroupSumFiles !== point.newFiles) {
+				throw new Error(
+					`Validation error: data[${i}].groups.new files sum (${newGroupSumFiles}) != newFiles (${point.newFiles})`,
+				);
+			}
 		}
 	}
 

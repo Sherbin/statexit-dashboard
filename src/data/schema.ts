@@ -1,10 +1,37 @@
+// --- Config types ---
+
+export interface GroupConfig {
+	label: string;
+	paths: string[]; // relative paths inside folder; "__REST__" is a special marker
+}
+
+export interface FolderConfig {
+	label: string;
+	path: string;
+	description: string;
+	ignore?: string[];
+	groups?: GroupConfig[];
+}
+
+// --- Data types ---
+
+export interface GroupDataPoint {
+	label: string;
+	sizeKB: number;
+	files: number;
+}
+
 export interface DataPoint {
-	time: number; // unix timestamp (секунды), начало дня UTC
-	oldSizeKB: number; // размер старой папки в KB
-	newSizeKB: number; // размер новой папки в KB
-	oldFiles: number; // количество файлов в старой папке
-	newFiles: number; // количество файлов в новой папке
-	comment?: string; // опциональное объяснение аномалий (на английском)
+	time: number; // unix timestamp (seconds), start of day UTC
+	oldSizeKB: number;
+	newSizeKB: number;
+	oldFiles: number;
+	newFiles: number;
+	comment?: string;
+	groups: {
+		old: GroupDataPoint[];
+		new: GroupDataPoint[];
+	};
 }
 
 export interface UiConfig {
@@ -16,21 +43,30 @@ export interface UiConfig {
 }
 
 export interface MetaInfo {
-	sourceRepo: string; // git remote URL
-	oldPath: string; // путь старой папки
-	newPath: string; // путь новой папки
-	generatedAt: string; // ISO-8601
-	version?: number; // версия схемы
+	sourceRepo: string;
+	oldPath: string;
+	newPath: string;
+	generatedAt: string;
+	version?: number;
 	ignoredSubfolders?: {
 		old?: string[];
 		new?: string[];
 	};
 	ui?: UiConfig;
+	groups: {
+		old: GroupConfig[];
+		new: GroupConfig[];
+	};
 }
 
 export interface FolderStats {
-	sizeKB: number; // размер папки в килобайтах
-	files: number; // количество файлов
+	sizeKB: number;
+	files: number;
+}
+
+export interface GroupedFolderStats {
+	total: FolderStats;
+	groups: GroupDataPoint[];
 }
 
 export interface ProgressData {
@@ -40,7 +76,7 @@ export interface ProgressData {
 
 export interface CommitInfo {
 	hash: string;
-	timestamp: number; // unix timestamp
+	timestamp: number;
 }
 
 export interface DailyCommit {

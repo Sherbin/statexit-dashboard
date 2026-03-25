@@ -1,9 +1,9 @@
 #!/bin/bash
-# Check input text for forbidden words from settings.local.json
+# Check input text for forbidden words from config.local.json
 # Usage: echo "text" | ./check-forbidden-words.sh [context-label]
 
 SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-SETTINGS_FILE="$SCRIPT_DIR/settings.local.json"
+SETTINGS_FILE="$SCRIPT_DIR/config.local.json"
 
 if [ ! -f "$SETTINGS_FILE" ]; then
 	exit 0

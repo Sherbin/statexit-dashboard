@@ -1,17 +1,21 @@
 {
 	"repo": "/path/to/source-repo",
 	"sourceRepo": "source-repo",
-	"old": "src/legacy",
-	"new": "src/new",
+	"old": {
+		"label": "legacy",
+		"path": "src/legacy",
+		"description": "Legacy code",
+		"ignore": [],
+		"groups": []
+	},
+	"new": {
+		"label": "new",
+		"path": "src/new",
+		"description": "New code",
+		"ignore": [],
+		"groups": []
+	},
 	"output": "./docs/progress.json",
-	"ignoreOld": [],
-	"ignoreNew": [],
 	"logLevel": "info",
-	"ui": {
-		"title": "Migration Progress",
-		"oldLabel": "legacy",
-		"newLabel": "new",
-		"oldDescription": "Legacy code",
-		"newDescription": "New code"
-	}
+	"forbiddenWords": []
 }

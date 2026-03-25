@@ -5,12 +5,19 @@ import * as path from 'path';
 import { mergeData, getLastTimestamp, loadExistingData, saveData } from '../../../data/merger.js';
 import { ProgressData, DataPoint, MetaInfo } from '../../../data/schema.js';
 
+const emptyGroups = { old: [], new: [] };
+
+function dp(time: number, oldSizeKB: number, newSizeKB: number, oldFiles = 0, newFiles = 0): DataPoint {
+	return { time, oldSizeKB, newSizeKB, oldFiles, newFiles, groups: emptyGroups };
+}
+
 describe('merger', () => {
 	const validMeta: MetaInfo = {
 		sourceRepo: 'git@github.com:org/repo.git',
 		oldPath: 'src/old',
 		newPath: 'src/new',
 		generatedAt: '2024-01-01T00:00:00.000Z',
+		groups: emptyGroups,
 	};
 
 	describe('getLastTimestamp', () => {
@@ -27,11 +34,7 @@ describe('merger', () => {
 		it('should return last timestamp', () => {
 			const data: ProgressData = {
 				meta: validMeta,
-				data: [
-					{ time: 1704067200, oldSizeKB: 100, newSizeKB: 50, oldFiles: 0, newFiles: 0 },
-					{ time: 1704153600, oldSizeKB: 90, newSizeKB: 60, oldFiles: 0, newFiles: 0 },
-					{ time: 1704240000, oldSizeKB: 80, newSizeKB: 70, oldFiles: 0, newFiles: 0 },
-				],
+				data: [dp(1704067200, 100, 50), dp(1704153600, 90, 60), dp(1704240000, 80, 70)],
 			};
 
 			expect(getLastTimestamp(data)).toBe(1704240000);
@@ -40,10 +43,7 @@ describe('merger', () => {
 
 	describe('mergeData', () => {
 		it('should return new points when existing is null', () => {
-			const newPoints: DataPoint[] = [
-				{ time: 1704067200, oldSizeKB: 100, newSizeKB: 50, oldFiles: 0, newFiles: 0 },
-				{ time: 1704153600, oldSizeKB: 90, newSizeKB: 60, oldFiles: 0, newFiles: 0 },
-			];
+			const newPoints: DataPoint[] = [dp(1704067200, 100, 50), dp(1704153600, 90, 60)];
 
 			const result = mergeData(null, newPoints, validMeta, false);
 
@@ -54,11 +54,9 @@ describe('merger', () => {
 		it('should return only new points when force=true', () => {
 			const existing: ProgressData = {
 				meta: validMeta,
-				data: [{ time: 1704067200, oldSizeKB: 100, newSizeKB: 50, oldFiles: 0, newFiles: 0 }],
+				data: [dp(1704067200, 100, 50)],
 			};
-			const newPoints: DataPoint[] = [
-				{ time: 1704153600, oldSizeKB: 90, newSizeKB: 60, oldFiles: 0, newFiles: 0 },
-			];
+			const newPoints: DataPoint[] = [dp(1704153600, 90, 60)];
 
 			const result = mergeData(existing, newPoints, validMeta, true);
 
@@ -69,15 +67,9 @@ describe('merger', () => {
 		it('should merge new points after existing data', () => {
 			const existing: ProgressData = {
 				meta: validMeta,
-				data: [
-					{ time: 1704067200, oldSizeKB: 100, newSizeKB: 50, oldFiles: 0, newFiles: 0 },
-					{ time: 1704153600, oldSizeKB: 90, newSizeKB: 60, oldFiles: 0, newFiles: 0 },
-				],
+				data: [dp(1704067200, 100, 50), dp(1704153600, 90, 60)],
 			};
-			const newPoints: DataPoint[] = [
-				{ time: 1704240000, oldSizeKB: 80, newSizeKB: 70, oldFiles: 0, newFiles: 0 },
-				{ time: 1704326400, oldSizeKB: 70, newSizeKB: 80, oldFiles: 0, newFiles: 0 },
-			];
+			const newPoints: DataPoint[] = [dp(1704240000, 80, 70), dp(1704326400, 70, 80)];
 
 			const result = mergeData(existing, newPoints, validMeta, false);
 
@@ -89,15 +81,12 @@ describe('merger', () => {
 		it('should filter out new points that are not after last existing', () => {
 			const existing: ProgressData = {
 				meta: validMeta,
-				data: [
-					{ time: 1704067200, oldSizeKB: 100, newSizeKB: 50, oldFiles: 0, newFiles: 0 },
-					{ time: 1704153600, oldSizeKB: 90, newSizeKB: 60, oldFiles: 0, newFiles: 0 },
-				],
+				data: [dp(1704067200, 100, 50), dp(1704153600, 90, 60)],
 			};
 			const newPoints: DataPoint[] = [
-				{ time: 1704067200, oldSizeKB: 100, newSizeKB: 50, oldFiles: 0, newFiles: 0 }, // same as existing
-				{ time: 1704153600, oldSizeKB: 90, newSizeKB: 60, oldFiles: 0, newFiles: 0 }, // same as existing
-				{ time: 1704240000, oldSizeKB: 80, newSizeKB: 70, oldFiles: 0, newFiles: 0 }, // new
+				dp(1704067200, 100, 50),
+				dp(1704153600, 90, 60),
+				dp(1704240000, 80, 70),
 			];
 
 			const result = mergeData(existing, newPoints, validMeta, false);
@@ -109,12 +98,9 @@ describe('merger', () => {
 		it('should sort merged data by time', () => {
 			const existing: ProgressData = {
 				meta: validMeta,
-				data: [{ time: 1704153600, oldSizeKB: 90, newSizeKB: 60, oldFiles: 0, newFiles: 0 }],
+				data: [dp(1704153600, 90, 60)],
 			};
-			const newPoints: DataPoint[] = [
-				{ time: 1704326400, oldSizeKB: 70, newSizeKB: 80, oldFiles: 0, newFiles: 0 },
-				{ time: 1704240000, oldSizeKB: 80, newSizeKB: 70, oldFiles: 0, newFiles: 0 },
-			];
+			const newPoints: DataPoint[] = [dp(1704326400, 70, 80), dp(1704240000, 80, 70)];
 
 			const result = mergeData(existing, newPoints, validMeta, false);
 
@@ -129,7 +115,7 @@ describe('merger', () => {
 
 			const existing: ProgressData = {
 				meta: oldMeta,
-				data: [{ time: 1704067200, oldSizeKB: 100, newSizeKB: 50, oldFiles: 0, newFiles: 0 }],
+				data: [dp(1704067200, 100, 50)],
 			};
 
 			const result = mergeData(existing, [], newMeta, false);
@@ -160,7 +146,7 @@ describe('merger', () => {
 			const filePath = path.join(tempDir, 'progress.json');
 			const data: ProgressData = {
 				meta: validMeta,
-				data: [{ time: 1704067200, oldSizeKB: 100, newSizeKB: 50, oldFiles: 0, newFiles: 0 }],
+				data: [dp(1704067200, 100, 50)],
 			};
 
 			await fs.writeFile(filePath, JSON.stringify(data), 'utf-8');
@@ -182,14 +168,14 @@ describe('merger', () => {
 			const filePath = path.join(tempDir, 'output.json');
 			const data: ProgressData = {
 				meta: validMeta,
-				data: [{ time: 1704067200, oldSizeKB: 100, newSizeKB: 50, oldFiles: 0, newFiles: 0 }],
+				data: [dp(1704067200, 100, 50)],
 			};
 
 			await saveData(filePath, data);
 
 			const content = await fs.readFile(filePath, 'utf-8');
 
-			expect(content).toContain('\n'); // Should be formatted
+			expect(content).toContain('\n');
 			expect(JSON.parse(content)).toEqual(data);
 		});
 

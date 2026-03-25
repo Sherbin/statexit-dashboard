@@ -46,18 +46,18 @@
       min-height: 100vh;
       padding: 20px;
     }
-    
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
     }
-    
+
     h1 {
       text-align: center;
       margin-bottom: 10px;
       font-size: 1.8rem;
     }
-    
+
     .subtitle {
       text-align: center;
       color: var(--text-secondary);
@@ -70,7 +70,35 @@
       border-radius: 8px;
       height: 500px;
     }
-    
+
+    .group-controls {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .group-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .group-checkbox input {
+      cursor: pointer;
+    }
+
+    .group-color-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
     .legend {
       display: flex;
       justify-content: center;
@@ -81,20 +109,20 @@
       margin-left: auto;
       margin-right: auto;
     }
-    
+
     .legend-item {
       display: flex;
       align-items: center;
       gap: 8px;
       font-size: 0.85rem;
     }
-    
+
     .legend-color {
       width: 16px;
       height: 16px;
       border-radius: 3px;
     }
-    
+
     .legend-color.old {
       background: var(--color-old);
     }
@@ -106,23 +134,23 @@
     .legend-color.change {
       background: linear-gradient(to right, var(--color-negative), var(--color-positive));
     }
-    
+
     .stats {
       display: flex;
       justify-content: center;
       gap: 40px;
       margin-top: 30px;
     }
-    
+
     .stat {
       text-align: center;
     }
-    
+
     .stat-value {
       font-size: 2rem;
       font-weight: bold;
     }
-    
+
     .stat-label {
       color: var(--text-secondary);
       font-size: 0.9rem;
@@ -130,14 +158,14 @@
 
     .stat-value.old { color: var(--color-old); }
     .stat-value.new { color: var(--color-new); }
-    
+
     .meta {
       text-align: center;
       margin-top: 30px;
       color: var(--text-secondary);
       font-size: 0.8rem;
     }
-    
+
     .error {
       text-align: center;
       color: #e94560;
@@ -251,10 +279,12 @@
 </head>
 <body>
   <div class="container">
-    <h1 id="dashboard-title">📊 Migration Progress</h1>
+    <h1 id="dashboard-title">Migration Progress</h1>
     <p class="subtitle" id="dashboard-subtitle">Loading...</p>
 
     <div id="chart-container"></div>
+
+    <div id="group-controls" class="group-controls"></div>
 
     <div class="legend">
       <div class="legend-item">
@@ -270,15 +300,15 @@
         <span>Daily size change (left scale)</span>
       </div>
     </div>
-    
+
     <div class="stats">
       <div class="stat">
         <div class="stat-value old" id="stat-old">-</div>
-        <div class="stat-label">Legacy Size (filtered)</div>
+        <div class="stat-label" id="stat-old-label">Old Size</div>
       </div>
       <div class="stat">
         <div class="stat-value new" id="stat-new">-</div>
-        <div class="stat-label">New Size (all)</div>
+        <div class="stat-label" id="stat-new-label">New Size</div>
       </div>
     </div>
 
@@ -290,14 +320,12 @@
           <button class="period-btn" data-period="week">Week</button>
         </div>
       </div>
-      <div class="changes-table" id="changes-table">
-        <!-- Динамически генерируется -->
-      </div>
+      <div class="changes-table" id="changes-table"></div>
     </div>
 
     <div class="meta" id="meta"></div>
   </div>
-  
+
   <script src="https://unpkg.com/lightweight-charts@4.1.0/dist/lightweight-charts.standalone.production.js"></script>
   <script src="chart.js"></script>
 </body>
