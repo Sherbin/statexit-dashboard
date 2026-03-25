@@ -3,8 +3,8 @@
     "sourceRepo": "source-repo",
     "oldPath": "static",
     "newPath": "frontends",
-    "generatedAt": "2026-03-24T10:31:16.781Z",
-    "version": 2,
+    "generatedAt": "2026-03-25T09:23:41.253Z",
+    "version": 3,
     "ignoredSubfolders": {
       "old": [
         "images",
@@ -26,6 +26,23 @@
       "newLabel": "frontends",
       "oldDescription": "excluding: images, api-types, bundles, cursors, error_pages, external, fonts, localization, sounds, videos",
       "newDescription": "all files"
+    },
+    "groups": {
+      "old": [
+        {
+          "label": "Framework/Platform",
+          "paths": []
+        },
+        {
+          "label": "Chart",
+          "paths": []
+        },
+        {
+          "label": "Product code",
+          "paths": []
+        }
+      ],
+      "new": []
     }
   },
   "data": [
@@ -34,1645 +51,270 @@
       "oldSizeKB": 57082,
       "newSizeKB": 12,
       "oldFiles": 23584,
-      "newFiles": 14
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 3848,
+            "files": 2520
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 19822,
+            "files": 4627
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 33412,
+            "files": 16437
+          }
+        ],
+        "new": []
+      }
     },
     {
       "time": 1753747200,
       "oldSizeKB": 56853,
       "newSizeKB": 0,
       "oldFiles": 23528,
-      "newFiles": 0
+      "newFiles": 0,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 3820,
+            "files": 2507
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 19671,
+            "files": 4593
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 33362,
+            "files": 16428
+          }
+        ],
+        "new": []
+      }
     },
     {
       "time": 1753833600,
       "oldSizeKB": 57079,
       "newSizeKB": 12,
       "oldFiles": 23592,
-      "newFiles": 14
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 3860,
+            "files": 2532
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 19783,
+            "files": 4616
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 33436,
+            "files": 16444
+          }
+        ],
+        "new": []
+      }
     },
     {
       "time": 1753920000,
       "oldSizeKB": 57123,
       "newSizeKB": 12,
       "oldFiles": 23617,
-      "newFiles": 14
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 3863,
+            "files": 2532
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 19784,
+            "files": 4616
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 33476,
+            "files": 16469
+          }
+        ],
+        "new": []
+      }
     },
     {
       "time": 1754006400,
       "oldSizeKB": 57087,
       "newSizeKB": 12,
       "oldFiles": 23581,
-      "newFiles": 14
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 3853,
+            "files": 2524
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 19774,
+            "files": 4612
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 33460,
+            "files": 16445
+          }
+        ],
+        "new": []
+      }
     },
     {
       "time": 1754092800,
       "oldSizeKB": 57143,
       "newSizeKB": 12,
       "oldFiles": 23630,
-      "newFiles": 14
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 3863,
+            "files": 2532
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 19787,
+            "files": 4616
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 33493,
+            "files": 16482
+          }
+        ],
+        "new": []
+      }
     },
     {
       "time": 1754179200,
       "oldSizeKB": 139294,
       "newSizeKB": 0,
       "oldFiles": 23576,
-      "newFiles": 0
+      "newFiles": 0,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 3789,
+            "files": 2482
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 101897,
+            "files": 4607
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 33608,
+            "files": 16487
+          }
+        ],
+        "new": []
+      }
     },
     {
       "time": 1754265600,
       "oldSizeKB": 57002,
       "newSizeKB": 12,
       "oldFiles": 23614,
-      "newFiles": 14
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 3850,
+            "files": 2520
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 19635,
+            "files": 4604
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 33517,
+            "files": 16490
+          }
+        ],
+        "new": []
+      }
     },
     {
       "time": 1754352000,
       "oldSizeKB": 57085,
       "newSizeKB": 12,
       "oldFiles": 23641,
-      "newFiles": 14
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 3855,
+            "files": 2526
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 19704,
+            "files": 4619
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 33526,
+            "files": 16496
+          }
+        ],
+        "new": []
+      }
     },
     {
       "time": 1754438400,
       "oldSizeKB": 57199,
       "newSizeKB": 12,
       "oldFiles": 23693,
-      "newFiles": 14
-    },
-    {
-      "time": 1754524800,
-      "oldSizeKB": 57098,
-      "newSizeKB": 12,
-      "oldFiles": 23644,
-      "newFiles": 14
-    },
-    {
-      "time": 1754611200,
-      "oldSizeKB": 57262,
-      "newSizeKB": 12,
-      "oldFiles": 23714,
-      "newFiles": 14
-    },
-    {
-      "time": 1754697600,
-      "oldSizeKB": 57281,
-      "newSizeKB": 12,
-      "oldFiles": 23719,
-      "newFiles": 14
-    },
-    {
-      "time": 1754784000,
-      "oldSizeKB": 57187,
-      "newSizeKB": 12,
-      "oldFiles": 23674,
-      "newFiles": 14
-    },
-    {
-      "time": 1754870400,
-      "oldSizeKB": 57280,
-      "newSizeKB": 12,
-      "oldFiles": 23723,
-      "newFiles": 14
-    },
-    {
-      "time": 1754956800,
-      "oldSizeKB": 57438,
-      "newSizeKB": 12,
-      "oldFiles": 23791,
-      "newFiles": 14
-    },
-    {
-      "time": 1755043200,
-      "oldSizeKB": 57482,
-      "newSizeKB": 12,
-      "oldFiles": 23819,
-      "newFiles": 14
-    },
-    {
-      "time": 1755129600,
-      "oldSizeKB": 57517,
-      "newSizeKB": 12,
-      "oldFiles": 23822,
-      "newFiles": 14
-    },
-    {
-      "time": 1755216000,
-      "oldSizeKB": 57498,
-      "newSizeKB": 12,
-      "oldFiles": 23820,
-      "newFiles": 14
-    },
-    {
-      "time": 1755302400,
-      "oldSizeKB": 57530,
-      "newSizeKB": 12,
-      "oldFiles": 23830,
-      "newFiles": 14
-    },
-    {
-      "time": 1755388800,
-      "oldSizeKB": 57529,
-      "newSizeKB": 12,
-      "oldFiles": 23830,
-      "newFiles": 14
-    },
-    {
-      "time": 1755475200,
-      "oldSizeKB": 57525,
-      "newSizeKB": 12,
-      "oldFiles": 23825,
-      "newFiles": 14
-    },
-    {
-      "time": 1755561600,
-      "oldSizeKB": 57787,
-      "newSizeKB": 12,
-      "oldFiles": 23922,
-      "newFiles": 14
-    },
-    {
-      "time": 1755648000,
-      "oldSizeKB": 57870,
-      "newSizeKB": 12,
-      "oldFiles": 23944,
-      "newFiles": 14
-    },
-    {
-      "time": 1755734400,
-      "oldSizeKB": 57861,
-      "newSizeKB": 12,
-      "oldFiles": 23945,
-      "newFiles": 14
-    },
-    {
-      "time": 1755820800,
-      "oldSizeKB": 57861,
-      "newSizeKB": 12,
-      "oldFiles": 23945,
-      "newFiles": 14
-    },
-    {
-      "time": 1755907200,
-      "oldSizeKB": 57888,
-      "newSizeKB": 12,
-      "oldFiles": 24011,
-      "newFiles": 14
-    },
-    {
-      "time": 1755993600,
-      "oldSizeKB": 57876,
-      "newSizeKB": 12,
-      "oldFiles": 23954,
-      "newFiles": 14
-    },
-    {
-      "time": 1756080000,
-      "oldSizeKB": 58537,
-      "newSizeKB": 12,
-      "oldFiles": 24149,
-      "newFiles": 14
-    },
-    {
-      "time": 1756166400,
-      "oldSizeKB": 57876,
-      "newSizeKB": 12,
-      "oldFiles": 23954,
-      "newFiles": 14
-    },
-    {
-      "time": 1756252800,
-      "oldSizeKB": 57876,
-      "newSizeKB": 12,
-      "oldFiles": 23954,
-      "newFiles": 14
-    },
-    {
-      "time": 1756339200,
-      "oldSizeKB": 58756,
-      "newSizeKB": 12,
-      "oldFiles": 24220,
-      "newFiles": 14
-    },
-    {
-      "time": 1756425600,
-      "oldSizeKB": 58779,
-      "newSizeKB": 12,
-      "oldFiles": 24227,
-      "newFiles": 14
-    },
-    {
-      "time": 1756512000,
-      "oldSizeKB": 58754,
-      "newSizeKB": 12,
-      "oldFiles": 24216,
-      "newFiles": 14
-    },
-    {
-      "time": 1756598400,
-      "oldSizeKB": 59269,
-      "newSizeKB": 12,
-      "oldFiles": 24418,
-      "newFiles": 14
-    },
-    {
-      "time": 1756684800,
-      "oldSizeKB": 58963,
-      "newSizeKB": 12,
-      "oldFiles": 24401,
-      "newFiles": 14
-    },
-    {
-      "time": 1756771200,
-      "oldSizeKB": 58572,
-      "newSizeKB": 12,
-      "oldFiles": 24153,
-      "newFiles": 14
-    },
-    {
-      "time": 1756857600,
-      "oldSizeKB": 59211,
-      "newSizeKB": 12,
-      "oldFiles": 24449,
-      "newFiles": 14
-    },
-    {
-      "time": 1756944000,
-      "oldSizeKB": 57548,
-      "newSizeKB": 12,
-      "oldFiles": 23838,
-      "newFiles": 14
-    },
-    {
-      "time": 1757030400,
-      "oldSizeKB": 59104,
-      "newSizeKB": 12,
-      "oldFiles": 24479,
-      "newFiles": 14
-    },
-    {
-      "time": 1757116800,
-      "oldSizeKB": 59104,
-      "newSizeKB": 12,
-      "oldFiles": 24479,
-      "newFiles": 14
-    },
-    {
-      "time": 1757203200,
-      "oldSizeKB": 59108,
-      "newSizeKB": 12,
-      "oldFiles": 24479,
-      "newFiles": 14
-    },
-    {
-      "time": 1757289600,
-      "oldSizeKB": 59111,
-      "newSizeKB": 12,
-      "oldFiles": 24482,
-      "newFiles": 14
-    },
-    {
-      "time": 1757376000,
-      "oldSizeKB": 59255,
-      "newSizeKB": 12,
-      "oldFiles": 24552,
-      "newFiles": 14
-    },
-    {
-      "time": 1757462400,
-      "oldSizeKB": 59952,
-      "newSizeKB": 12,
-      "oldFiles": 24789,
-      "newFiles": 14
-    },
-    {
-      "time": 1757548800,
-      "oldSizeKB": 59965,
-      "newSizeKB": 12,
-      "oldFiles": 24799,
-      "newFiles": 14
-    },
-    {
-      "time": 1757635200,
-      "oldSizeKB": 60060,
-      "newSizeKB": 12,
-      "oldFiles": 24833,
-      "newFiles": 14
-    },
-    {
-      "time": 1757721600,
-      "oldSizeKB": 60060,
-      "newSizeKB": 12,
-      "oldFiles": 24833,
-      "newFiles": 14
-    },
-    {
-      "time": 1757808000,
-      "oldSizeKB": 59465,
-      "newSizeKB": 12,
-      "oldFiles": 24615,
-      "newFiles": 14
-    },
-    {
-      "time": 1757894400,
-      "oldSizeKB": 59282,
-      "newSizeKB": 12,
-      "oldFiles": 24561,
-      "newFiles": 14
-    },
-    {
-      "time": 1757980800,
-      "oldSizeKB": 60399,
-      "newSizeKB": 12,
-      "oldFiles": 24839,
-      "newFiles": 14
-    },
-    {
-      "time": 1758067200,
-      "oldSizeKB": 60006,
-      "newSizeKB": 12,
-      "oldFiles": 24826,
-      "newFiles": 14
-    },
-    {
-      "time": 1758153600,
-      "oldSizeKB": 60652,
-      "newSizeKB": 12,
-      "oldFiles": 24864,
-      "newFiles": 14
-    },
-    {
-      "time": 1758240000,
-      "oldSizeKB": 61070,
-      "newSizeKB": 12,
-      "oldFiles": 24865,
-      "newFiles": 14
-    },
-    {
-      "time": 1758326400,
-      "oldSizeKB": 60652,
-      "newSizeKB": 12,
-      "oldFiles": 24865,
-      "newFiles": 14
-    },
-    {
-      "time": 1758412800,
-      "oldSizeKB": 60652,
-      "newSizeKB": 12,
-      "oldFiles": 24865,
-      "newFiles": 14
-    },
-    {
-      "time": 1758499200,
-      "oldSizeKB": 61017,
-      "newSizeKB": 12,
-      "oldFiles": 24881,
-      "newFiles": 14
-    },
-    {
-      "time": 1758585600,
-      "oldSizeKB": 60651,
-      "newSizeKB": 12,
-      "oldFiles": 24863,
-      "newFiles": 14
-    },
-    {
-      "time": 1758672000,
-      "oldSizeKB": 61456,
-      "newSizeKB": 12,
-      "oldFiles": 24892,
-      "newFiles": 14
-    },
-    {
-      "time": 1758758400,
-      "oldSizeKB": 61518,
-      "newSizeKB": 12,
-      "oldFiles": 24922,
-      "newFiles": 14
-    },
-    {
-      "time": 1758844800,
-      "oldSizeKB": 61574,
-      "newSizeKB": 12,
-      "oldFiles": 24958,
-      "newFiles": 14
-    },
-    {
-      "time": 1758931200,
-      "oldSizeKB": 61576,
-      "newSizeKB": 12,
-      "oldFiles": 24958,
-      "newFiles": 14
-    },
-    {
-      "time": 1759017600,
-      "oldSizeKB": 61575,
-      "newSizeKB": 12,
-      "oldFiles": 24959,
-      "newFiles": 14
-    },
-    {
-      "time": 1759104000,
-      "oldSizeKB": 61605,
-      "newSizeKB": 12,
-      "oldFiles": 24968,
-      "newFiles": 14
-    },
-    {
-      "time": 1759190400,
-      "oldSizeKB": 61629,
-      "newSizeKB": 12,
-      "oldFiles": 24987,
-      "newFiles": 14
-    },
-    {
-      "time": 1759276800,
-      "oldSizeKB": 61665,
-      "newSizeKB": 12,
-      "oldFiles": 25009,
-      "newFiles": 14
-    },
-    {
-      "time": 1759363200,
-      "oldSizeKB": 61669,
-      "newSizeKB": 12,
-      "oldFiles": 25008,
-      "newFiles": 14
-    },
-    {
-      "time": 1759449600,
-      "oldSizeKB": 61462,
-      "newSizeKB": 12,
-      "oldFiles": 24948,
-      "newFiles": 14
-    },
-    {
-      "time": 1759536000,
-      "oldSizeKB": 61463,
-      "newSizeKB": 12,
-      "oldFiles": 24948,
-      "newFiles": 14
-    },
-    {
-      "time": 1759622400,
-      "oldSizeKB": 61462,
-      "newSizeKB": 12,
-      "oldFiles": 24948,
-      "newFiles": 14
-    },
-    {
-      "time": 1759708800,
-      "oldSizeKB": 61514,
-      "newSizeKB": 12,
-      "oldFiles": 24952,
-      "newFiles": 14
-    },
-    {
-      "time": 1759795200,
-      "oldSizeKB": 61520,
-      "newSizeKB": 12,
-      "oldFiles": 24954,
-      "newFiles": 14
-    },
-    {
-      "time": 1759881600,
-      "oldSizeKB": 61522,
-      "newSizeKB": 12,
-      "oldFiles": 24953,
-      "newFiles": 14
-    },
-    {
-      "time": 1759968000,
-      "oldSizeKB": 61537,
-      "newSizeKB": 12,
-      "oldFiles": 24956,
-      "newFiles": 14
-    },
-    {
-      "time": 1760054400,
-      "oldSizeKB": 61520,
-      "newSizeKB": 12,
-      "oldFiles": 24952,
-      "newFiles": 14
-    },
-    {
-      "time": 1760140800,
-      "oldSizeKB": 61689,
-      "newSizeKB": 12,
-      "oldFiles": 25005,
-      "newFiles": 14
-    },
-    {
-      "time": 1760313600,
-      "oldSizeKB": 61508,
-      "newSizeKB": 14,
-      "oldFiles": 25013,
-      "newFiles": 11
-    },
-    {
-      "time": 1760400000,
-      "oldSizeKB": 61530,
-      "newSizeKB": 14,
-      "oldFiles": 25022,
-      "newFiles": 11
-    },
-    {
-      "time": 1760486400,
-      "oldSizeKB": 61520,
-      "newSizeKB": 12,
-      "oldFiles": 24952,
-      "newFiles": 14
-    },
-    {
-      "time": 1760572800,
-      "oldSizeKB": 61486,
-      "newSizeKB": 14,
-      "oldFiles": 25008,
-      "newFiles": 11
-    },
-    {
-      "time": 1760659200,
-      "oldSizeKB": 61532,
-      "newSizeKB": 14,
-      "oldFiles": 25023,
-      "newFiles": 11
-    },
-    {
-      "time": 1760745600,
-      "oldSizeKB": 61337,
-      "newSizeKB": 14,
-      "oldFiles": 24990,
-      "newFiles": 11
-    },
-    {
-      "time": 1760832000,
-      "oldSizeKB": 61337,
-      "newSizeKB": 14,
-      "oldFiles": 24990,
-      "newFiles": 11
-    },
-    {
-      "time": 1760918400,
-      "oldSizeKB": 61368,
-      "newSizeKB": 14,
-      "oldFiles": 25008,
-      "newFiles": 11
-    },
-    {
-      "time": 1761004800,
-      "oldSizeKB": 61555,
-      "newSizeKB": 14,
-      "oldFiles": 25031,
-      "newFiles": 11
-    },
-    {
-      "time": 1761091200,
-      "oldSizeKB": 61632,
-      "newSizeKB": 14,
-      "oldFiles": 25074,
-      "newFiles": 11
-    },
-    {
-      "time": 1761177600,
-      "oldSizeKB": 61364,
-      "newSizeKB": 14,
-      "oldFiles": 25005,
-      "newFiles": 11
-    },
-    {
-      "time": 1761264000,
-      "oldSizeKB": 61680,
-      "newSizeKB": 14,
-      "oldFiles": 25131,
-      "newFiles": 11
-    },
-    {
-      "time": 1761350400,
-      "oldSizeKB": 61360,
-      "newSizeKB": 14,
-      "oldFiles": 25002,
-      "newFiles": 11
-    },
-    {
-      "time": 1761436800,
-      "oldSizeKB": 61681,
-      "newSizeKB": 14,
-      "oldFiles": 25132,
-      "newFiles": 11
-    },
-    {
-      "time": 1761523200,
-      "oldSizeKB": 61692,
-      "newSizeKB": 14,
-      "oldFiles": 25141,
-      "newFiles": 11
-    },
-    {
-      "time": 1761609600,
-      "oldSizeKB": 61723,
-      "newSizeKB": 14,
-      "oldFiles": 25146,
-      "newFiles": 11
-    },
-    {
-      "time": 1761696000,
-      "oldSizeKB": 61593,
-      "newSizeKB": 14,
-      "oldFiles": 25049,
-      "newFiles": 11
-    },
-    {
-      "time": 1761782400,
-      "oldSizeKB": 61765,
-      "newSizeKB": 14,
-      "oldFiles": 25168,
-      "newFiles": 11
-    },
-    {
-      "time": 1761868800,
-      "oldSizeKB": 61785,
-      "newSizeKB": 14,
-      "oldFiles": 25174,
-      "newFiles": 11
-    },
-    {
-      "time": 1761955200,
-      "oldSizeKB": 61786,
-      "newSizeKB": 14,
-      "oldFiles": 25175,
-      "newFiles": 11
-    },
-    {
-      "time": 1762041600,
-      "oldSizeKB": 61842,
-      "newSizeKB": 14,
-      "oldFiles": 25211,
-      "newFiles": 11
-    },
-    {
-      "time": 1762128000,
-      "oldSizeKB": 61779,
-      "newSizeKB": 14,
-      "oldFiles": 25167,
-      "newFiles": 11
-    },
-    {
-      "time": 1762214400,
-      "oldSizeKB": 62034,
-      "newSizeKB": 14,
-      "oldFiles": 25264,
-      "newFiles": 11
-    },
-    {
-      "time": 1762300800,
-      "oldSizeKB": 62062,
-      "newSizeKB": 22,
-      "oldFiles": 25279,
-      "newFiles": 22
-    },
-    {
-      "time": 1762387200,
-      "oldSizeKB": 62219,
-      "newSizeKB": 23,
-      "oldFiles": 25388,
-      "newFiles": 23
-    },
-    {
-      "time": 1762473600,
-      "oldSizeKB": 62210,
-      "newSizeKB": 23,
-      "oldFiles": 25378,
-      "newFiles": 23
-    },
-    {
-      "time": 1762560000,
-      "oldSizeKB": 62535,
-      "newSizeKB": 27,
-      "oldFiles": 25524,
-      "newFiles": 42
-    },
-    {
-      "time": 1762646400,
-      "oldSizeKB": 62364,
-      "newSizeKB": 27,
-      "oldFiles": 25460,
-      "newFiles": 42
-    },
-    {
-      "time": 1762732800,
-      "oldSizeKB": 62400,
-      "newSizeKB": 27,
-      "oldFiles": 25470,
-      "newFiles": 42
-    },
-    {
-      "time": 1762819200,
-      "oldSizeKB": 62444,
-      "newSizeKB": 27,
-      "oldFiles": 25565,
-      "newFiles": 42
-    },
-    {
-      "time": 1762905600,
-      "oldSizeKB": 62446,
-      "newSizeKB": 27,
-      "oldFiles": 25563,
-      "newFiles": 42
-    },
-    {
-      "time": 1762992000,
-      "oldSizeKB": 62440,
-      "newSizeKB": 27,
-      "oldFiles": 25559,
-      "newFiles": 42
-    },
-    {
-      "time": 1763078400,
-      "oldSizeKB": 62553,
-      "newSizeKB": 27,
-      "oldFiles": 25662,
-      "newFiles": 42
-    },
-    {
-      "time": 1763164800,
-      "oldSizeKB": 62554,
-      "newSizeKB": 27,
-      "oldFiles": 25662,
-      "newFiles": 42
-    },
-    {
-      "time": 1763251200,
-      "oldSizeKB": 62553,
-      "newSizeKB": 27,
-      "oldFiles": 25662,
-      "newFiles": 42
-    },
-    {
-      "time": 1763337600,
-      "oldSizeKB": 62580,
-      "newSizeKB": 34,
-      "oldFiles": 25683,
-      "newFiles": 45
-    },
-    {
-      "time": 1763424000,
-      "oldSizeKB": 62317,
-      "newSizeKB": 34,
-      "oldFiles": 25276,
-      "newFiles": 45
-    },
-    {
-      "time": 1763510400,
-      "oldSizeKB": 61645,
-      "newSizeKB": 1003,
-      "oldFiles": 25447,
-      "newFiles": 257
-    },
-    {
-      "time": 1763596800,
-      "oldSizeKB": 61646,
-      "newSizeKB": 1003,
-      "oldFiles": 25448,
-      "newFiles": 257
-    },
-    {
-      "time": 1763683200,
-      "oldSizeKB": 61681,
-      "newSizeKB": 1003,
-      "oldFiles": 25459,
-      "newFiles": 257
-    },
-    {
-      "time": 1763769600,
-      "oldSizeKB": 61772,
-      "newSizeKB": 1003,
-      "oldFiles": 25509,
-      "newFiles": 257
-    },
-    {
-      "time": 1763856000,
-      "oldSizeKB": 62442,
-      "newSizeKB": 27,
-      "oldFiles": 25565,
-      "newFiles": 42
-    },
-    {
-      "time": 1763942400,
-      "oldSizeKB": 61666,
-      "newSizeKB": 1003,
-      "oldFiles": 25459,
-      "newFiles": 257
-    },
-    {
-      "time": 1764028800,
-      "oldSizeKB": 61639,
-      "newSizeKB": 1003,
-      "oldFiles": 25447,
-      "newFiles": 257
-    },
-    {
-      "time": 1764115200,
-      "oldSizeKB": 61396,
-      "newSizeKB": 1045,
-      "oldFiles": 25056,
-      "newFiles": 263
-    },
-    {
-      "time": 1764201600,
-      "oldSizeKB": 61578,
-      "newSizeKB": 1123,
-      "oldFiles": 25083,
-      "newFiles": 319
-    },
-    {
-      "time": 1764288000,
-      "oldSizeKB": 61575,
-      "newSizeKB": 1252,
-      "oldFiles": 25080,
-      "newFiles": 335
-    },
-    {
-      "time": 1764374400,
-      "oldSizeKB": 61409,
-      "newSizeKB": 1045,
-      "oldFiles": 25071,
-      "newFiles": 263
-    },
-    {
-      "time": 1764460800,
-      "oldSizeKB": 61659,
-      "newSizeKB": 1126,
-      "oldFiles": 25107,
-      "newFiles": 319
-    },
-    {
-      "time": 1764547200,
-      "oldSizeKB": 61720,
-      "newSizeKB": 1097,
-      "oldFiles": 25180,
-      "newFiles": 311
-    },
-    {
-      "time": 1764633600,
-      "oldSizeKB": 61136,
-      "newSizeKB": 1126,
-      "oldFiles": 25157,
-      "newFiles": 319
-    },
-    {
-      "time": 1764720000,
-      "oldSizeKB": 60953,
-      "newSizeKB": 1271,
-      "oldFiles": 25106,
-      "newFiles": 329
-    },
-    {
-      "time": 1764806400,
-      "oldSizeKB": 61013,
-      "newSizeKB": 1271,
-      "oldFiles": 25123,
-      "newFiles": 329
-    },
-    {
-      "time": 1764892800,
-      "oldSizeKB": 61040,
-      "newSizeKB": 1277,
-      "oldFiles": 25138,
-      "newFiles": 329
-    },
-    {
-      "time": 1764979200,
-      "oldSizeKB": 60659,
-      "newSizeKB": 1654,
-      "oldFiles": 24983,
-      "newFiles": 482
-    },
-    {
-      "time": 1765065600,
-      "oldSizeKB": 112806,
-      "newSizeKB": 1271,
-      "oldFiles": 25252,
-      "newFiles": 329
-    },
-    {
-      "time": 1765152000,
-      "oldSizeKB": 61376,
-      "newSizeKB": 1277,
-      "oldFiles": 25262,
-      "newFiles": 329
-    },
-    {
-      "time": 1765238400,
-      "oldSizeKB": 61412,
-      "newSizeKB": 1277,
-      "oldFiles": 25279,
-      "newFiles": 329
-    },
-    {
-      "time": 1765324800,
-      "oldSizeKB": 61455,
-      "newSizeKB": 1277,
-      "oldFiles": 25347,
-      "newFiles": 329
-    },
-    {
-      "time": 1765411200,
-      "oldSizeKB": 61391,
-      "newSizeKB": 1273,
-      "oldFiles": 25270,
-      "newFiles": 329
-    },
-    {
-      "time": 1765497600,
-      "oldSizeKB": 61372,
-      "newSizeKB": 1406,
-      "oldFiles": 25267,
-      "newFiles": 345
-    },
-    {
-      "time": 1765584000,
-      "oldSizeKB": 61398,
-      "newSizeKB": 1351,
-      "oldFiles": 25276,
-      "newFiles": 348
-    },
-    {
-      "time": 1765670400,
-      "oldSizeKB": 61404,
-      "newSizeKB": 1273,
-      "oldFiles": 25292,
-      "newFiles": 329
-    },
-    {
-      "time": 1765756800,
-      "oldSizeKB": 71020,
-      "newSizeKB": 1274,
-      "oldFiles": 25436,
-      "newFiles": 329
-    },
-    {
-      "time": 1765843200,
-      "oldSizeKB": 71083,
-      "newSizeKB": 1276,
-      "oldFiles": 25456,
-      "newFiles": 329
-    },
-    {
-      "time": 1765929600,
-      "oldSizeKB": 71040,
-      "newSizeKB": 1274,
-      "oldFiles": 25440,
-      "newFiles": 329
-    },
-    {
-      "time": 1766016000,
-      "oldSizeKB": 71315,
-      "newSizeKB": 1298,
-      "oldFiles": 25561,
-      "newFiles": 344
-    },
-    {
-      "time": 1766102400,
-      "oldSizeKB": 70671,
-      "newSizeKB": 1961,
-      "oldFiles": 25279,
-      "newFiles": 609
-    },
-    {
-      "time": 1766188800,
-      "oldSizeKB": 71325,
-      "newSizeKB": 1413,
-      "oldFiles": 25567,
-      "newFiles": 372
-    },
-    {
-      "time": 1766275200,
-      "oldSizeKB": 70680,
-      "newSizeKB": 2087,
-      "oldFiles": 25285,
-      "newFiles": 637
-    },
-    {
-      "time": 1766361600,
-      "oldSizeKB": 70680,
-      "newSizeKB": 2088,
-      "oldFiles": 25285,
-      "newFiles": 637
-    },
-    {
-      "time": 1766448000,
-      "oldSizeKB": 61021,
-      "newSizeKB": 1277,
-      "oldFiles": 25122,
-      "newFiles": 329
-    },
-    {
-      "time": 1766534400,
-      "oldSizeKB": 71193,
-      "newSizeKB": 1965,
-      "oldFiles": 25457,
-      "newFiles": 611
-    },
-    {
-      "time": 1766620800,
-      "oldSizeKB": 71230,
-      "newSizeKB": 1971,
-      "oldFiles": 25463,
-      "newFiles": 612
-    },
-    {
-      "time": 1766707200,
-      "oldSizeKB": 71361,
-      "newSizeKB": 1971,
-      "oldFiles": 25468,
-      "newFiles": 612
-    },
-    {
-      "time": 1766793600,
-      "oldSizeKB": 71361,
-      "newSizeKB": 1971,
-      "oldFiles": 25468,
-      "newFiles": 612
-    },
-    {
-      "time": 1766966400,
-      "oldSizeKB": 71343,
-      "newSizeKB": 1971,
-      "oldFiles": 25470,
-      "newFiles": 612
-    },
-    {
-      "time": 1767052800,
-      "oldSizeKB": 71345,
-      "newSizeKB": 1971,
-      "oldFiles": 25470,
-      "newFiles": 612
-    },
-    {
-      "time": 1767139200,
-      "oldSizeKB": 70345,
-      "newSizeKB": 3027,
-      "oldFiles": 24917,
-      "newFiles": 1184
-    },
-    {
-      "time": 1767225600,
-      "oldSizeKB": 70366,
-      "newSizeKB": 3162,
-      "oldFiles": 24927,
-      "newFiles": 1212
-    },
-    {
-      "time": 1767312000,
-      "oldSizeKB": 70361,
-      "newSizeKB": 3162,
-      "oldFiles": 24924,
-      "newFiles": 1212
-    },
-    {
-      "time": 1767484800,
-      "oldSizeKB": 70355,
-      "newSizeKB": 3162,
-      "oldFiles": 24923,
-      "newFiles": 1212
-    },
-    {
-      "time": 1767571200,
-      "oldSizeKB": 70282,
-      "newSizeKB": 3183,
-      "oldFiles": 24868,
-      "newFiles": 1221
-    },
-    {
-      "time": 1767657600,
-      "oldSizeKB": 70289,
-      "newSizeKB": 3183,
-      "oldFiles": 24873,
-      "newFiles": 1221
-    },
-    {
-      "time": 1767744000,
-      "oldSizeKB": 70283,
-      "newSizeKB": 3183,
-      "oldFiles": 24874,
-      "newFiles": 1221
-    },
-    {
-      "time": 1767830400,
-      "oldSizeKB": 70296,
-      "newSizeKB": 3183,
-      "oldFiles": 24875,
-      "newFiles": 1221
-    },
-    {
-      "time": 1767916800,
-      "oldSizeKB": 70299,
-      "newSizeKB": 3183,
-      "oldFiles": 24877,
-      "newFiles": 1221
-    },
-    {
-      "time": 1768003200,
-      "oldSizeKB": 70310,
-      "newSizeKB": 3185,
-      "oldFiles": 24871,
-      "newFiles": 1224
-    },
-    {
-      "time": 1768089600,
-      "oldSizeKB": 70321,
-      "newSizeKB": 3185,
-      "oldFiles": 24880,
-      "newFiles": 1224
-    },
-    {
-      "time": 1768176000,
-      "oldSizeKB": 70310,
-      "newSizeKB": 3185,
-      "oldFiles": 24871,
-      "newFiles": 1224
-    },
-    {
-      "time": 1768262400,
-      "oldSizeKB": 70311,
-      "newSizeKB": 3187,
-      "oldFiles": 24920,
-      "newFiles": 1224
-    },
-    {
-      "time": 1768348800,
-      "oldSizeKB": 70362,
-      "newSizeKB": 3187,
-      "oldFiles": 24898,
-      "newFiles": 1223
-    },
-    {
-      "time": 1768435200,
-      "oldSizeKB": 70429,
-      "newSizeKB": 3186,
-      "oldFiles": 24924,
-      "newFiles": 1222
-    },
-    {
-      "time": 1768521600,
-      "oldSizeKB": 70438,
-      "newSizeKB": 3315,
-      "oldFiles": 24925,
-      "newFiles": 1238
-    },
-    {
-      "time": 1768608000,
-      "oldSizeKB": 70438,
-      "newSizeKB": 3315,
-      "oldFiles": 24925,
-      "newFiles": 1238
-    },
-    {
-      "time": 1768694400,
-      "oldSizeKB": 70439,
-      "newSizeKB": 3315,
-      "oldFiles": 24925,
-      "newFiles": 1238
-    },
-    {
-      "time": 1768780800,
-      "oldSizeKB": 70439,
-      "newSizeKB": 3315,
-      "oldFiles": 24926,
-      "newFiles": 1238
-    },
-    {
-      "time": 1768867200,
-      "oldSizeKB": 70438,
-      "newSizeKB": 3315,
-      "oldFiles": 24925,
-      "newFiles": 1238
-    },
-    {
-      "time": 1768953600,
-      "oldSizeKB": 70131,
-      "newSizeKB": 3626,
-      "oldFiles": 24838,
-      "newFiles": 1312
-    },
-    {
-      "time": 1769040000,
-      "oldSizeKB": 70138,
-      "newSizeKB": 3626,
-      "oldFiles": 24893,
-      "newFiles": 1312
-    },
-    {
-      "time": 1769126400,
-      "oldSizeKB": 69189,
-      "newSizeKB": 4593,
-      "oldFiles": 24445,
-      "newFiles": 1750
-    },
-    {
-      "time": 1769212800,
-      "oldSizeKB": 69177,
-      "newSizeKB": 4594,
-      "oldFiles": 24444,
-      "newFiles": 1750
-    },
-    {
-      "time": 1769299200,
-      "oldSizeKB": 69177,
-      "newSizeKB": 4594,
-      "oldFiles": 24444,
-      "newFiles": 1750
-    },
-    {
-      "time": 1769385600,
-      "oldSizeKB": 70137,
-      "newSizeKB": 3626,
-      "oldFiles": 24894,
-      "newFiles": 1312
-    },
-    {
-      "time": 1769472000,
-      "oldSizeKB": 69176,
-      "newSizeKB": 4593,
-      "oldFiles": 24443,
-      "newFiles": 1750
-    },
-    {
-      "time": 1769558400,
-      "oldSizeKB": 69258,
-      "newSizeKB": 4672,
-      "oldFiles": 24500,
-      "newFiles": 1772
-    },
-    {
-      "time": 1769644800,
-      "oldSizeKB": 69213,
-      "newSizeKB": 4711,
-      "oldFiles": 24488,
-      "newFiles": 1795
-    },
-    {
-      "time": 1769731200,
-      "oldSizeKB": 68931,
-      "newSizeKB": 5019,
-      "oldFiles": 24317,
-      "newFiles": 1976
-    },
-    {
-      "time": 1769817600,
-      "oldSizeKB": 68927,
-      "newSizeKB": 5019,
-      "oldFiles": 24317,
-      "newFiles": 1976
-    },
-    {
-      "time": 1769904000,
-      "oldSizeKB": 68932,
-      "newSizeKB": 5019,
-      "oldFiles": 24317,
-      "newFiles": 1976
-    },
-    {
-      "time": 1769990400,
-      "oldSizeKB": 68989,
-      "newSizeKB": 5023,
-      "oldFiles": 24355,
-      "newFiles": 1977
-    },
-    {
-      "time": 1770076800,
-      "oldSizeKB": 68637,
-      "newSizeKB": 5435,
-      "oldFiles": 24186,
-      "newFiles": 2243
-    },
-    {
-      "time": 1770163200,
-      "oldSizeKB": 68634,
-      "newSizeKB": 5486,
-      "oldFiles": 24190,
-      "newFiles": 2266
-    },
-    {
-      "time": 1770249600,
-      "oldSizeKB": 62385,
-      "newSizeKB": 11594,
-      "oldFiles": 22199,
-      "newFiles": 4235
-    },
-    {
-      "time": 1770336000,
-      "oldSizeKB": 68653,
-      "newSizeKB": 5536,
-      "oldFiles": 24182,
-      "newFiles": 2289
-    },
-    {
-      "time": 1770422400,
-      "oldSizeKB": 68684,
-      "newSizeKB": 5505,
-      "oldFiles": 24203,
-      "newFiles": 2271
-    },
-    {
-      "time": 1770508800,
-      "oldSizeKB": 68685,
-      "newSizeKB": 5505,
-      "oldFiles": 24203,
-      "newFiles": 2271
-    },
-    {
-      "time": 1770595200,
-      "oldSizeKB": 68664,
-      "newSizeKB": 5510,
-      "oldFiles": 24231,
-      "newFiles": 2271
-    },
-    {
-      "time": 1770681600,
-      "oldSizeKB": 68811,
-      "newSizeKB": 5588,
-      "oldFiles": 24246,
-      "newFiles": 2295
-    },
-    {
-      "time": 1770768000,
-      "oldSizeKB": 68605,
-      "newSizeKB": 5621,
-      "oldFiles": 24164,
-      "newFiles": 2325
-    },
-    {
-      "time": 1770854400,
-      "oldSizeKB": 68819,
-      "newSizeKB": 5587,
-      "oldFiles": 24248,
-      "newFiles": 2296
-    },
-    {
-      "time": 1770940800,
-      "oldSizeKB": 61855,
-      "newSizeKB": 12348,
-      "oldFiles": 22051,
-      "newFiles": 4470
-    },
-    {
-      "time": 1771027200,
-      "oldSizeKB": 61851,
-      "newSizeKB": 12371,
-      "oldFiles": 22053,
-      "newFiles": 4493
-    },
-    {
-      "time": 1771113600,
-      "oldSizeKB": 61819,
-      "newSizeKB": 12371,
-      "oldFiles": 22043,
-      "newFiles": 4493
-    },
-    {
-      "time": 1771200000,
-      "oldSizeKB": 61164,
-      "newSizeKB": 13043,
-      "oldFiles": 21782,
-      "newFiles": 4768
-    },
-    {
-      "time": 1771286400,
-      "oldSizeKB": 61140,
-      "newSizeKB": 13058,
-      "oldFiles": 21773,
-      "newFiles": 4773
-    },
-    {
-      "time": 1771372800,
-      "oldSizeKB": 61110,
-      "newSizeKB": 13152,
-      "oldFiles": 21745,
-      "newFiles": 4830
-    },
-    {
-      "time": 1771459200,
-      "oldSizeKB": 61213,
-      "newSizeKB": 13184,
-      "oldFiles": 21770,
-      "newFiles": 4840
-    },
-    {
-      "time": 1771545600,
-      "oldSizeKB": 60449,
-      "newSizeKB": 13946,
-      "oldFiles": 21371,
-      "newFiles": 5255
-    },
-    {
-      "time": 1771632000,
-      "oldSizeKB": 60449,
-      "newSizeKB": 13946,
-      "oldFiles": 21371,
-      "newFiles": 5255
-    },
-    {
-      "time": 1771718400,
-      "oldSizeKB": 60455,
-      "newSizeKB": 13946,
-      "oldFiles": 21374,
-      "newFiles": 5255
-    },
-    {
-      "time": 1771804800,
-      "oldSizeKB": 60170,
-      "newSizeKB": 14342,
-      "oldFiles": 21184,
-      "newFiles": 5448
-    },
-    {
-      "time": 1771891200,
-      "oldSizeKB": 59900,
-      "newSizeKB": 14688,
-      "oldFiles": 21018,
-      "newFiles": 5634
-    },
-    {
-      "time": 1771977600,
-      "oldSizeKB": 59900,
-      "newSizeKB": 14694,
-      "oldFiles": 21018,
-      "newFiles": 5636
-    },
-    {
-      "time": 1772064000,
-      "oldSizeKB": 59092,
-      "newSizeKB": 15551,
-      "oldFiles": 20661,
-      "newFiles": 6057
-    },
-    {
-      "time": 1772150400,
-      "oldSizeKB": 59116,
-      "newSizeKB": 15576,
-      "oldFiles": 20680,
-      "newFiles": 6060
-    },
-    {
-      "time": 1772323200,
-      "oldSizeKB": 59116,
-      "newSizeKB": 15576,
-      "oldFiles": 20680,
-      "newFiles": 6060
-    },
-    {
-      "time": 1772409600,
-      "oldSizeKB": 59118,
-      "newSizeKB": 15580,
-      "oldFiles": 20680,
-      "newFiles": 6058
-    },
-    {
-      "time": 1772496000,
-      "oldSizeKB": 58990,
-      "newSizeKB": 15768,
-      "oldFiles": 20629,
-      "newFiles": 6123
-    },
-    {
-      "time": 1772582400,
-      "oldSizeKB": 58701,
-      "newSizeKB": 16101,
-      "oldFiles": 20548,
-      "newFiles": 6231
-    },
-    {
-      "time": 1772668800,
-      "oldSizeKB": 58327,
-      "newSizeKB": 16500,
-      "oldFiles": 20240,
-      "newFiles": 6491
-    },
-    {
-      "time": 1772755200,
-      "oldSizeKB": 58351,
-      "newSizeKB": 16538,
-      "oldFiles": 20226,
-      "newFiles": 6519
-    },
-    {
-      "time": 1772841600,
-      "oldSizeKB": 58351,
-      "newSizeKB": 16538,
-      "oldFiles": 20226,
-      "newFiles": 6519
-    },
-    {
-      "time": 1772928000,
-      "oldSizeKB": 58351,
-      "newSizeKB": 16538,
-      "oldFiles": 20226,
-      "newFiles": 6519
-    },
-    {
-      "time": 1773014400,
-      "oldSizeKB": 58452,
-      "newSizeKB": 16653,
-      "oldFiles": 20268,
-      "newFiles": 6515
-    },
-    {
-      "time": 1773100800,
-      "oldSizeKB": 57504,
-      "newSizeKB": 17724,
-      "oldFiles": 19711,
-      "newFiles": 7180
-    },
-    {
-      "time": 1773187200,
-      "oldSizeKB": 57373,
-      "newSizeKB": 17916,
-      "oldFiles": 19664,
-      "newFiles": 7262
-    },
-    {
-      "time": 1773273600,
-      "oldSizeKB": 57180,
-      "newSizeKB": 18133,
-      "oldFiles": 19531,
-      "newFiles": 7404
-    },
-    {
-      "time": 1773360000,
-      "oldSizeKB": 57225,
-      "newSizeKB": 18230,
-      "oldFiles": 19543,
-      "newFiles": 7439
-    },
-    {
-      "time": 1773446400,
-      "oldSizeKB": 57225,
-      "newSizeKB": 18258,
-      "oldFiles": 19543,
-      "newFiles": 7458
-    },
-    {
-      "time": 1773532800,
-      "oldSizeKB": 57225,
-      "newSizeKB": 18258,
-      "oldFiles": 19543,
-      "newFiles": 7458
-    },
-    {
-      "time": 1773619200,
-      "oldSizeKB": 57147,
-      "newSizeKB": 18490,
-      "oldFiles": 19543,
-      "newFiles": 7488
-    },
-    {
-      "time": 1773705600,
-      "oldSizeKB": 56750,
-      "newSizeKB": 18853,
-      "oldFiles": 19347,
-      "newFiles": 7680
-    },
-    {
-      "time": 1773792000,
-      "oldSizeKB": 52941,
-      "newSizeKB": 22772,
-      "oldFiles": 18268,
-      "newFiles": 8823
-    },
-    {
-      "time": 1773878400,
-      "oldSizeKB": 52880,
-      "newSizeKB": 23147,
-      "oldFiles": 18190,
-      "newFiles": 8939
-    },
-    {
-      "time": 1773964800,
-      "oldSizeKB": 50994,
-      "newSizeKB": 25132,
-      "oldFiles": 17365,
-      "newFiles": 9862
-    },
-    {
-      "time": 1774051200,
-      "oldSizeKB": 50994,
-      "newSizeKB": 25164,
-      "oldFiles": 17365,
-      "newFiles": 9863
-    },
-    {
-      "time": 1774137600,
-      "oldSizeKB": 50996,
-      "newSizeKB": 25164,
-      "oldFiles": 17365,
-      "newFiles": 9863
-    },
-    {
-      "time": 1774224000,
-      "oldSizeKB": 50085,
-      "newSizeKB": 26249,
-      "oldFiles": 16915,
-      "newFiles": 10301
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 3860,
+            "files": 2530
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 19711,
+            "files": 4619
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 33628,
+            "files": 16544
+          }
+        ],
+        "new": []
+      }
     }
   ]
 }
