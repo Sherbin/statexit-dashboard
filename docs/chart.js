@@ -3,23 +3,23 @@
 // --- Color palettes for groups (warm tones for old, cool tones for new) ---
 
 const OLD_GROUP_PALETTE = [
-	{ line: '#FF9800', topFill: 'rgba(255, 152, 0, 0.5)', bottomFill: 'rgba(255, 152, 0, 0.05)' },
-	{ line: '#FFB74D', topFill: 'rgba(255, 183, 77, 0.5)', bottomFill: 'rgba(255, 183, 77, 0.05)' },
-	{ line: '#FF8F00', topFill: 'rgba(255, 143, 0, 0.5)', bottomFill: 'rgba(255, 143, 0, 0.05)' },
-	{ line: '#F57C00', topFill: 'rgba(245, 124, 0, 0.5)', bottomFill: 'rgba(245, 124, 0, 0.05)' },
-	{ line: '#FFD54F', topFill: 'rgba(255, 213, 79, 0.5)', bottomFill: 'rgba(255, 213, 79, 0.05)' },
-	{ line: '#FFAB40', topFill: 'rgba(255, 171, 64, 0.5)', bottomFill: 'rgba(255, 171, 64, 0.05)' },
-	{ line: '#FF6D00', topFill: 'rgba(255, 109, 0, 0.5)', bottomFill: 'rgba(255, 109, 0, 0.05)' },
-	{ line: '#E65100', topFill: 'rgba(230, 81, 0, 0.5)', bottomFill: 'rgba(230, 81, 0, 0.05)' },
+	{ line: '#7B8FA1', topFill: 'rgba(123, 143, 161, 0.45)', bottomFill: 'rgba(123, 143, 161, 0.05)' },
+	{ line: '#8E7CC3', topFill: 'rgba(142, 124, 195, 0.45)', bottomFill: 'rgba(142, 124, 195, 0.05)' },
+	{ line: '#5B9BD5', topFill: 'rgba(91, 155, 213, 0.45)', bottomFill: 'rgba(91, 155, 213, 0.05)' },
+	{ line: '#6BAFAF', topFill: 'rgba(107, 175, 175, 0.45)', bottomFill: 'rgba(107, 175, 175, 0.05)' },
+	{ line: '#A0AEC0', topFill: 'rgba(160, 174, 192, 0.45)', bottomFill: 'rgba(160, 174, 192, 0.05)' },
+	{ line: '#6C7A96', topFill: 'rgba(108, 122, 150, 0.45)', bottomFill: 'rgba(108, 122, 150, 0.05)' },
+	{ line: '#9AA5C4', topFill: 'rgba(154, 165, 196, 0.45)', bottomFill: 'rgba(154, 165, 196, 0.05)' },
+	{ line: '#6998AB', topFill: 'rgba(105, 152, 171, 0.45)', bottomFill: 'rgba(105, 152, 171, 0.05)' },
 ];
 
 const NEW_GROUP_PALETTE = [
-	{ line: '#2962FF', topFill: 'rgba(41, 98, 255, 0.6)', bottomFill: 'rgba(41, 98, 255, 0.05)' },
-	{ line: '#448AFF', topFill: 'rgba(68, 138, 255, 0.6)', bottomFill: 'rgba(68, 138, 255, 0.05)' },
-	{ line: '#1565C0', topFill: 'rgba(21, 101, 192, 0.6)', bottomFill: 'rgba(21, 101, 192, 0.05)' },
-	{ line: '#42A5F5', topFill: 'rgba(66, 165, 245, 0.6)', bottomFill: 'rgba(66, 165, 245, 0.05)' },
-	{ line: '#0D47A1', topFill: 'rgba(13, 71, 161, 0.6)', bottomFill: 'rgba(13, 71, 161, 0.05)' },
-	{ line: '#64B5F6', topFill: 'rgba(100, 181, 246, 0.6)', bottomFill: 'rgba(100, 181, 246, 0.05)' },
+	{ line: '#FF8C42', topFill: 'rgba(255, 140, 66, 0.55)', bottomFill: 'rgba(255, 140, 66, 0.05)' },
+	{ line: '#E85D75', topFill: 'rgba(232, 93, 117, 0.55)', bottomFill: 'rgba(232, 93, 117, 0.05)' },
+	{ line: '#FFB347', topFill: 'rgba(255, 179, 71, 0.55)', bottomFill: 'rgba(255, 179, 71, 0.05)' },
+	{ line: '#F0A862', topFill: 'rgba(240, 168, 98, 0.55)', bottomFill: 'rgba(240, 168, 98, 0.05)' },
+	{ line: '#D4845E', topFill: 'rgba(212, 132, 94, 0.55)', bottomFill: 'rgba(212, 132, 94, 0.05)' },
+	{ line: '#E6A157', topFill: 'rgba(230, 161, 87, 0.55)', bottomFill: 'rgba(230, 161, 87, 0.05)' },
 ];
 
 function getGroupColor(palette, index) {
@@ -268,8 +268,8 @@ function createChart(data, changeMap) {
 	} else {
 		// No old groups: single old area (total)
 		const totalSeries = chart.addAreaSeries({
-			topColor: 'rgba(255, 152, 0, 0.4)',
-			bottomColor: 'rgba(255, 152, 0, 0.0)',
+			topColor: 'rgba(123, 143, 161, 0.4)',
+			bottomColor: 'rgba(123, 143, 161, 0.0)',
 			lineColor: colors.colorOld,
 			lineWidth: 2,
 			priceFormat: {
@@ -302,8 +302,8 @@ function createChart(data, changeMap) {
 	} else {
 		// No new groups: single new area
 		const newSeries = chart.addAreaSeries({
-			topColor: 'rgba(41, 98, 255, 0.6)',
-			bottomColor: 'rgba(41, 98, 255, 0.1)',
+			topColor: 'rgba(255, 140, 66, 0.55)',
+			bottomColor: 'rgba(255, 140, 66, 0.1)',
 			lineColor: colors.colorNew,
 			lineWidth: 2,
 			priceFormat: {
@@ -533,7 +533,9 @@ function createChart(data, changeMap) {
 	});
 
 	resizeObserver.observe(container);
-	chart.timeScale().fitContent();
+	const jan2026 = Math.floor(new Date('2026-01-01T00:00:00Z').getTime() / 1000);
+	const lastPoint = data.data[data.data.length - 1];
+	chart.timeScale().setVisibleRange({ from: jan2026, to: lastPoint ? lastPoint.time : jan2026 });
 
 	// --- Group checkboxes ---
 	function createGroupControls() {
