@@ -34,6 +34,7 @@ interface ConfigFile {
 	new: FolderConfig;
 	output: string;
 	sourceRepo: string;
+	branch?: string;
 	force?: boolean;
 	cache?: string;
 	logLevel?: LogLevel;
@@ -213,7 +214,7 @@ async function main(): Promise<void> {
 
 	// Get git log
 	logger.info('GIT', 'Fetching commit history...');
-	const allCommits = await getCommitHistory(repoPath);
+	const allCommits = await getCommitHistory(repoPath, config.branch);
 
 	const relevantCommits = allCommits.filter((c) => c.timestamp >= migrationStart.timestamp);
 

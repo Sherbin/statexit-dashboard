@@ -8,9 +8,10 @@ import * as logger from '../logger.js';
  * Использует: git log --reverse --format="%H|%ct"
  * @returns массив коммитов с hash и timestamp
  */
-export async function getCommitHistory(repoPath: string): Promise<CommitInfo[]> {
+export async function getCommitHistory(repoPath: string, branch?: string): Promise<CommitInfo[]> {
 	try {
-		const output = execSync('git log --reverse --format="%H|%ct"', {
+		const ref = branch || 'master';
+		const output = execSync(`git log --reverse --format="%H|%ct" ${ref}`, {
 			cwd: repoPath,
 			encoding: 'utf-8',
 			maxBuffer: 50 * 1024 * 1024, // 50MB for large repos

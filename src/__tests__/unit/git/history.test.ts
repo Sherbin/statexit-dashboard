@@ -37,7 +37,7 @@ describe('history', () => {
 			await getCommitHistory('/path/to/repo');
 
 			expect(mockExecSync).toHaveBeenCalledWith(
-				'git log --reverse --format="%H|%ct"',
+				'git log --reverse --format="%H|%ct" master',
 				expect.objectContaining({
 					cwd: '/path/to/repo',
 					encoding: 'utf-8',
