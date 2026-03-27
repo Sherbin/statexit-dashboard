@@ -3,7 +3,7 @@
     "sourceRepo": "source-repo",
     "oldPath": "static",
     "newPath": "frontends",
-    "generatedAt": "2026-03-27T13:26:29.086Z",
+    "generatedAt": "2026-03-27T13:28:22.688Z",
     "version": 3,
     "ignoredSubfolders": {
       "old": [
@@ -1661,6 +1661,546 @@
             "label": "Product code",
             "sizeKB": 43310,
             "files": 19181
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1758844800,
+      "oldSizeKB": 61574,
+      "newSizeKB": 12,
+      "oldFiles": 24958,
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4419,
+            "files": 2682
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 13788,
+            "files": 3058
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 43367,
+            "files": 19218
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1758931200,
+      "oldSizeKB": 61576,
+      "newSizeKB": 12,
+      "oldFiles": 24958,
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4419,
+            "files": 2682
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 13788,
+            "files": 3058
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 43369,
+            "files": 19218
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1759017600,
+      "oldSizeKB": 61575,
+      "newSizeKB": 12,
+      "oldFiles": 24959,
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4419,
+            "files": 2682
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 13788,
+            "files": 3058
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 43368,
+            "files": 19219
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1759104000,
+      "oldSizeKB": 61605,
+      "newSizeKB": 12,
+      "oldFiles": 24968,
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4419,
+            "files": 2682
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 13788,
+            "files": 3058
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 43398,
+            "files": 19228
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1759190400,
+      "oldSizeKB": 61629,
+      "newSizeKB": 12,
+      "oldFiles": 24987,
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4423,
+            "files": 2691
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 13789,
+            "files": 3058
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 43417,
+            "files": 19238
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1759276800,
+      "oldSizeKB": 61665,
+      "newSizeKB": 12,
+      "oldFiles": 25009,
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4432,
+            "files": 2692
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 13828,
+            "files": 3069
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 43405,
+            "files": 19248
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1759363200,
+      "oldSizeKB": 61669,
+      "newSizeKB": 12,
+      "oldFiles": 25008,
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4432,
+            "files": 2692
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 13835,
+            "files": 3069
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 43402,
+            "files": 19247
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1759449600,
+      "oldSizeKB": 61462,
+      "newSizeKB": 12,
+      "oldFiles": 24948,
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4450,
+            "files": 2698
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 13840,
+            "files": 3068
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 43172,
+            "files": 19182
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1759536000,
+      "oldSizeKB": 61463,
+      "newSizeKB": 12,
+      "oldFiles": 24948,
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4450,
+            "files": 2698
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 13843,
+            "files": 3068
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 43170,
+            "files": 19182
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1759622400,
+      "oldSizeKB": 61462,
+      "newSizeKB": 12,
+      "oldFiles": 24948,
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4450,
+            "files": 2698
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 13840,
+            "files": 3068
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 43172,
+            "files": 19182
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1759708800,
+      "oldSizeKB": 61514,
+      "newSizeKB": 12,
+      "oldFiles": 24952,
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4449,
+            "files": 2698
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 13844,
+            "files": 3069
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 43221,
+            "files": 19185
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1759795200,
+      "oldSizeKB": 61520,
+      "newSizeKB": 12,
+      "oldFiles": 24954,
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4449,
+            "files": 2698
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 13845,
+            "files": 3069
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 43226,
+            "files": 19187
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1759881600,
+      "oldSizeKB": 61522,
+      "newSizeKB": 12,
+      "oldFiles": 24953,
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4438,
+            "files": 2687
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 13846,
+            "files": 3070
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 43238,
+            "files": 19196
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1759968000,
+      "oldSizeKB": 61537,
+      "newSizeKB": 12,
+      "oldFiles": 24956,
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4438,
+            "files": 2687
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 13846,
+            "files": 3071
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 43253,
+            "files": 19198
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1760054400,
+      "oldSizeKB": 61520,
+      "newSizeKB": 12,
+      "oldFiles": 24952,
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4438,
+            "files": 2687
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 13846,
+            "files": 3070
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 43236,
+            "files": 19195
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1760140800,
+      "oldSizeKB": 61689,
+      "newSizeKB": 12,
+      "oldFiles": 25005,
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4458,
+            "files": 2704
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 13857,
+            "files": 3071
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 43374,
+            "files": 19230
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1760313600,
+      "oldSizeKB": 61508,
+      "newSizeKB": 14,
+      "oldFiles": 25013,
+      "newFiles": 11,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4463,
+            "files": 2704
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 13867,
+            "files": 3078
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 43178,
+            "files": 19231
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1760400000,
+      "oldSizeKB": 61530,
+      "newSizeKB": 14,
+      "oldFiles": 25022,
+      "newFiles": 11,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4462,
+            "files": 2703
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 13868,
+            "files": 3079
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 43200,
+            "files": 19240
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1760486400,
+      "oldSizeKB": 61520,
+      "newSizeKB": 12,
+      "oldFiles": 24952,
+      "newFiles": 14,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4438,
+            "files": 2687
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 13846,
+            "files": 3070
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 43236,
+            "files": 19195
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1760572800,
+      "oldSizeKB": 61486,
+      "newSizeKB": 14,
+      "oldFiles": 25008,
+      "newFiles": 11,
+      "groups": {
+        "old": [
+          {
+            "label": "Framework/Platform",
+            "sizeKB": 4462,
+            "files": 2703
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 13868,
+            "files": 3079
+          },
+          {
+            "label": "Product code",
+            "sizeKB": 43156,
+            "files": 19226
           }
         ],
         "new": []
