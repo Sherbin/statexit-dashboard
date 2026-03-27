@@ -17,7 +17,7 @@
       /* Semantic colors (constant) */
       --color-positive: #089981;
       --color-negative: #F23645;
-      --color-old: #7B8FA1;
+      --color-old: #9CA3AF;
       --color-new: #FF8C42;
       --color-accent: #2962FF;
     }
@@ -131,33 +131,11 @@
       background: var(--color-new);
     }
 
-    .legend-color.change {
-      background: linear-gradient(to right, var(--color-negative), var(--color-positive));
+    .legend-color.migration {
+      background: linear-gradient(to right, var(--color-negative), #6B7280, var(--color-positive));
     }
 
-    .stats {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin-top: 30px;
-    }
 
-    .stat {
-      text-align: center;
-    }
-
-    .stat-value {
-      font-size: 2rem;
-      font-weight: bold;
-    }
-
-    .stat-label {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-    }
-
-    .stat-value.old { color: var(--color-old); }
-    .stat-value.new { color: var(--color-new); }
 
     .meta {
       text-align: center;
@@ -173,7 +151,7 @@
     }
 
     .changes-section {
-      max-width: 700px;
+      max-width: 1100px;
       margin: 30px auto 0;
       background: var(--bg-secondary);
       border-radius: 8px;
@@ -217,61 +195,36 @@
     }
 
     .changes-table {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      white-space: nowrap;
     }
 
-    .changes-row {
-      display: flex;
-      gap: 0;
-      padding: 0;
-    }
-
-    .changes-row .changes-cell {
-      padding: 6px 10px;
-    }
-
-    .changes-row.header {
-      color: var(--text-secondary);
+    .changes-table th {
+      padding: 8px 10px;
+      text-align: right;
       font-size: 0.75rem;
       text-transform: uppercase;
       border-bottom: 1px solid var(--border-color);
+      font-weight: 600;
     }
 
-    .changes-row.header .changes-cell {
-      background: var(--bg-secondary);
-      padding: 8px 10px;
+    .changes-table th.date {
+      text-align: left;
     }
 
-    .changes-cell {
-      flex: 1;
+    .changes-table td {
+      padding: 6px 10px;
       text-align: right;
-      font-size: 0.85rem;
     }
 
-    .changes-cell.date {
-      flex: 1.5;
+    .changes-table td.date {
       text-align: left;
       color: var(--text-secondary);
       font-family: 'SF Mono', 'Monaco', 'Menlo', monospace;
     }
 
-    .changes-cell.old {
-      background: rgba(255, 152, 0, 0.05);
-    }
-
-    .changes-cell.new {
-      background: rgba(41, 98, 255, 0.05);
-    }
-
-    .changes-row.header .changes-cell.old {
-      color: var(--color-old);
-    }
-
-    .changes-row.header .changes-cell.new {
-      color: var(--color-new);
-    }
 
     .change-positive { color: var(--color-positive); }
     .change-negative { color: var(--color-negative); }
@@ -292,23 +245,8 @@
         <span id="legend-new">Loading...</span>
       </div>
       <div class="legend-item">
-        <div class="legend-color old"></div>
-        <span id="legend-old">Loading...</span>
-      </div>
-      <div class="legend-item">
-        <div class="legend-color change"></div>
-        <span>Daily size change (left scale)</span>
-      </div>
-    </div>
-
-    <div class="stats">
-      <div class="stat">
-        <div class="stat-value old" id="stat-old">-</div>
-        <div class="stat-label" id="stat-old-label">Old Size</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value new" id="stat-new">-</div>
-        <div class="stat-label" id="stat-new-label">New Size</div>
+        <div class="legend-color migration"></div>
+        <span>Migration progress % (left scale)</span>
       </div>
     </div>
 
@@ -320,7 +258,7 @@
           <button class="period-btn" data-period="week">Week</button>
         </div>
       </div>
-      <div class="changes-table" id="changes-table"></div>
+      <table class="changes-table" id="changes-table"></table>
     </div>
 
     <div class="meta" id="meta"></div>

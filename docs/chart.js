@@ -3,14 +3,14 @@
 // --- Color palettes for groups (warm tones for old, cool tones for new) ---
 
 const OLD_GROUP_PALETTE = [
-	{ line: '#7B8FA1', topFill: 'rgba(123, 143, 161, 0.45)', bottomFill: 'rgba(123, 143, 161, 0.05)' },
-	{ line: '#8E7CC3', topFill: 'rgba(142, 124, 195, 0.45)', bottomFill: 'rgba(142, 124, 195, 0.05)' },
-	{ line: '#5B9BD5', topFill: 'rgba(91, 155, 213, 0.45)', bottomFill: 'rgba(91, 155, 213, 0.05)' },
-	{ line: '#6BAFAF', topFill: 'rgba(107, 175, 175, 0.45)', bottomFill: 'rgba(107, 175, 175, 0.05)' },
-	{ line: '#A0AEC0', topFill: 'rgba(160, 174, 192, 0.45)', bottomFill: 'rgba(160, 174, 192, 0.05)' },
-	{ line: '#6C7A96', topFill: 'rgba(108, 122, 150, 0.45)', bottomFill: 'rgba(108, 122, 150, 0.05)' },
-	{ line: '#9AA5C4', topFill: 'rgba(154, 165, 196, 0.45)', bottomFill: 'rgba(154, 165, 196, 0.05)' },
-	{ line: '#6998AB', topFill: 'rgba(105, 152, 171, 0.45)', bottomFill: 'rgba(105, 152, 171, 0.05)' },
+	{ line: '#4A7FD4', topFill: 'rgba(74, 127, 212, 0.45)', bottomFill: 'rgba(74, 127, 212, 0.05)' },
+	{ line: '#7E57C2', topFill: 'rgba(126, 87, 194, 0.45)', bottomFill: 'rgba(126, 87, 194, 0.05)' },
+	{ line: '#5CAFD6', topFill: 'rgba(92, 175, 214, 0.45)', bottomFill: 'rgba(92, 175, 214, 0.05)' },
+	{ line: '#6366F1', topFill: 'rgba(99, 102, 241, 0.45)', bottomFill: 'rgba(99, 102, 241, 0.05)' },
+	{ line: '#38BDF8', topFill: 'rgba(56, 189, 248, 0.45)', bottomFill: 'rgba(56, 189, 248, 0.05)' },
+	{ line: '#9F7AEA', topFill: 'rgba(159, 122, 234, 0.45)', bottomFill: 'rgba(159, 122, 234, 0.05)' },
+	{ line: '#3B82F6', topFill: 'rgba(59, 130, 246, 0.45)', bottomFill: 'rgba(59, 130, 246, 0.05)' },
+	{ line: '#818CF8', topFill: 'rgba(129, 140, 248, 0.45)', bottomFill: 'rgba(129, 140, 248, 0.05)' },
 ];
 
 const NEW_GROUP_PALETTE = [
@@ -67,12 +67,6 @@ function formatDate(timestamp) {
 	});
 }
 
-function formatChange(value) {
-	const sign = value > 0 ? '+' : '';
-
-	return sign + value.toLocaleString();
-}
-
 function formatSizeChange(sizeKB) {
 	const sign = sizeKB > 0 ? '+' : '';
 
@@ -104,18 +98,6 @@ function getComputedColors() {
 
 function getMetaGroups(data) {
 	return data.meta.groups || { old: [], new: [] };
-}
-
-function hasOldGroups(data) {
-	const g = getMetaGroups(data);
-
-	return g.old && g.old.length > 0;
-}
-
-function hasNewGroups(data) {
-	const g = getMetaGroups(data);
-
-	return g.new && g.new.length > 0;
 }
 
 // --- Tooltip ---
@@ -188,7 +170,7 @@ function buildStackedData(dataPoints, side, groupLabels, visibleGroups, baseOffs
 
 // --- Main chart ---
 
-function createChart(data, changeMap) {
+function createChart(data) {
 	const container = document.getElementById('chart-container');
 	const colors = getComputedColors();
 	const meta = data.meta;
@@ -268,8 +250,8 @@ function createChart(data, changeMap) {
 	} else {
 		// No old groups: single old area (total)
 		const totalSeries = chart.addAreaSeries({
-			topColor: 'rgba(123, 143, 161, 0.4)',
-			bottomColor: 'rgba(123, 143, 161, 0.0)',
+			topColor: 'rgba(156, 163, 175, 0.4)',
+			bottomColor: 'rgba(156, 163, 175, 0.0)',
 			lineColor: colors.colorOld,
 			lineWidth: 2,
 			priceFormat: {
@@ -315,22 +297,51 @@ function createChart(data, changeMap) {
 		allSeries.set('new:__total__', { series: newSeries, side: 'new', label: '__total__' });
 	}
 
-	// Change series (baseline)
-	const changeSeries = chart.addBaselineSeries({
-		baseValue: { type: 'price', price: 0 },
-		topLineColor: colors.colorPositive,
-		bottomLineColor: colors.colorNegative,
-		topFillColor1: 'rgba(8, 153, 129, 0.2)',
-		topFillColor2: 'rgba(8, 153, 129, 0.0)',
-		bottomFillColor1: 'rgba(242, 54, 69, 0.0)',
-		bottomFillColor2: 'rgba(242, 54, 69, 0.2)',
+	// Migration progress line (% of frontends in total)
+	const migrationSeries = chart.addLineSeries({
+		color: '#6B7280',
 		lineWidth: 2,
 		priceScaleId: 'left',
 		priceFormat: {
 			type: 'custom',
-			formatter: (price) => formatSizeChange(Math.round(price)),
+			formatter: (price) => price.toFixed(1) + '%',
 		},
 	});
+
+	// Compute visible totals for each point (used by chart series and tooltip)
+	function getVisibleOldTotal(point) {
+		if (!hasOldGrp) {
+			return point.oldSizeKB;
+		}
+
+		const groups = point.groups.old || [];
+		let sum = 0;
+
+		for (const g of groups) {
+			if (visibleGroups.has('old:' + g.label)) {
+				sum += g.sizeKB;
+			}
+		}
+
+		return sum;
+	}
+
+	function getVisibleNewTotal(point) {
+		if (!hasNewGrp) {
+			return point.newSizeKB;
+		}
+
+		const groups = point.groups.new || [];
+		let sum = 0;
+
+		for (const g of groups) {
+			if (visibleGroups.has('new:' + g.label)) {
+				sum += g.sizeKB;
+			}
+		}
+
+		return sum;
+	}
 
 	// --- Function to update all series data based on visibility ---
 	function updateSeriesData() {
@@ -355,24 +366,6 @@ function createChart(data, changeMap) {
 					data.data.map((p) => ({ time: p.time, value: p.newSizeKB })),
 				);
 			}
-		}
-
-		// Compute visible new total for each point (base for old stacking)
-		function getVisibleNewTotal(point) {
-			if (!hasNewGrp) {
-				return point.newSizeKB;
-			}
-
-			const groups = point.groups.new || [];
-			let sum = 0;
-
-			for (const g of groups) {
-				if (visibleGroups.has('new:' + g.label)) {
-					sum += g.sizeKB;
-				}
-			}
-
-			return sum;
 		}
 
 		if (hasOldGrp) {
@@ -400,15 +393,32 @@ function createChart(data, changeMap) {
 			}
 		}
 
-		// Change series
-		const changeData = data.data
-			.filter((point) => changeMap.has(point.time))
-			.map((point) => ({
-				time: point.time,
-				value: changeMap.get(point.time).totalSize,
-			}));
+		// Migration % line
+		const values = data.data.map((point) => {
+			const visNew = getVisibleNewTotal(point);
+			const visOld = getVisibleOldTotal(point);
+			const total = visNew + visOld;
 
-		changeSeries.setData(changeData);
+			return { time: point.time, value: total > 0 ? (visNew / total) * 100 : 0 };
+		});
+
+		const migrationData = values.map((cur, idx) => {
+			let segmentColor = '#6B7280'; // grey — no change or last point
+
+			if (idx < values.length - 1) {
+				const nextValue = values[idx + 1].value;
+
+				if (nextValue > cur.value + 0.01) {
+					segmentColor = colors.colorPositive;
+				} else if (nextValue < cur.value - 0.01) {
+					segmentColor = colors.colorNegative;
+				}
+			}
+
+			return { time: cur.time, value: cur.value, color: segmentColor };
+		});
+
+		migrationSeries.setData(migrationData);
 	}
 
 	// Initial data load
@@ -432,12 +442,10 @@ function createChart(data, changeMap) {
 			return;
 		}
 
-		const change = changeMap.get(point.time);
-		const isPositiveChange = change && change.totalSize >= 0;
-		const changeColor = change
-			? (isPositiveChange ? colors.colorPositive : colors.colorNegative)
-			: colors.textSecondary;
-		const changeArrow = change ? (isPositiveChange ? '\u2191' : '\u2193') : '';
+		const visNew = getVisibleNewTotal(point);
+		const visOld = getVisibleOldTotal(point);
+		const visTotal = visNew + visOld;
+		const migrationPct = visTotal > 0 ? (visNew / visTotal) * 100 : 0;
 
 		let html = `
       <div style="color: ${colors.textSecondary}; margin-bottom: 10px; font-weight: bold; font-size: 14px;">${formatDate(point.time)}</div>
@@ -491,13 +499,11 @@ function createChart(data, changeMap) {
 
 		html += '</div>';
 
-		if (change) {
-			html += `
+		html += `
       <div style="border-top: 1px solid ${colors.borderColor}; padding-top: 8px;">
-        <span style="color: ${colors.textSecondary};">Change:</span>
-        <span style="color: ${changeColor}; font-weight: bold; margin-left: 8px;">${formatSizeChange(change.totalSize)} ${changeArrow}</span>
+        <span style="color: ${colors.textSecondary};">Migration:</span>
+        <span style="color: ${colors.colorPositive}; font-weight: bold; margin-left: 8px;">${migrationPct.toFixed(1)}%</span>
       </div>`;
-		}
 
 		if (point.comment) {
 			html += `
@@ -535,6 +541,7 @@ function createChart(data, changeMap) {
 	resizeObserver.observe(container);
 	const jan2026 = Math.floor(new Date('2026-01-01T00:00:00Z').getTime() / 1000);
 	const lastPoint = data.data[data.data.length - 1];
+
 	chart.timeScale().setVisibleRange({ from: jan2026, to: lastPoint ? lastPoint.time : jan2026 });
 
 	// --- Group checkboxes ---
@@ -580,13 +587,16 @@ function createChart(data, changeMap) {
 			const color = getGroupColor(entry.palette, entry.colorIndex);
 
 			const checkboxLabel = document.createElement('label');
+
 			checkboxLabel.className = 'group-checkbox';
 
 			const checkbox = document.createElement('input');
+
 			checkbox.type = 'checkbox';
 			checkbox.checked = true;
 
 			const dot = document.createElement('span');
+
 			dot.className = 'group-color-dot';
 			dot.style.backgroundColor = color.line;
 
@@ -624,25 +634,6 @@ function createChart(data, changeMap) {
 }
 
 // --- Stats, meta, UI ---
-
-function updateStats(data) {
-	const latest = data.data[data.data.length - 1];
-
-	if (!latest) {
-		return;
-	}
-
-	const meta = data.meta;
-	const oldLabel = meta.ui?.oldLabel || meta.oldPath;
-	const newLabel = meta.ui?.newLabel || meta.newPath;
-	const oldDescription = meta.ui?.oldDescription || '';
-	const newDescription = meta.ui?.newDescription || '';
-
-	document.getElementById('stat-old').textContent = formatSize(latest.oldSizeKB);
-	document.getElementById('stat-new').textContent = formatSize(latest.newSizeKB);
-	document.getElementById('stat-old-label').textContent = oldLabel + (oldDescription ? ' (' + oldDescription + ')' : '');
-	document.getElementById('stat-new-label').textContent = newLabel + (newDescription ? ' (' + newDescription + ')' : '');
-}
 
 function updateMeta(data) {
 	const meta = data.meta;
@@ -686,44 +677,41 @@ function initUI(data) {
 
 // --- Changes table ---
 
-function calculateDailyChanges(data) {
-	const points = data.data;
-	const changeMap = new Map();
+function buildChangeRow(current, prev, date) {
+	const row = {
+		date,
+		oldSize: current.oldSizeKB - prev.oldSizeKB,
+		newSize: current.newSizeKB - prev.newSizeKB,
+		oldGroups: [],
+		newGroups: [],
+	};
 
-	for (let i = 1; i < points.length; i++) {
-		const current = points[i];
-		const prev = points[i - 1];
+	const curOld = current.groups?.old || [];
+	const prevOld = prev.groups?.old || [];
+	const curNew = current.groups?.new || [];
+	const prevNew = prev.groups?.new || [];
 
-		changeMap.set(current.time, {
-			oldSize: current.oldSizeKB - prev.oldSizeKB,
-			oldFiles: current.oldFiles - prev.oldFiles,
-			newSize: current.newSizeKB - prev.newSizeKB,
-			newFiles: current.newFiles - prev.newFiles,
-			totalSize: (current.oldSizeKB + current.newSizeKB) - (prev.oldSizeKB + prev.newSizeKB),
-		});
+	const prevOldMap = new Map(prevOld.map((g) => [g.label, g.sizeKB]));
+	const prevNewMap = new Map(prevNew.map((g) => [g.label, g.sizeKB]));
+
+	for (const g of curOld) {
+		row.oldGroups.push({ label: g.label, size: g.sizeKB - (prevOldMap.get(g.label) || 0) });
 	}
 
-	return changeMap;
+	for (const g of curNew) {
+		row.newGroups.push({ label: g.label, size: g.sizeKB - (prevNewMap.get(g.label) || 0) });
+	}
+
+	return row;
 }
 
-function calculateAllChanges(data, period, changeMap) {
+function calculateAllChanges(data, period) {
 	const points = data.data;
 	const changes = [];
 
 	if (period === 'day') {
 		for (let i = points.length - 1; i > 0; i--) {
-			const current = points[i];
-			const change = changeMap.get(current.time);
-
-			if (change) {
-				changes.push({
-					date: formatDate(current.time),
-					oldSize: change.oldSize,
-					oldFiles: change.oldFiles,
-					newSize: change.newSize,
-					newFiles: change.newFiles,
-				});
-			}
+			changes.push(buildChangeRow(points[i], points[i - 1], formatDate(points[i].time)));
 		}
 	} else {
 		for (let i = points.length - 1; i > 0; ) {
@@ -737,13 +725,7 @@ function calculateAllChanges(data, period, changeMap) {
 
 			const prev = points[Math.max(0, j)];
 
-			changes.push({
-				date: `${formatDate(prev.time)} \u2192 ${formatDate(current.time)}`,
-				oldSize: current.oldSizeKB - prev.oldSizeKB,
-				oldFiles: current.oldFiles - prev.oldFiles,
-				newSize: current.newSizeKB - prev.newSizeKB,
-				newFiles: current.newFiles - prev.newFiles,
-			});
+			changes.push(buildChangeRow(current, prev, `${formatDate(prev.time)} \u2192 ${formatDate(current.time)}`));
 
 			i = j;
 
@@ -766,67 +748,116 @@ function getChangeClass(value, invert = false) {
 	return isPositive ? 'change-positive' : 'change-negative';
 }
 
-function renderChangesTable(data, period, changeMap) {
-	const changes = calculateAllChanges(data, period, changeMap);
+function renderChangesTable(data, period) {
+	const changes = calculateAllChanges(data, period);
 	const container = document.getElementById('changes-table');
 	const meta = data.meta;
 	const oldLabel = meta.ui?.oldLabel || meta.oldPath;
 	const newLabel = meta.ui?.newLabel || meta.newPath;
+	const metaGroups = getMetaGroups(data);
+	const oldGroupLabels = (metaGroups.old || []).map((g) => g.label);
+	const newGroupLabels = (metaGroups.new || []).map((g) => g.label);
 
-	const headerRow = `
-		<div class="changes-row header">
-			<div class="changes-cell date">Date</div>
-			<div class="changes-cell old">${oldLabel}</div>
-			<div class="changes-cell new">${newLabel}</div>
-		</div>
-	`;
+	// Build column definitions with colors
+	const columns = [];
 
-	const rows = changes
-		.map(
-			(c) => `
-		<div class="changes-row">
-			<div class="changes-cell date">${c.date}</div>
-			<div class="changes-cell old">
-				<span class="${getChangeClass(c.oldSize, true)}">${formatSizeChange(c.oldSize)}</span>
-				<span class="${getChangeClass(c.oldFiles, true)}">${formatChange(c.oldFiles)}</span>
-			</div>
-			<div class="changes-cell new">
-				<span class="${getChangeClass(c.newSize)}">${formatSizeChange(c.newSize)}</span>
-				<span class="${getChangeClass(c.newFiles)}">${formatChange(c.newFiles)}</span>
-			</div>
-		</div>
-	`,
-		)
-		.join('');
+	for (let i = 0; i < oldGroupLabels.length; i++) {
+		const color = getGroupColor(OLD_GROUP_PALETTE, i);
 
-	container.innerHTML = headerRow + rows;
+		columns.push({ label: oldGroupLabels[i], side: 'old', color: color.line, groupIndex: i });
+	}
+
+	columns.push({ label: oldLabel, side: 'old', color: '#9CA3AF', groupIndex: -1 });
+
+	for (let i = 0; i < newGroupLabels.length; i++) {
+		const color = getGroupColor(NEW_GROUP_PALETTE, i);
+
+		columns.push({ label: newGroupLabels[i], side: 'new', color: color.line, groupIndex: i });
+	}
+
+	columns.push({ label: newLabel, side: 'new', color: '#FF8C42', groupIndex: -1 });
+
+	// Latest data point for sizes
+	const latest = data.data[data.data.length - 1];
+	const grpOld = latest && latest.groups ? latest.groups.old || [] : [];
+	const grpNew = latest && latest.groups ? latest.groups.new || [] : [];
+	const latestOldGroups = new Map(grpOld.map((g) => [g.label, g.sizeKB]));
+	const latestNewGroups = new Map(grpNew.map((g) => [g.label, g.sizeKB]));
+
+	// Header
+	let headerCells = `<th class="date">Date</th>`;
+
+	for (const col of columns) {
+		headerCells += `<th style="color: ${col.color};">${col.label}</th>`;
+	}
+
+	// Size row
+	let sizeCells = `<td class="date"></td>`;
+
+	for (const col of columns) {
+		let sizeKB = 0;
+
+		if (col.groupIndex === -1) {
+			sizeKB = col.side === 'old' ? (latest ? latest.oldSizeKB : 0) : (latest ? latest.newSizeKB : 0);
+		} else if (col.side === 'old') {
+			sizeKB = latestOldGroups.get(col.label) || 0;
+		} else {
+			sizeKB = latestNewGroups.get(col.label) || 0;
+		}
+
+		sizeCells += `<td style="color: ${col.color}; font-weight: bold; font-size: 1.1rem;">${formatSize(sizeKB)}</td>`;
+	}
+
+	// Data rows
+	const rows = changes.map((c) => {
+		let cells = `<td class="date">${c.date}</td>`;
+
+		for (const col of columns) {
+			const bgColor = col.color + '0D';
+			const invert = col.side === 'old';
+			let size;
+
+			if (col.groupIndex === -1) {
+				size = col.side === 'old' ? c.oldSize : c.newSize;
+			} else {
+				const groups = col.side === 'old' ? c.oldGroups : c.newGroups;
+				const g = groups.find((gr) => gr.label === col.label);
+
+				size = g ? g.size : 0;
+			}
+
+			cells += `<td style="background: ${bgColor};"><span class="${getChangeClass(size, invert)}">${formatSizeChange(size)}</span></td>`;
+		}
+
+		return `<tr>${cells}</tr>`;
+	}).join('');
+
+	container.innerHTML = `<thead><tr>${headerCells}</tr><tr>${sizeCells}</tr></thead><tbody>${rows}</tbody>`;
 }
 
-function setupPeriodToggle(data, changeMap) {
+function setupPeriodToggle(data) {
 	const buttons = document.querySelectorAll('.period-btn');
 
 	buttons.forEach((btn) => {
 		btn.addEventListener('click', () => {
 			buttons.forEach((b) => b.classList.remove('active'));
 			btn.classList.add('active');
-			renderChangesTable(data, btn.dataset.period, changeMap);
+			renderChangesTable(data, btn.dataset.period);
 		});
 	});
 
-	renderChangesTable(data, 'day', changeMap);
+	renderChangesTable(data, 'day');
 }
 
 // --- Init ---
 
 async function init() {
 	const data = await loadData();
-	const changeMap = calculateDailyChanges(data);
 
 	initUI(data);
-	createChart(data, changeMap);
-	updateStats(data);
+	createChart(data);
 	updateMeta(data);
-	setupPeriodToggle(data, changeMap);
+	setupPeriodToggle(data);
 }
 
 init();
