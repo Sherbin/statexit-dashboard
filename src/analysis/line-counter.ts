@@ -2,6 +2,7 @@ import * as fs from 'fs/promises';
 import * as path from 'path';
 
 import { FolderStats, GroupConfig, GroupDataPoint, GroupedFolderStats } from '../data/schema.js';
+import { isTextFile } from './text-detector.js';
 
 const REST_MARKER = '__REST__';
 
@@ -65,6 +66,10 @@ export async function analyzeFolder(folderPath: string, ignoredSubfolders?: stri
 			} else if (entry.isFile()) {
 				const ext = path.extname(entryName).toLowerCase();
 				if (IGNORED_EXTENSIONS.has(ext)) {
+					continue;
+				}
+
+				if (!await isTextFile(fullPath)) {
 					continue;
 				}
 
@@ -187,6 +192,10 @@ export async function analyzeFolderWithGroups(
 			} else if (entry.isFile()) {
 				const ext = path.extname(entryName).toLowerCase();
 				if (IGNORED_EXTENSIONS.has(ext)) {
+					continue;
+				}
+
+				if (!await isTextFile(fullPath)) {
 					continue;
 				}
 

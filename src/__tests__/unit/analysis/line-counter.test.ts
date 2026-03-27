@@ -95,13 +95,13 @@ describe('line-counter', () => {
 			expect(result.files).toBe(1);
 		});
 
-		it('should count all files including binary', async () => {
+		it('should skip binary files', async () => {
 			await fs.writeFile(path.join(tempDir, 'code.ts'), 'a\n');
 			await fs.writeFile(path.join(tempDir, 'image.dat'), Buffer.from([0x00, 0x01]));
 
 			const result = await analyzeFolder(tempDir);
 
-			expect(result.files).toBe(2);
+			expect(result.files).toBe(1);
 		});
 
 		it('should ignore files with video extensions', async () => {
