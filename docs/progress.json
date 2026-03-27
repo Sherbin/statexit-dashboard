@@ -3,7 +3,7 @@
     "sourceRepo": "source-repo",
     "oldPath": "static",
     "newPath": "frontends",
-    "generatedAt": "2026-03-27T11:22:14.592Z",
+    "generatedAt": "2026-03-27T11:24:33.123Z",
     "version": 3,
     "ignoredSubfolders": {
       "old": [
