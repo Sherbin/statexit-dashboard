@@ -3,7 +3,7 @@
     "sourceRepo": "source-repo",
     "oldPath": "static",
     "newPath": "frontends",
-    "generatedAt": "2026-04-10T12:40:59.832Z",
+    "generatedAt": "2026-04-13T07:41:47.807Z",
     "version": 3,
     "ignoredSubfolders": {
       "old": [
@@ -6812,6 +6812,87 @@
           {
             "label": "Chart",
             "sizeKB": 14159,
+            "files": 3209
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 15561,
+            "files": 7618
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1775779200,
+      "oldSizeKB": 31971,
+      "newSizeKB": 36600,
+      "oldFiles": 12085,
+      "newFiles": 14862,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 2250,
+            "files": 1258
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 14160,
+            "files": 3209
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 15561,
+            "files": 7618
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1775865600,
+      "oldSizeKB": 31971,
+      "newSizeKB": 36600,
+      "oldFiles": 12085,
+      "newFiles": 14862,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 2250,
+            "files": 1258
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 14160,
+            "files": 3209
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 15561,
+            "files": 7618
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1775952000,
+      "oldSizeKB": 31971,
+      "newSizeKB": 36600,
+      "oldFiles": 12085,
+      "newFiles": 14862,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 2250,
+            "files": 1258
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 14160,
             "files": 3209
           },
           {
