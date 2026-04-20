@@ -3,7 +3,7 @@
     "sourceRepo": "source-repo",
     "oldPath": "static",
     "newPath": "frontends",
-    "generatedAt": "2026-04-17T07:47:49.923Z",
+    "generatedAt": "2026-04-20T10:32:27.312Z",
     "version": 3,
     "ignoredSubfolders": {
       "old": [
@@ -7007,6 +7007,87 @@
             "label": "Other products",
             "sizeKB": 14996,
             "files": 7244
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1776384000,
+      "oldSizeKB": 31476,
+      "newSizeKB": 37405,
+      "oldFiles": 11722,
+      "newFiles": 15276,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 2252,
+            "files": 1256
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 14198,
+            "files": 3214
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 15026,
+            "files": 7252
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1776470400,
+      "oldSizeKB": 31476,
+      "newSizeKB": 37405,
+      "oldFiles": 11722,
+      "newFiles": 15276,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 2252,
+            "files": 1256
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 14198,
+            "files": 3214
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 15026,
+            "files": 7252
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1776556800,
+      "oldSizeKB": 31482,
+      "newSizeKB": 37406,
+      "oldFiles": 11733,
+      "newFiles": 15279,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 2252,
+            "files": 1256
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 14200,
+            "files": 3217
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 15030,
+            "files": 7260
           }
         ],
         "new": []
