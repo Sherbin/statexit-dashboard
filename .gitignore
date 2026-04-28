@@ -5,6 +5,7 @@ dist/
 *.log
 coverage/
 logs/
+test-results/
 README.local.md
 config.local.json
 .claude/
