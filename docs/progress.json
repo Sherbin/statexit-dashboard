@@ -3,7 +3,7 @@
     "sourceRepo": "source-repo",
     "oldPath": "static",
     "newPath": "frontends",
-    "generatedAt": "2026-05-11T16:54:22.024Z",
+    "generatedAt": "2026-05-15T09:28:11.687Z",
     "version": 3,
     "ignoredSubfolders": {
       "old": [
@@ -7628,6 +7628,114 @@
             "label": "Other products",
             "sizeKB": 14360,
             "files": 6845
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1778457600,
+      "oldSizeKB": 30196,
+      "newSizeKB": 39262,
+      "oldFiles": 11162,
+      "newFiles": 15889,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 1946,
+            "files": 1138
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 13866,
+            "files": 3171
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 14384,
+            "files": 6853
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1778544000,
+      "oldSizeKB": 30336,
+      "newSizeKB": 39282,
+      "oldFiles": 11122,
+      "newFiles": 15893,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 1855,
+            "files": 1121
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 14184,
+            "files": 3214
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 14297,
+            "files": 6787
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1778630400,
+      "oldSizeKB": 30298,
+      "newSizeKB": 39323,
+      "oldFiles": 11093,
+      "newFiles": 15915,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 1848,
+            "files": 1120
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 14187,
+            "files": 3215
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 14263,
+            "files": 6758
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1778716800,
+      "oldSizeKB": 29759,
+      "newSizeKB": 40034,
+      "oldFiles": 10763,
+      "newFiles": 16283,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 1849,
+            "files": 1120
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 14113,
+            "files": 3173
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 13797,
+            "files": 6470
           }
         ],
         "new": []
