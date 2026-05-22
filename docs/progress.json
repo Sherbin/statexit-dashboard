@@ -3,7 +3,7 @@
     "sourceRepo": "source-repo",
     "oldPath": "static",
     "newPath": "frontends",
-    "generatedAt": "2026-05-15T09:28:11.687Z",
+    "generatedAt": "2026-05-22T16:13:57.058Z",
     "version": 3,
     "ignoredSubfolders": {
       "old": [
@@ -7736,6 +7736,195 @@
             "label": "Other products",
             "sizeKB": 13797,
             "files": 6470
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1778803200,
+      "oldSizeKB": 29757,
+      "newSizeKB": 40078,
+      "oldFiles": 10758,
+      "newFiles": 16297,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 1849,
+            "files": 1120
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 14115,
+            "files": 3173
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 13793,
+            "files": 6465
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1778889600,
+      "oldSizeKB": 29757,
+      "newSizeKB": 40078,
+      "oldFiles": 10758,
+      "newFiles": 16297,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 1849,
+            "files": 1120
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 14115,
+            "files": 3173
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 13793,
+            "files": 6465
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1778976000,
+      "oldSizeKB": 29757,
+      "newSizeKB": 40081,
+      "oldFiles": 10758,
+      "newFiles": 16300,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 1849,
+            "files": 1120
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 14115,
+            "files": 3173
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 13793,
+            "files": 6465
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1779062400,
+      "oldSizeKB": 29785,
+      "newSizeKB": 40130,
+      "oldFiles": 10811,
+      "newFiles": 16327,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 1848,
+            "files": 1122
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 14136,
+            "files": 3212
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 13801,
+            "files": 6477
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1779148800,
+      "oldSizeKB": 29788,
+      "newSizeKB": 40124,
+      "oldFiles": 10811,
+      "newFiles": 16322,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 1848,
+            "files": 1122
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 14137,
+            "files": 3212
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 13803,
+            "files": 6477
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1779235200,
+      "oldSizeKB": 29782,
+      "newSizeKB": 40110,
+      "oldFiles": 10756,
+      "newFiles": 16330,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 1848,
+            "files": 1122
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 14131,
+            "files": 3157
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 13803,
+            "files": 6477
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1779321600,
+      "oldSizeKB": 29793,
+      "newSizeKB": 40111,
+      "oldFiles": 10771,
+      "newFiles": 16337,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 1848,
+            "files": 1126
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 14146,
+            "files": 3165
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 13799,
+            "files": 6480
           }
         ],
         "new": []
