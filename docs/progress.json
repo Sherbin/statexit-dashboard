@@ -3,7 +3,7 @@
     "sourceRepo": "source-repo",
     "oldPath": "static",
     "newPath": "frontends",
-    "generatedAt": "2026-06-16T13:11:04.540Z",
+    "generatedAt": "2026-06-16T14:14:53.192Z",
     "version": 3,
     "ignoredSubfolders": {
       "old": [
@@ -8573,6 +8573,33 @@
             "label": "Other products",
             "sizeKB": 12667,
             "files": 5596
+          }
+        ],
+        "new": []
+      }
+    },
+    {
+      "time": 1781568000,
+      "oldSizeKB": 15681,
+      "newSizeKB": 55376,
+      "oldFiles": 7456,
+      "newFiles": 19829,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 1696,
+            "files": 1100
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 2655,
+            "files": 850
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 11330,
+            "files": 5506
           }
         ],
         "new": []
