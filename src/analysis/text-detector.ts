@@ -25,7 +25,6 @@ export const TEXT_EXTENSIONS: Set<string> = new Set([
 	'.scss',
 	'.less',
 	'.xml',
-	'.svg',
 	'.sh',
 	'.bash',
 	'.zsh',

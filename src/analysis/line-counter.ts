@@ -12,10 +12,11 @@ const REST_MARKER = '__REST__';
 export const IGNORED_DIRS: Set<string> = new Set(['.git', 'node_modules', '__pycache__', '.DS_Store']);
 
 /**
- * File extensions to always ignore (video)
+ * File extensions to always ignore (video + vector graphics)
  */
 export const IGNORED_EXTENSIONS: Set<string> = new Set([
 	'.mp4', '.webm', '.avi', '.mov', '.mkv', '.flv', '.wmv', '.m4v', '.ogv',
+	'.svg',
 ]);
 
 /**
