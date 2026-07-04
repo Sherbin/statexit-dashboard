@@ -2,8 +2,11 @@
   "meta": {
     "sourceRepo": "source-repo",
     "oldPath": "static",
-    "newPath": "frontends",
-    "generatedAt": "2026-07-04T06:28:27.755Z",
+    "newPath": [
+      "frontends",
+      "frontend/products"
+    ],
+    "generatedAt": "2026-07-04T06:34:03.434Z",
     "version": 3,
     "ignoredSubfolders": {
       "old": [
@@ -23,9 +26,9 @@
     "ui": {
       "title": "Migration Progress",
       "oldLabel": "static",
-      "newLabel": "frontends",
+      "newLabel": "frontend",
       "oldDescription": "excluding: images, api-types, bundles, cursors, error_pages, external, fonts, localization, sounds, videos",
-      "newDescription": "all files"
+      "newDescription": "all files in frontends and frontend/products"
     },
     "groups": {
       "old": [
