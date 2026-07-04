@@ -7,7 +7,7 @@ export interface GroupConfig {
 
 export interface FolderConfig {
 	label: string;
-	path: string;
+	path: string | string[];
 	description: string;
 	ignore?: string[];
 	groups?: GroupConfig[];
@@ -44,8 +44,8 @@ export interface UiConfig {
 
 export interface MetaInfo {
 	sourceRepo: string;
-	oldPath: string;
-	newPath: string;
+	oldPath: string | string[];
+	newPath: string | string[];
 	generatedAt: string;
 	version?: number;
 	ignoredSubfolders?: {

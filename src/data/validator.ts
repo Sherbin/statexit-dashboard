@@ -32,7 +32,7 @@ export function validateProgressData(data: ProgressData): void {
 		throw new Error('Validation error: meta is missing');
 	}
 
-	const requiredMetaFields = ['sourceRepo', 'oldPath', 'newPath', 'generatedAt'] as const;
+	const requiredMetaFields = ['sourceRepo', 'generatedAt'] as const;
 
 	for (const field of requiredMetaFields) {
 		if (data.meta[field] === undefined || data.meta[field] === null) {
@@ -41,6 +41,21 @@ export function validateProgressData(data: ProgressData): void {
 		if (typeof data.meta[field] !== 'string') {
 			throw new Error(`Validation error: meta.${field} must be a string`);
 		}
+	}
+
+	// oldPath and newPath can be string or string[]
+	if (data.meta.oldPath === undefined || data.meta.oldPath === null) {
+		throw new Error('Validation error: meta.oldPath is missing');
+	}
+	if (typeof data.meta.oldPath !== 'string' && !Array.isArray(data.meta.oldPath)) {
+		throw new Error('Validation error: meta.oldPath must be a string or array of strings');
+	}
+
+	if (data.meta.newPath === undefined || data.meta.newPath === null) {
+		throw new Error('Validation error: meta.newPath is missing');
+	}
+	if (typeof data.meta.newPath !== 'string' && !Array.isArray(data.meta.newPath)) {
+		throw new Error('Validation error: meta.newPath must be a string or array of strings');
 	}
 
 	// 2. Проверка data — массив

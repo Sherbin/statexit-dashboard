@@ -122,6 +122,72 @@ function matchFileToGroup(relPath: string, groups: GroupConfig[]): string | null
 }
 
 /**
+ * Analyzes multiple folders with group breakdown.
+ * If no explicit groups are defined, creates groups for each folder path.
+ * Otherwise combines results treating all paths as one logical unit.
+ */
+export async function analyzeFoldersWithGroups(
+	folderPaths: string[],
+	ignoredSubfolders: string[],
+	groups: GroupConfig[],
+): Promise<GroupedFolderStats> {
+	const results = await Promise.all(
+		folderPaths.map((p) => analyzeFolder(p, ignoredSubfolders))
+	);
+
+	const combined: GroupedFolderStats = {
+		total: { sizeKB: 0, files: 0 },
+		groups: [],
+	};
+
+	// If no explicit groups, create groups for each folder path
+	if (groups.length === 0) {
+		for (let i = 0; i < folderPaths.length; i++) {
+			const result = results[i];
+			const folderName = folderPaths[i].split('/').pop() || folderPaths[i];
+			combined.groups.push({
+				label: folderName,
+				sizeKB: result.sizeKB,
+				files: result.files,
+			});
+			combined.total.sizeKB += result.sizeKB;
+			combined.total.files += result.files;
+		}
+	} else {
+		// If groups are defined, analyze each folder with its groups and combine
+		const groupResults = await Promise.all(
+			folderPaths.map((p) => analyzeFolderWithGroups(p, ignoredSubfolders, groups))
+		);
+
+		combined.total.sizeKB = groupResults.reduce((sum, r) => sum + r.total.sizeKB, 0);
+		combined.total.files = groupResults.reduce((sum, r) => sum + r.total.files, 0);
+
+		// Combine groups with same labels
+		const groupMap = new Map<string, { sizeKB: number; files: number }>();
+
+		for (const result of groupResults) {
+			for (const group of result.groups) {
+				const existing = groupMap.get(group.label) || { sizeKB: 0, files: 0 };
+				groupMap.set(group.label, {
+					sizeKB: existing.sizeKB + group.sizeKB,
+					files: existing.files + group.files,
+				});
+			}
+		}
+
+		for (const [label, data] of groupMap.entries()) {
+			combined.groups.push({
+				label,
+				sizeKB: data.sizeKB,
+				files: data.files,
+			});
+		}
+	}
+
+	return combined;
+}
+
+/**
  * Analyzes a folder with group breakdown.
  * Each file is classified into exactly one group based on config.
  * __REST__ group is computed as total - sum(explicit groups) to avoid rounding errors.

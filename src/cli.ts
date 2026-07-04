@@ -6,7 +6,7 @@ import * as path from 'path';
 
 import { Command } from 'commander';
 
-import { analyzeFolderWithGroups } from './analysis/index.js';
+import { analyzeFolderWithGroups, analyzeFoldersWithGroups } from './analysis/line-counter.js';
 import { getCachePath, loadCache, saveCache, validateCache, createCache, cacheToCommitInfo } from './cache/index.js';
 import {
 	validateProgressData,
@@ -162,14 +162,16 @@ async function main(): Promise<void> {
 
 	const repoPath = path.resolve(repo);
 	const outputPath = path.resolve(output);
-	const oldPath = oldConfig.path;
-	const newFolderPath = newConfig.path;
+	const oldPaths = Array.isArray(oldConfig.path) ? oldConfig.path : [oldConfig.path];
+	const newPaths = Array.isArray(newConfig.path) ? newConfig.path : [newConfig.path];
+	const oldPath = oldPaths[0]; // For logging and cache key
+	const newFolderPath = newPaths[0]; // For logging and cache key
 	const cachePath = getCachePath(outputPath, cache);
 
 	logger.info('INIT', 'Starting analysis', {
 		repo: repoPath,
-		oldPath,
-		newPath: newFolderPath,
+		oldPath: oldPaths.length === 1 ? oldPath : oldPaths,
+		newPath: newPaths.length === 1 ? newFolderPath : newPaths,
 		output: outputPath,
 		cache: cachePath,
 		ignoreOld,
@@ -274,11 +276,15 @@ async function main(): Promise<void> {
 
 				await checkoutCommit(repoPath, dc.hash);
 
-				const oldFullPath = path.join(repoPath, oldPath);
-				const newFullPath = path.join(repoPath, newFolderPath);
+				const oldFullPaths = oldPaths.map((p) => path.join(repoPath, p));
+				const newFullPaths = newPaths.map((p) => path.join(repoPath, p));
 
-				const oldResult = await analyzeFolderWithGroups(oldFullPath, ignoreOld, oldGroups);
-				const newResult = await analyzeFolderWithGroups(newFullPath, ignoreNew, newGroups);
+				const oldResult = oldFullPaths.length === 1
+					? await analyzeFolderWithGroups(oldFullPaths[0], ignoreOld, oldGroups)
+					: await analyzeFoldersWithGroups(oldFullPaths, ignoreOld, oldGroups);
+				const newResult = newFullPaths.length === 1
+					? await analyzeFolderWithGroups(newFullPaths[0], ignoreNew, newGroups)
+					: await analyzeFoldersWithGroups(newFullPaths, ignoreNew, newGroups);
 
 				const dayTimestamp = new Date(dc.date + 'T00:00:00Z').getTime() / 1000;
 

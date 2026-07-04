@@ -57,8 +57,16 @@ export function normalizeGroups(groups: GroupConfig[]): GroupConfig[] {
  * @throws Error if config is invalid
  */
 export function validateFolderConfig(config: FolderConfig, name: string): FolderConfig {
-	if (!config.path || typeof config.path !== 'string') {
-		throw new Error(`Config error: ${name}.path is required and must be a string`);
+	if (!config.path) {
+		throw new Error(`Config error: ${name}.path is required`);
+	}
+
+	if (typeof config.path !== 'string' && !Array.isArray(config.path)) {
+		throw new Error(`Config error: ${name}.path must be a string or array of strings`);
+	}
+
+	if (Array.isArray(config.path) && config.path.length === 0) {
+		throw new Error(`Config error: ${name}.path array cannot be empty`);
 	}
 
 	if (!config.label || typeof config.label !== 'string') {
