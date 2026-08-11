@@ -6,7 +6,7 @@
       "frontends",
       "frontend/products"
     ],
-    "generatedAt": "2026-08-07T17:15:30.563Z",
+    "generatedAt": "2026-08-11T06:28:35.544Z",
     "version": 3,
     "ignoredSubfolders": {
       "old": [
@@ -14105,6 +14105,158 @@
             "label": "products",
             "sizeKB": 72034,
             "files": 23957
+          }
+        ]
+      }
+    },
+    {
+      "time": 1786060800,
+      "oldSizeKB": 7303,
+      "newSizeKB": 76460,
+      "oldFiles": 3337,
+      "newFiles": 24240,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 691,
+            "files": 485
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 1347,
+            "files": 205
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 5265,
+            "files": 2647
+          }
+        ],
+        "new": [
+          {
+            "label": "frontends",
+            "sizeKB": 2,
+            "files": 2
+          },
+          {
+            "label": "products",
+            "sizeKB": 76458,
+            "files": 24238
+          }
+        ]
+      }
+    },
+    {
+      "time": 1786147200,
+      "oldSizeKB": 7303,
+      "newSizeKB": 76460,
+      "oldFiles": 3337,
+      "newFiles": 24239,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 691,
+            "files": 485
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 1347,
+            "files": 205
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 5265,
+            "files": 2647
+          }
+        ],
+        "new": [
+          {
+            "label": "frontends",
+            "sizeKB": 2,
+            "files": 2
+          },
+          {
+            "label": "products",
+            "sizeKB": 76458,
+            "files": 24237
+          }
+        ]
+      }
+    },
+    {
+      "time": 1786233600,
+      "oldSizeKB": 7303,
+      "newSizeKB": 76460,
+      "oldFiles": 3337,
+      "newFiles": 24239,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 691,
+            "files": 485
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 1347,
+            "files": 205
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 5265,
+            "files": 2647
+          }
+        ],
+        "new": [
+          {
+            "label": "frontends",
+            "sizeKB": 2,
+            "files": 2
+          },
+          {
+            "label": "products",
+            "sizeKB": 76458,
+            "files": 24237
+          }
+        ]
+      }
+    },
+    {
+      "time": 1786320000,
+      "oldSizeKB": 7206,
+      "newSizeKB": 76673,
+      "oldFiles": 3274,
+      "newFiles": 24082,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 652,
+            "files": 463
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 1341,
+            "files": 199
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 5213,
+            "files": 2612
+          }
+        ],
+        "new": [
+          {
+            "label": "frontends",
+            "sizeKB": 2,
+            "files": 2
+          },
+          {
+            "label": "products",
+            "sizeKB": 76671,
+            "files": 24080
           }
         ]
       }
