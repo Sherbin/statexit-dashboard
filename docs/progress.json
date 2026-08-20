@@ -6,7 +6,7 @@
       "frontends",
       "frontend/products"
     ],
-    "generatedAt": "2026-08-19T18:07:09.000Z",
+    "generatedAt": "2026-08-20T07:54:44.832Z",
     "version": 3,
     "ignoredSubfolders": {
       "old": [
@@ -14561,6 +14561,44 @@
             "label": "products",
             "sizeKB": 83513,
             "files": 25712
+          }
+        ]
+      }
+    },
+    {
+      "time": 1787097600,
+      "oldSizeKB": 5247,
+      "newSizeKB": 84559,
+      "oldFiles": 2359,
+      "newFiles": 25992,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 529,
+            "files": 348
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 1235,
+            "files": 177
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 3483,
+            "files": 1834
+          }
+        ],
+        "new": [
+          {
+            "label": "frontends",
+            "sizeKB": 2,
+            "files": 2
+          },
+          {
+            "label": "products",
+            "sizeKB": 84557,
+            "files": 25990
           }
         ]
       }
