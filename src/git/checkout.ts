@@ -5,6 +5,15 @@ import * as path from 'path';
 import * as logger from '../logger.js';
 
 /**
+ * В больших репозиториях git печатает десятки тысяч строк (`git clean` — строку на каждый файл),
+ * что переполняет дефолтный буфер execSync в 1MB и падает с ENOBUFS.
+ */
+const MAX_BUFFER = 64 * 1024 * 1024;
+
+/** stdout этих команд не используется, буферизуем только stderr — он нужен для текста ошибки. */
+const SILENT_STDIO: ['ignore', 'ignore', 'pipe'] = ['ignore', 'ignore', 'pipe'];
+
+/**
  * Принудительно убивает все git процессы в репозитории
  */
 function killGitProcesses(repoPath: string): void {
@@ -100,18 +109,20 @@ export async function checkoutCommit(repoPath: string, hash: string): Promise<vo
 		await removeLockFiles(repoPath);
 
 		// Reset any staged changes
-		execSync('git reset --hard HEAD', {
+		execSync('git reset --hard --quiet HEAD', {
 			cwd: repoPath,
 			encoding: 'utf-8',
-			stdio: 'pipe',
+			stdio: SILENT_STDIO,
+			maxBuffer: MAX_BUFFER,
 			timeout: 30000, // 30 seconds max
 		});
 
 		// Remove untracked and ignored files (-x flag)
-		execSync('git clean -fdx', {
+		execSync('git clean -fdxq', {
 			cwd: repoPath,
 			encoding: 'utf-8',
-			stdio: 'pipe',
+			stdio: SILENT_STDIO,
+			maxBuffer: MAX_BUFFER,
 			timeout: 60000, // 60 seconds max
 		});
 
@@ -119,7 +130,8 @@ export async function checkoutCommit(repoPath: string, hash: string): Promise<vo
 		execSync(`git checkout --force --quiet --no-recurse-submodules ${hash}`, {
 			cwd: repoPath,
 			encoding: 'utf-8',
-			stdio: 'pipe',
+			stdio: SILENT_STDIO,
+			maxBuffer: MAX_BUFFER,
 			timeout: 60000,
 			env: { ...process.env, GIT_LFS_SKIP_SMUDGE: '1' },
 		});
@@ -150,18 +162,20 @@ export async function restoreBranch(repoPath: string, branch: string): Promise<v
 		await removeLockFiles(repoPath);
 
 		// Reset any staged changes
-		execSync('git reset --hard HEAD', {
+		execSync('git reset --hard --quiet HEAD', {
 			cwd: repoPath,
 			encoding: 'utf-8',
-			stdio: 'pipe',
+			stdio: SILENT_STDIO,
+			maxBuffer: MAX_BUFFER,
 			timeout: 30000,
 		});
 
 		// Remove untracked and ignored files (-x flag)
-		execSync('git clean -fdx', {
+		execSync('git clean -fdxq', {
 			cwd: repoPath,
 			encoding: 'utf-8',
-			stdio: 'pipe',
+			stdio: SILENT_STDIO,
+			maxBuffer: MAX_BUFFER,
 			timeout: 60000,
 		});
 
@@ -169,7 +183,8 @@ export async function restoreBranch(repoPath: string, branch: string): Promise<v
 		execSync(`git checkout --force --quiet --no-recurse-submodules ${branch}`, {
 			cwd: repoPath,
 			encoding: 'utf-8',
-			stdio: 'pipe',
+			stdio: SILENT_STDIO,
+			maxBuffer: MAX_BUFFER,
 			timeout: 60000,
 			env: { ...process.env, GIT_LFS_SKIP_SMUDGE: '1' },
 		});

@@ -13,6 +13,7 @@ export async function findFirstAppearance(repoPath: string, folderPath: string):
 		const output = execSync(`git log --reverse --format="%H|%ct" --diff-filter=A -- "${folderPath}"`, {
 			cwd: repoPath,
 			encoding: 'utf-8',
+			maxBuffer: 50 * 1024 * 1024, // 50MB for large repos
 		});
 
 		const lines = output
