@@ -6,7 +6,7 @@
       "frontends",
       "frontend/products"
     ],
-    "generatedAt": "2026-08-20T07:54:44.832Z",
+    "generatedAt": "2026-08-24T08:52:27.692Z",
     "version": 3,
     "ignoredSubfolders": {
       "old": [
@@ -14599,6 +14599,120 @@
             "label": "products",
             "sizeKB": 84557,
             "files": 25990
+          }
+        ]
+      }
+    },
+    {
+      "time": 1787184000,
+      "oldSizeKB": 4536,
+      "newSizeKB": 85416,
+      "oldFiles": 2211,
+      "newFiles": 26168,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 490,
+            "files": 340
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 1206,
+            "files": 173
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 2840,
+            "files": 1698
+          }
+        ],
+        "new": [
+          {
+            "label": "frontends",
+            "sizeKB": 5,
+            "files": 3
+          },
+          {
+            "label": "products",
+            "sizeKB": 85411,
+            "files": 26165
+          }
+        ]
+      }
+    },
+    {
+      "time": 1787270400,
+      "oldSizeKB": 3345,
+      "newSizeKB": 108944,
+      "oldFiles": 2037,
+      "newFiles": 27772,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 449,
+            "files": 321
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 70,
+            "files": 37
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 2826,
+            "files": 1679
+          }
+        ],
+        "new": [
+          {
+            "label": "frontends",
+            "sizeKB": 5,
+            "files": 3
+          },
+          {
+            "label": "products",
+            "sizeKB": 108939,
+            "files": 27769
+          }
+        ]
+      }
+    },
+    {
+      "time": 1787356800,
+      "oldSizeKB": 3358,
+      "newSizeKB": 108948,
+      "oldFiles": 2049,
+      "newFiles": 27772,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 462,
+            "files": 333
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 70,
+            "files": 37
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 2826,
+            "files": 1679
+          }
+        ],
+        "new": [
+          {
+            "label": "frontends",
+            "sizeKB": 5,
+            "files": 3
+          },
+          {
+            "label": "products",
+            "sizeKB": 108943,
+            "files": 27769
           }
         ]
       }
