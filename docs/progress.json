@@ -6,7 +6,7 @@
       "frontends",
       "frontend/products"
     ],
-    "generatedAt": "2026-08-26T06:23:53.746Z",
+    "generatedAt": "2026-08-31T11:01:22.026Z",
     "version": 3,
     "ignoredSubfolders": {
       "old": [
@@ -14827,6 +14827,196 @@
             "label": "products",
             "sizeKB": 109804,
             "files": 28199
+          }
+        ]
+      }
+    },
+    {
+      "time": 1787702400,
+      "oldSizeKB": 2982,
+      "newSizeKB": 110612,
+      "oldFiles": 1789,
+      "newFiles": 28160,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 412,
+            "files": 290
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 67,
+            "files": 35
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 2503,
+            "files": 1464
+          }
+        ],
+        "new": [
+          {
+            "label": "frontends",
+            "sizeKB": 5,
+            "files": 3
+          },
+          {
+            "label": "products",
+            "sizeKB": 110607,
+            "files": 28157
+          }
+        ]
+      }
+    },
+    {
+      "time": 1787788800,
+      "oldSizeKB": 2769,
+      "newSizeKB": 114570,
+      "oldFiles": 1659,
+      "newFiles": 28673,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 409,
+            "files": 287
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 67,
+            "files": 35
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 2293,
+            "files": 1337
+          }
+        ],
+        "new": [
+          {
+            "label": "frontends",
+            "sizeKB": 0,
+            "files": 1
+          },
+          {
+            "label": "products",
+            "sizeKB": 114570,
+            "files": 28672
+          }
+        ]
+      }
+    },
+    {
+      "time": 1787875200,
+      "oldSizeKB": 2546,
+      "newSizeKB": 114960,
+      "oldFiles": 1551,
+      "newFiles": 28778,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 363,
+            "files": 255
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 67,
+            "files": 35
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 2116,
+            "files": 1261
+          }
+        ],
+        "new": [
+          {
+            "label": "frontends",
+            "sizeKB": 0,
+            "files": 1
+          },
+          {
+            "label": "products",
+            "sizeKB": 114960,
+            "files": 28777
+          }
+        ]
+      }
+    },
+    {
+      "time": 1787961600,
+      "oldSizeKB": 2546,
+      "newSizeKB": 114954,
+      "oldFiles": 1551,
+      "newFiles": 28778,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 363,
+            "files": 255
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 67,
+            "files": 35
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 2116,
+            "files": 1261
+          }
+        ],
+        "new": [
+          {
+            "label": "frontends",
+            "sizeKB": 0,
+            "files": 1
+          },
+          {
+            "label": "products",
+            "sizeKB": 114954,
+            "files": 28777
+          }
+        ]
+      }
+    },
+    {
+      "time": 1788048000,
+      "oldSizeKB": 2546,
+      "newSizeKB": 114954,
+      "oldFiles": 1551,
+      "newFiles": 28778,
+      "groups": {
+        "old": [
+          {
+            "label": "Platform",
+            "sizeKB": 363,
+            "files": 255
+          },
+          {
+            "label": "Chart",
+            "sizeKB": 67,
+            "files": 35
+          },
+          {
+            "label": "Other products",
+            "sizeKB": 2116,
+            "files": 1261
+          }
+        ],
+        "new": [
+          {
+            "label": "frontends",
+            "sizeKB": 0,
+            "files": 1
+          },
+          {
+            "label": "products",
+            "sizeKB": 114954,
+            "files": 28777
           }
         ]
       }
